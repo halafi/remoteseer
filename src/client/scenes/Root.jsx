@@ -11,8 +11,9 @@ const Container: any = styled(Flex)`
 `;
 
 const Root = () => (
-  <Container justifyContent="center" alignItems="center">
+  <Container alignItems="center" flexDirection="column">
     <h1>Remote Seer</h1>
+    <img alt="work remotely" src="images/work_remotely.svg" />
   </Container>
 );
 

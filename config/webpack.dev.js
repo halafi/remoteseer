@@ -35,6 +35,12 @@ module.exports = (env, argv) => ({
     contentBase: path.resolve(__dirname, '../src/client'), // index.html
     publicPath: '/', // where to serve bundle
     disableHostCheck: true,
+    historyApiFallback: {
+      index: 'index.html', // fallback for route handling
+    },
+    proxy: {
+      '*': 'http://localhost:3001',
+    },
     port: 8000,
   },
   plugins: [
