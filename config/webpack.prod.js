@@ -24,7 +24,7 @@ module.exports = (env, argv) => ({
   },
   mode: argv.mode,
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist/static'),
     filename: 'bundle.js',
     publicPath: '/',
   },

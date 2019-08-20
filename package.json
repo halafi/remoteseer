@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run clean && npm run copy:assets && run-p server:dev webpack:dev",
-    "build": "npm run clean && npm run webpack:prod && npm run copy:assets && cp index.html dist",
+    "build": "npm run clean && npm run webpack:prod && npm run copy:assets",
     "clean": "rimraf dist",
     "server:dev": "npm run babel:dev && run-p watch:*",
     "copy:assets": "mkdir -p dist/static && cp -r assets/* dist/static",
