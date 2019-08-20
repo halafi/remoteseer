@@ -9,8 +9,10 @@ import Root from './scenes/Root';
 const container = document.getElementById('container');
 
 const GlobalStyle = createGlobalStyle`
+  @import url('./semantic/dist/semantic.min.css');
   body {
-    font-family: 'Roboto', sans-serif;
+    color: ${ThemeDefault.primary};
+    background-color: ${ThemeDefault.secondary};
   }
 `;
 

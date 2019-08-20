@@ -1,4 +1,6 @@
 [ignore]
+.*/flow-typed/npm/styled-components_v4.x.x*
+.*/node_modules/findup*
 
 [include]
 

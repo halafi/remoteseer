@@ -3,16 +3,11 @@ import React from 'react';
 import { Box, Flex } from '@rebass/grid';
 import styled from 'styled-components';
 import { hot } from 'react-hot-loader';
-
-const Container: any = styled(Flex)`
-  height: 100vh;
-  color: ${({ theme }) => theme.primary};
-  background-color: ${({ theme }) => theme.secondary};
-`;
+import Navbar from '../components/Navbar';
 
 const Description = styled(Box)`
   text-align: center;
-  width: 790px;
+  max-width: 790px;
 `;
 
 const Header = styled.h1`
@@ -49,27 +44,31 @@ const Root = () => {
   const githubJobs = useGithubRemoteJobs();
   console.log(githubJobs);
   return (
-    <Container alignItems="center" flexDirection="column">
-      <Header>Remote Seer</Header>
-      <img alt="work remotely" src="images/work_remotely.svg" />
-      <Description>
-        <Subheader>
-          Find remote work and <strong>work from anywhere</strong>. We aggregate providers so that
-          we can bring you the <strong>largest listing of remote jobs</strong>. Find all remote jobs
-          in one place.
-        </Subheader>
-      </Description>
-      <JobList flexDirection="column">
-        {githubJobs.map(job => (
-          <Flex alignItems="center" key={job.id}>
-            <a target="_blank" rel="noopener noreferrer nofollow" href={job.url}>
-              {job.company}
-            </a>{' '}
-            - {job.title}
-          </Flex>
-        ))}
-      </JobList>
-    </Container>
+    <>
+      <Navbar />
+      <Flex alignItems="center" flexDirection="column">
+        <img alt="work remotely" src="images/work_remotely.svg" />
+        <Header>Remote Seer</Header>
+        <Description>
+          <Subheader>
+            Find remote work and <strong>work from anywhere</strong>. We aggregate providers so that
+            we can bring you the <strong>largest listing of remote jobs</strong>. Find all remote
+            jobs in one place.
+          </Subheader>
+        </Description>
+        <hr />
+        <JobList flexDirection="column">
+          {githubJobs.map(job => (
+            <Flex alignItems="center" key={job.id}>
+              <a target="_blank" rel="noopener noreferrer nofollow" href={job.url}>
+                {job.company}
+              </a>{' '}
+              - {job.title}
+            </Flex>
+          ))}
+        </JobList>
+      </Flex>
+    </>
   );
 };
 

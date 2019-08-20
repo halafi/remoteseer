@@ -255,6 +255,7 @@ declare module 'styled-components' {
   }
 
 
+  // $FlowFixMe
   declare type ConvenientShorthands = $ObjMap<
     BuiltinElementInstances,
     <V>(V) =>
