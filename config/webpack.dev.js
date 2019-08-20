@@ -35,6 +35,7 @@ module.exports = (env, argv) => ({
     contentBase: path.resolve(__dirname, '../src/client'), // index.html
     publicPath: '/', // where to serve bundle
     disableHostCheck: true,
+    port: 8000,
   },
   plugins: [
     new Assets({
