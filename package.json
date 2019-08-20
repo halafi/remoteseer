@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run webpack:dev",
-    "build": "npm run webpack:prod",
+    "build": "npm run webpack:prod && cp src/client/index.html ./dist",
     "test": "jest",
     "test:watch": "jest --watch",
     "webpack:dev": "webpack-dev-server --mode development --hot --inline --config config/webpack.dev.js --open --env.NODE_ENV=development",
