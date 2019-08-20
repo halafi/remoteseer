@@ -29,6 +29,7 @@
     "@hot-loader/react-dom": "^16.9.0",
     "@rebass/grid": "^6.1.0",
     "core-js": "^3.2.1",
+    "date-fns": "^2.0.0",
     "jest": "^24.9.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
