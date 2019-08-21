@@ -5,6 +5,12 @@ import styled from 'styled-components';
 import { hot } from 'react-hot-loader';
 import Navbar from '../components/Navbar';
 import { groupJobs, mapperGithubJobs, PERIODS } from '../services/jobs';
+import mq from '../services/mediaQuery';
+
+const Image = styled.img`
+  height: 200px;
+  width: 300px;
+`;
 
 const Description = styled(Box)`
   text-align: center;
@@ -12,13 +18,17 @@ const Description = styled(Box)`
 `;
 
 const Header = styled.h1`
-  margin-block-start: 16px;
-  margin-block-end: 12px;
+  margin-block-start: 0;
+  margin-block-end: 10px;
 `;
 
 const Subheader = styled.h2`
-  font-size: 19px;
+  margin: 0 6px;
+  font-size: 16px;
   font-weight: 400;
+  ${mq.TABLET`
+    font-size: 19px;
+  `}
 `;
 
 const JobList = styled(Flex)`
@@ -31,7 +41,7 @@ const TimeBlock = styled(Flex)`
 `;
 
 const Job = styled(Flex)`
-  padding: 8px 24px;
+  padding: 8px 14px;
   border-top: 1px solid #efefef;
   :last-child {
     border-bottom: 1px solid #efefef;
@@ -40,33 +50,48 @@ const Job = styled(Flex)`
     background-color: #f5f5f5;
     cursor: pointer;
   }
+  ${mq.TABLET`
+    padding: 8px 24px;
+  `}
 `;
 
 const PeriodTitle = styled.span`
   padding: 20px 12px;
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 700;
+  ${mq.TABLET`
+    font-size: 22px;
+`}
 `;
 
 const CompanyLogo = styled(Flex)`
   color: #dad6d2;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 900;
-  width: 40px;
-  height: 40px;
-  margin-right: 24px;
+  width: 22px;
+  margin-right: 14px;
   text-align: center;
+  ${mq.TABLET`
+    width: 40px;
+    font-size: 24px;
+  `}
 `;
 
 const JobTitle = styled.h2`
   margin-block-start: 0;
   margin-block-end: 0;
-  font-size: 18px;
+  font-size: 16px;
+  ${mq.TABLET`
+    font-size: 18px;
+  `}
 `;
 
 const JobLocation = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   color: #3d3e41;
+  ${mq.TABLET`
+    font-size: 14px;
+  `}
 `;
 
 const JobInfo = styled(Flex)`
@@ -95,7 +120,7 @@ const Root = () => {
     <>
       <Navbar />
       <Flex alignItems="center" flexDirection="column">
-        <img alt="work remotely" src="images/work_remotely.svg" />
+        <Image alt="work remotely" src="images/work_remotely.svg" />
         <Header>Remote Seer</Header>
         <Description>
           <Subheader>
@@ -104,7 +129,6 @@ const Root = () => {
             jobs in one place.
           </Subheader>
         </Description>
-        <hr />
         <JobList flexDirection="column">
           {githubJobs &&
             Object.keys(groupedJobs).map(period => (
@@ -114,7 +138,7 @@ const Root = () => {
                   {groupedJobs[period].map(job => (
                     <Job alignItems="center" key={job.id}>
                       <CompanyLogo justifyContent="center" alignItems="center">
-                        {job.company.slice(0, 1)}
+                        {job.company.slice(0, 1).toUpperCase()}
                       </CompanyLogo>
                       <JobInfo alignItems="center" justifyContent="space-between">
                         <Flex flexDirection="column">

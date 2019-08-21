@@ -13,7 +13,7 @@ const HeaderWrapper = styled.div`
 
 const Headline = styled.div`
   padding: 16px 16px 18px;
-  width: 980px;
+  max-width: 980px;
   margin: 0 auto;
 `;
 
