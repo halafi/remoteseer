@@ -2,10 +2,20 @@
 import React from 'react';
 import { Box, Flex } from '@rebass/grid';
 import styled from 'styled-components';
-import { hot } from 'react-hot-loader';
 import Navbar from '../components/Navbar';
-import { groupJobs, mapperGithubJobs, PERIODS } from '../services/jobs';
+import { groupJobs, PERIODS } from '../services/jobs';
 import mq from '../services/mediaQuery';
+import { useStateValue } from '../State';
+
+const Link = styled.a`
+  color: initial;
+  :hover {
+    color: initial;
+    h2 {
+      text-decoration: underline;
+    }
+  }
+`;
 
 const Image = styled.img`
   height: 200px;
@@ -98,24 +108,24 @@ const JobInfo = styled(Flex)`
   width: 100%;
 `;
 
-const useGithubRemoteJobs = () => {
-  const url = `https://github-jobs-proxy.appspot.com/positions?utf8=%E2%9C%93&description=&location=remote`;
-  const [data, updateData] = React.useState([]);
-  React.useEffect(() => {
-    fetch(url)
-      .then(res => {
-        return res.json();
-      })
-      .then(json => {
-        updateData(mapperGithubJobs(json));
-      });
-  }, []);
-  return data;
-};
+// const useGithubRemoteJobs = () => {
+//   const url = `https://github-jobs-proxy.appspot.com/positions?utf8=%E2%9C%93&description=&location=remote`;
+//   const [data, updateData] = React.useState([]);
+//   React.useEffect(() => {
+//     fetch(url)
+//       .then(res => {
+//         return res.json();
+//       })
+//       .then(json => {
+//         updateData(mapperGithubJobs(json));
+//       });
+//   }, []);
+//   return data;
+// };
 
 const Root = () => {
-  const githubJobs = useGithubRemoteJobs();
-  const groupedJobs = githubJobs ? groupJobs(githubJobs) : {};
+  const { jobs } = useStateValue();
+  const groupedJobs = jobs ? groupJobs(jobs) : {};
   return (
     <>
       <Navbar />
@@ -130,27 +140,26 @@ const Root = () => {
           </Subheader>
         </Description>
         <JobList flexDirection="column">
-          {githubJobs &&
+          {jobs &&
             Object.keys(groupedJobs).map(period => (
               <Box key={period}>
                 <TimeBlock flexDirection="column">
                   <PeriodTitle>{PERIODS[period]}</PeriodTitle>
                   {groupedJobs[period].map(job => (
-                    <Job alignItems="center" key={job.id}>
-                      <CompanyLogo justifyContent="center" alignItems="center">
-                        {job.company.slice(0, 1).toUpperCase()}
-                      </CompanyLogo>
-                      <JobInfo alignItems="center" justifyContent="space-between">
-                        <Flex flexDirection="column">
-                          <a target="_blank" rel="noopener noreferrer nofollow" href={job.url}>
-                            {job.company}
-                          </a>{' '}
-                          <JobTitle>{job.title}</JobTitle>
-                          <JobLocation>{job.location}</JobLocation>
-                        </Flex>
-                        <Box>{job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}</Box>
-                      </JobInfo>
-                    </Job>
+                    <Link key={job.id} href={job.url} target="_blank" rel="noopener noreferrer">
+                      <Job alignItems="center">
+                        <CompanyLogo justifyContent="center" alignItems="center">
+                          {job.company.slice(0, 1).toUpperCase()}
+                        </CompanyLogo>
+                        <JobInfo alignItems="center" justifyContent="space-between">
+                          <Flex flexDirection="column">
+                            {job.company} <JobTitle>{job.title}</JobTitle>
+                            <JobLocation>{job.location}</JobLocation>
+                          </Flex>
+                          <Box>{job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}</Box>
+                        </JobInfo>
+                      </Job>
+                    </Link>
                   ))}
                 </TimeBlock>
               </Box>
@@ -161,4 +170,4 @@ const Root = () => {
   );
 };
 
-export default hot(module)(Root);
+export default Root;

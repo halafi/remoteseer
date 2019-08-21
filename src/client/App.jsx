@@ -1,29 +1,23 @@
 // @flow
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
-import { render } from 'react-dom';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
-import { Normalize } from 'styled-normalize';
-import ThemeDefault from './records/Theme';
-import Root from './scenes/Root';
+import { hydrate } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import Theme from './records/Theme';
+import Routes from './Routes';
+import { StateProvider } from './State';
 
 const container = document.getElementById('container');
 
-const GlobalStyle = createGlobalStyle`
-  @import url('./semantic/semantic.min.css');
-  body {
-    color: ${ThemeDefault.primary};
-    background-color: ${ThemeDefault.secondary};
-  }
-`;
-
 if (container) {
-  render(
-    <ThemeProvider theme={ThemeDefault}>
-      <>
-        <Normalize />
-        <GlobalStyle />
-        <Root />
-      </>
+  hydrate(
+    <ThemeProvider theme={Theme}>
+      <StateProvider initialState={window.__STATE__}>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </StateProvider>
     </ThemeProvider>,
     container,
   );

@@ -58,18 +58,30 @@ export function groupJobs(input: any): any {
 }
 
 export function mapperGithubJobs(input: any): any {
-  return input.map(x => ({
-    company: x.company,
-    companyLogo: x.company_logo,
-    companyUrl: x.company_url,
-    createdAt: new Date(x.created_at).getTime(),
-    ageDays: differenceInDays(new Date(), new Date(x.created_at)),
-    ageHours: differenceInHours(new Date(), new Date(x.created_at)),
-    description: x.description,
-    id: x.id,
-    location: x.location,
-    title: x.title,
-    type: x.type,
-    url: x.url,
-  }));
+  return input.map(x => {
+    const lowerCaseLocation = x.location.toLowerCase();
+    // const location =
+    //   lowerCaseLocation === 'remote' || lowerCaseLocation === 'remote job' ? '' : x.location;
+    let finalLocation = '';
+    if (lowerCaseLocation.includes('us') || lowerCaseLocation.includes('america')) {
+      finalLocation = '🇺🇸 US only';
+    }
+    if (lowerCaseLocation.includes('germany')) {
+      finalLocation = '🇩🇪 DE only';
+    }
+    return {
+      company: x.company,
+      companyLogo: x.company_logo,
+      companyUrl: x.company_url,
+      createdAt: new Date(x.created_at).getTime(),
+      ageDays: differenceInDays(new Date(), new Date(x.created_at)),
+      ageHours: differenceInHours(new Date(), new Date(x.created_at)),
+      description: x.description,
+      id: x.id,
+      location: finalLocation,
+      title: x.title,
+      type: x.type,
+      url: x.url,
+    };
+  });
 }
