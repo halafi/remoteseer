@@ -16,7 +16,7 @@ export const PERIODS = {
   past: 'Older',
 };
 
-export function groupJobs(input) {
+export function groupJobs(input: any): any {
   return input.reduce((acc, x) => {
     if (isToday(x.createdAt)) {
       if (!acc.today) {
@@ -57,7 +57,7 @@ export function groupJobs(input) {
   }, {});
 }
 
-export function mapperGithubJobs(input) {
+export function mapperGithubJobs(input: any): any {
   return input.map(x => ({
     company: x.company,
     companyLogo: x.company_logo,
