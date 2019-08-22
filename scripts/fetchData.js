@@ -5,7 +5,7 @@ import 'regenerator-runtime/runtime';
 import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs-extra';
-../src/server/consts/paths
+
 const DATA_DIR = path.resolve(__dirname, '../data');
 
 async function fetchData() {
