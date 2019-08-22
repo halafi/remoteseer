@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import styled from 'styled-components';
-import { Menu } from 'semantic-ui-react';
 import { Flex } from '@rebass/grid';
 
 // $FlowFixMe
@@ -13,7 +12,7 @@ const HeaderWrapper = styled.div`
 
 const Headline = styled.div`
   padding: 16px 16px 18px;
-  max-width: 980px;
+  max-width: 950px;
   margin: 0 auto;
 `;
 
@@ -37,13 +36,11 @@ const StyledLink = styled.a`
 const Navbar = () => (
   <HeaderWrapper>
     <Headline>
-      <Menu text attached="bottom" icon="labeled" inverted pointing secondary size="tiny">
-        <Flex alignItems="center">
-          <Title>
-            <StyledLink href="/">Remote Seer</StyledLink>
-          </Title>
-        </Flex>
-      </Menu>
+      <Flex alignItems="center">
+        <Title>
+          <StyledLink href="/">Remote Seer</StyledLink>
+        </Title>
+      </Flex>
     </Headline>
   </HeaderWrapper>
 );

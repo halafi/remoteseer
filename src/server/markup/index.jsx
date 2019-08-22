@@ -21,10 +21,13 @@ import Html from './Html';
 import * as data from '../dataFiles';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('./semantic/semantic.min.css');
   body {
+    font-family: 'Roboto', sans-serif;
     color: ${Theme.primary};
     background-color: ${Theme.secondary};
+    a {
+      text-decoration: none;
+    }
   }
 `;
 

@@ -29,6 +29,10 @@ const Html = ({ root, styleElement, state }: Props) => {
             __html: `window.__STATE__ = ${JSON.stringify(state)};`,
           }}
         />
+        <link
+          href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+          rel="stylesheet"
+        />
         {styleElement}
       </head>
       <body>

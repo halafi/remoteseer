@@ -59,6 +59,64 @@ export function groupJobs(input: any): any {
 
 export function mapperGithubJobs(input: any): any {
   return input.map(x => {
+    const tags = [];
+    const lowerCaseTitle = x.title.toLowerCase();
+    if (lowerCaseTitle.includes('php')) {
+      tags.push('php');
+    }
+    if (lowerCaseTitle.includes('backend')) {
+      tags.push('backend');
+    }
+    if (lowerCaseTitle.includes('python')) {
+      tags.push('python');
+    }
+    if (lowerCaseTitle.includes('django')) {
+      tags.push('django');
+    }
+    if (lowerCaseTitle.includes('react')) {
+      tags.push('react');
+    }
+    if (lowerCaseTitle.includes('angular')) {
+      tags.push('angular');
+    }
+    if (lowerCaseTitle.includes('vue')) {
+      tags.push('vue');
+    }
+    if (
+      lowerCaseTitle.includes('mobile') ||
+      lowerCaseTitle.includes('ios') ||
+      lowerCaseTitle.includes('android')
+    ) {
+      tags.push('mobile');
+    }
+    if (lowerCaseTitle.includes('ios')) {
+      tags.push('ios');
+    }
+    if (lowerCaseTitle.includes('android')) {
+      tags.push('android');
+    }
+    if (lowerCaseTitle.includes('rails')) {
+      tags.push('rails');
+    }
+    if (lowerCaseTitle.includes('ruby')) {
+      tags.push('ruby');
+    }
+    if (
+      lowerCaseTitle.includes('javascript') ||
+      lowerCaseTitle.includes('frontend') ||
+      lowerCaseTitle.includes('front-end')
+    ) {
+      tags.push('javascript');
+    }
+    if (lowerCaseTitle.includes('blockchain')) {
+      tags.push('blockchain');
+    }
+    if (lowerCaseTitle.includes('devops')) {
+      tags.push('devops');
+    }
+    if (lowerCaseTitle.includes('golang')) {
+      tags.push('golang');
+    }
     const lowerCaseLocation = x.location.toLowerCase();
     // const location =
     //   lowerCaseLocation === 'remote' || lowerCaseLocation === 'remote job' ? '' : x.location;
@@ -82,6 +140,7 @@ export function mapperGithubJobs(input: any): any {
       title: x.title,
       type: x.type,
       url: x.url,
+      tags,
     };
   });
 }

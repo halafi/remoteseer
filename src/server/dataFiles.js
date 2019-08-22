@@ -1,8 +1,9 @@
 // @flow
 import fs from 'fs-extra';
 import path from 'path';
-import { DATA_DIR } from './fetchData';
 import { mapperGithubJobs } from '../client/services/jobs';
+
+const DATA_DIR = path.resolve(__dirname, '../../data');
 
 // eslint-disable-next-line import/prefer-default-export
 export const getJobs = () => {

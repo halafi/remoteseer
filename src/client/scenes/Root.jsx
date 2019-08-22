@@ -53,9 +53,8 @@ const TimeBlock = styled(Flex)`
 const Job = styled(Flex)`
   padding: 8px 14px;
   border-top: 1px solid #efefef;
-  :last-child {
-    border-bottom: 1px solid #efefef;
-  }
+  border-bottom: ${({ last }) => (last ? '1px solid #efefef' : '')};
+
   :hover {
     background-color: #f5f5f5;
     cursor: pointer;
@@ -88,8 +87,8 @@ const CompanyLogo = styled(Flex)`
 `;
 
 const JobTitle = styled.h2`
-  margin-block-start: 0;
-  margin-block-end: 0;
+  margin-block-start: 4px;
+  margin-block-end: 4px;
   font-size: 16px;
   ${mq.TABLET`
     font-size: 18px;
@@ -97,6 +96,7 @@ const JobTitle = styled.h2`
 `;
 
 const JobLocation = styled.span`
+  margin-bottom: 8px;
   font-size: 12px;
   color: #3d3e41;
   ${mq.TABLET`
@@ -106,6 +106,18 @@ const JobLocation = styled.span`
 
 const JobInfo = styled(Flex)`
   width: 100%;
+`;
+
+const Tags = styled(Flex)``;
+
+const Tag = styled(Box)`
+  margin-right: 4px;
+  border-radius: 0.3em;
+  border: 1px solid #0f1115;
+  padding: 3px;
+  font-size: 11px;
+  vertical-align: middle;
+  text-align: center;
 `;
 
 // const useGithubRemoteJobs = () => {
@@ -145,16 +157,21 @@ const Root = () => {
               <Box key={period}>
                 <TimeBlock flexDirection="column">
                   <PeriodTitle>{PERIODS[period]}</PeriodTitle>
-                  {groupedJobs[period].map(job => (
+                  {groupedJobs[period].map((job, i) => (
                     <Link key={job.id} href={job.url} target="_blank" rel="noopener noreferrer">
-                      <Job alignItems="center">
+                      <Job alignItems="center" last={i === groupedJobs[period].length - 1}>
                         <CompanyLogo justifyContent="center" alignItems="center">
                           {job.company.slice(0, 1).toUpperCase()}
                         </CompanyLogo>
                         <JobInfo alignItems="center" justifyContent="space-between">
                           <Flex flexDirection="column">
                             {job.company} <JobTitle>{job.title}</JobTitle>
-                            <JobLocation>{job.location}</JobLocation>
+                            {job.location && <JobLocation>{job.location}</JobLocation>}
+                            <Tags alignItems="center">
+                              {job.tags.map(x => (
+                                <Tag>{x.toUpperCase()}</Tag>
+                              ))}
+                            </Tags>
                           </Flex>
                           <Box>{job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}</Box>
                         </JobInfo>
