@@ -38,35 +38,75 @@ export const PERIODS = {
   past: 'Older',
 };
 
+// simple
+export const TAGS = {
+  PHP: 'php',
+  KOTLIN: 'kotlin',
+  SAP: 'sap',
+  SYMFONY: 'symfony',
+  LARAVEL: 'laravel',
+  WORDPRESS: 'wordpress',
+  ELIXIR: 'elixir',
+  // JAVA: 'java',
+  SPRING: 'spring',
+  SCALA: 'scala',
+  PYTHON: 'python',
+  CLOUD: 'cloud',
+  DESIGN: 'design',
+  DJANGO: 'django',
+  FLASK: 'flask',
+  REACT: 'react',
+  ANGULAR: 'angular',
+  VUE: 'vue',
+  ANDROID: 'android',
+  RUBY: 'ruby',
+  RAILS: 'rails',
+  IOS: 'ios',
+  DEVOPS: 'devops',
+  CPP: 'c++',
+  SQL: 'sql',
+  ELASTICSEARCH: 'elasticsearch',
+  AWS: 'aws',
+  SALES: 'sales',
+  // SENIOR: 'senior',
+  // LEAD: 'lead',
+  SECURITY: 'security',
+  GRAPHQL: 'graphql',
+  DOCKER: 'docker',
+  KUBERNETES: 'kubernetes',
+  RANCHER: 'rancher',
+};
+
+function getLocation(input: string): string {
+  const lowerCaseInput = input.toLocaleLowerCase();
+  let finalLocation = '';
+  if (lowerCaseInput.includes('us') || lowerCaseInput.includes('america')) {
+    finalLocation = '🇺🇸 US only';
+  }
+  if (lowerCaseInput.includes('germany')) {
+    finalLocation = '🇩🇪 DE only';
+  }
+  return finalLocation;
+}
 function getTagsFromTitle(title: string): string[] {
   const tags = [];
   const lowerCaseTitle = title.toLowerCase();
-  if (lowerCaseTitle.includes('php')) {
-    tags.push('php');
+  if (
+    lowerCaseTitle.includes('developer') ||
+    lowerCaseTitle.includes('engineer') ||
+    lowerCaseTitle.includes('development') ||
+    lowerCaseTitle.includes('architect')
+  ) {
+    tags.push('dev');
   }
-  if (lowerCaseTitle.includes('backend')) {
-    tags.push('backend');
+  if (lowerCaseTitle.includes('product manager')) {
+    tags.push('product management');
   }
-  if (lowerCaseTitle.includes('python')) {
-    tags.push('python');
+  if (lowerCaseTitle.includes('big data')) {
+    tags.push('big data');
   }
-  if (lowerCaseTitle.includes('cloud')) {
-    tags.push('cloud');
-  }
-  if (lowerCaseTitle.includes('design')) {
-    tags.push('design');
-  }
-  if (lowerCaseTitle.includes('django')) {
-    tags.push('django');
-  }
-  if (lowerCaseTitle.includes('react')) {
-    tags.push('react');
-  }
-  if (lowerCaseTitle.includes('angular')) {
-    tags.push('angular');
-  }
-  if (lowerCaseTitle.includes('vue')) {
-    tags.push('vue');
+  if (lowerCaseTitle.includes('compiler')) {
+    tags.push('compilers');
   }
   if (
     lowerCaseTitle.includes('mobile') ||
@@ -75,43 +115,100 @@ function getTagsFromTitle(title: string): string[] {
   ) {
     tags.push('mobile');
   }
-  if (lowerCaseTitle.includes('ios')) {
-    tags.push('ios');
+  if (
+    lowerCaseTitle.includes('game') ||
+    lowerCaseTitle.includes('gaming') ||
+    lowerCaseTitle.includes('games')
+  ) {
+    tags.push('game dev');
   }
-  if (lowerCaseTitle.includes('android')) {
-    tags.push('android');
+  if (lowerCaseTitle.includes('data scientist') || lowerCaseTitle.includes('data science')) {
+    tags.push('data science');
   }
-  if (lowerCaseTitle.includes('rails')) {
-    tags.push('rails');
+  if (
+    lowerCaseTitle.includes('fullstack') ||
+    lowerCaseTitle.includes('full stack') ||
+    lowerCaseTitle.includes('full-stack')
+  ) {
+    tags.push('full stack');
   }
-  if (lowerCaseTitle.includes('ruby')) {
-    tags.push('ruby');
+  if (
+    lowerCaseTitle.includes('macos') ||
+    lowerCaseTitle.includes('mac os') ||
+    lowerCaseTitle.includes('osx')
+  ) {
+    tags.push('osx');
+  }
+  if (
+    lowerCaseTitle.includes('backend') ||
+    lowerCaseTitle.includes('back end') ||
+    lowerCaseTitle.includes('back-end')
+  ) {
+    tags.push('backend');
+  }
+  if (lowerCaseTitle.includes('desktop')) {
+    tags.push('desktop apps');
+  }
+  if (
+    lowerCaseTitle.includes('test') ||
+    lowerCaseTitle.includes('quality') ||
+    lowerCaseTitle.includes('qa ')
+  ) {
+    tags.push('testing');
   }
   if (
     lowerCaseTitle.includes('javascript') ||
     lowerCaseTitle.includes('frontend') ||
-    lowerCaseTitle.includes('front-end')
+    lowerCaseTitle.includes('front-end') ||
+    lowerCaseTitle.includes('web dev') ||
+    lowerCaseTitle.includes('web-dev') ||
+    lowerCaseTitle.includes('web app') ||
+    lowerCaseTitle.includes('website') ||
+    lowerCaseTitle.includes('react') ||
+    lowerCaseTitle.includes('angular') ||
+    lowerCaseTitle.includes('vue') ||
+    lowerCaseTitle.includes('php')
   ) {
     tags.push('javascript');
+    tags.push('frontend');
+    tags.push('web dev');
   }
-  if (lowerCaseTitle.includes('blockchain')) {
+  if (
+    lowerCaseTitle.includes('wordpress') ||
+    lowerCaseTitle.includes('cms') ||
+    lowerCaseTitle.includes('drupal') ||
+    lowerCaseTitle.includes('magento') ||
+    lowerCaseTitle.includes('magnolia')
+  ) {
+    tags.push('cms');
+  }
+  if (
+    lowerCaseTitle.includes('blockchain') ||
+    lowerCaseTitle.includes('ledger') ||
+    lowerCaseTitle.includes('crypto')
+  ) {
     tags.push('blockchain');
   }
-  if (lowerCaseTitle.includes('devops')) {
-    tags.push('devops');
+  Object.keys(TAGS).forEach(tag => {
+    if (lowerCaseTitle.includes(TAGS[tag])) {
+      tags.push(TAGS[tag]);
+    }
+  });
+  if (!lowerCaseTitle.includes('javascript') && lowerCaseTitle.includes('java')) {
+    tags.push('java');
   }
-  if (lowerCaseTitle.includes('c++')) {
-    tags.push('c++');
-  }
-  if (lowerCaseTitle.includes('sql')) {
-    tags.push('sql');
-  }
-  if (lowerCaseTitle.includes('golang') || lowerCaseTitle.includes('go ')) {
+  if (
+    lowerCaseTitle.includes('golang') ||
+    lowerCaseTitle.includes(' go ') ||
+    lowerCaseTitle.includes('(go)')
+  ) {
     tags.push('golang');
+  }
+  if (lowerCaseTitle.includes('node')) {
+    tags.push('nodejs');
   }
   return tags;
 }
-
 export function groupJobs(input: any): any {
   return input.reduce((acc, x) => {
     if (isToday(x.createdAt)) {
@@ -152,7 +249,6 @@ export function groupJobs(input: any): any {
     return acc;
   }, {});
 }
-
 export function mapperStackOverflowJobs(input: any): Job[] {
   return input.map(x => {
     const title = x.title.replace(' (allows remote)', '').replace(' ()', '');
@@ -169,6 +265,7 @@ export function mapperStackOverflowJobs(input: any): Job[] {
       company,
       companyLogo: null,
       companyUrl: null,
+      // location: getLocation(title), needs more strictness
       location: '',
       type: x.category,
       tags: getTagsFromTitle(title),
@@ -176,34 +273,21 @@ export function mapperStackOverflowJobs(input: any): Job[] {
     };
   });
 }
-
 export function mapperGithubJobs(input: any): Job[] {
-  return input.map(x => {
-    const lowerCaseLocation = x.location.toLowerCase();
-    // const location =
-    //   lowerCaseLocation === 'remote' || lowerCaseLocation === 'remote job' ? '' : x.location;
-    let finalLocation = '';
-    if (lowerCaseLocation.includes('us') || lowerCaseLocation.includes('america')) {
-      finalLocation = '🇺🇸 US only';
-    }
-    if (lowerCaseLocation.includes('germany')) {
-      finalLocation = '🇩🇪 DE only';
-    }
-    return {
-      company: x.company,
-      companyLogo: x.company_logo,
-      companyUrl: x.company_url,
-      createdAt: new Date(x.created_at).getTime(),
-      ageDays: differenceInDays(new Date(), new Date(x.created_at)),
-      ageHours: differenceInHours(new Date(), new Date(x.created_at)),
-      description: x.description,
-      id: x.id,
-      location: finalLocation,
-      title: x.title,
-      type: x.type,
-      url: x.url,
-      tags: getTagsFromTitle(x.title),
-      providerId: PROVIDERS.GITHUB,
-    };
-  });
+  return input.map(x => ({
+    company: x.company,
+    companyLogo: x.company_logo,
+    companyUrl: x.company_url,
+    createdAt: new Date(x.created_at).getTime(),
+    ageDays: differenceInDays(new Date(), new Date(x.created_at)),
+    ageHours: differenceInHours(new Date(), new Date(x.created_at)),
+    description: x.description,
+    id: x.id,
+    location: getLocation(x.location),
+    title: x.title,
+    type: x.type,
+    url: x.url,
+    tags: getTagsFromTitle(x.title),
+    providerId: PROVIDERS.GITHUB,
+  }));
 }
