@@ -80,6 +80,11 @@ const CompanyLogo = styled(Flex)`
   width: 22px;
   margin-right: 14px;
   text-align: center;
+  background-image: ${({ provider }) =>
+    provider === 0 ? `url('images/github.svg')` : `url('images/stackoverflow.svg')`};
+  background-repeat: no-repeat;
+  background-size: 14px;
+  background-position: 100% 100%;
   ${mq.TABLET`
     width: 40px;
     font-size: 24px;
@@ -160,7 +165,11 @@ const Root = () => {
                   {groupedJobs[period].map((job, i) => (
                     <Link key={job.id} href={job.url} target="_blank" rel="noopener noreferrer">
                       <Job alignItems="center" last={i === groupedJobs[period].length - 1}>
-                        <CompanyLogo justifyContent="center" alignItems="center">
+                        <CompanyLogo
+                          provider={job.providerId}
+                          justifyContent="center"
+                          alignItems="center"
+                        >
                           {job.company.slice(0, 1).toUpperCase()}
                         </CompanyLogo>
                         <JobInfo alignItems="center" justifyContent="space-between">
