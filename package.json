@@ -11,7 +11,7 @@
     "babel:scripts": "NODE_ENV=production babel scripts --verbose -d dist",
     "babel:dev": "babel src --verbose -d dist --ignore '**/__tests__/*'",
     "fetch": "npm run babel:scripts && node dist/fetchData.js",
-    "render": "node dist/server/render.js",
+    "render": "NODE_ENV=production node dist/server/render.js",
     "webpack:dev": "webpack-dev-server --mode development --hot --inline --config config/webpack.dev.js --open --env.NODE_ENV=development",
     "webpack:prod": "webpack --mode production --config config/webpack.prod.js --env.NODE_ENV=production",
     "copy:assets": "mkdir -p dist/static && cp -r assets/* dist/static",
