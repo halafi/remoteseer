@@ -2,6 +2,7 @@
 /* eslint-disable react/no-danger */
 // hreflang x hrefLang jsx issue
 import * as React from 'react';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 type Props = {
   root: string,
@@ -16,6 +17,12 @@ const Html = ({ root, styleElement, state }: Props) => {
         <meta charSet="utf-8" />
         <title>Remote Seer - the ultimate aggregator of remote jobs</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132360635-3" />
+            <GoogleAnalytics />
+          </>
+        )}
         <meta
           name="description"
           content="Remote seer is an aggregator of remote jobs. Find remote work in development, design and more."
