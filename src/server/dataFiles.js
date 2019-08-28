@@ -2,7 +2,11 @@
 import fs from 'fs-extra';
 import path from 'path';
 import * as R from 'ramda';
-import { mapperGithubJobs, mapperStackOverflowJobs } from '../client/services/jobs';
+import {
+  mapperGithubJobs,
+  mapperStackOverflowJobs,
+  mapperRemoteOkJobs,
+} from '../client/services/jobs';
 
 const DATA_DIR = path.resolve(__dirname, '../../data');
 
@@ -15,5 +19,10 @@ const sortFn = R.compose(
 export const getJobs = () => {
   const githubjobs = fs.readJsonSync(path.join(DATA_DIR, 'githubJobs.json'));
   const stackoverflowjobs = fs.readJsonSync(path.join(DATA_DIR, 'stackOverflowJobs.json'));
-  return sortFn(mapperGithubJobs(githubjobs).concat(mapperStackOverflowJobs(stackoverflowjobs)));
+  const remoteOkJobs = fs.readJsonSync(path.join(DATA_DIR, 'remoteOkJobs.json'));
+  return sortFn(
+    mapperGithubJobs(githubjobs).concat(
+      mapperStackOverflowJobs(stackoverflowjobs).concat(mapperRemoteOkJobs(remoteOkJobs)),
+    ),
+  );
 };

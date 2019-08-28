@@ -16,7 +16,7 @@ type Job = {
   createdAt: number,
   ageDays: number,
   ageHours: number,
-  description: string,
+  // description: string,
   id: number,
   location: string,
   title: string,
@@ -29,6 +29,7 @@ type Job = {
 const PROVIDERS = {
   GITHUB: 0,
   STACKOVERFLOW: 1,
+  REMOTEOK: 2,
 };
 
 export const PERIODS = {
@@ -322,7 +323,6 @@ const normalizeTitle = title =>
     .replace(', remote-friendly ', '')
     .replace(' work from home', '')
     .replace(' Remote/Homeoffice ', '');
-
 export function mapperStackOverflowJobs(input: any): Job[] {
   return input.map(x => {
     const title = normalizeTitle(x.title);
@@ -393,7 +393,7 @@ export function mapperStackOverflowJobs(input: any): Job[] {
       id: x.guid,
       url: x.link,
       title: finalTitle,
-      description: x.description,
+      // description: x.description,
       createdAt: new Date(x.pubDate).getTime(),
       ageDays: differenceInDays(new Date(), new Date(x.pubDate)),
       ageHours: differenceInHours(new Date(), new Date(x.pubDate)),
@@ -415,8 +415,7 @@ export function mapperGithubJobs(input: any): Job[] {
     companyUrl: x.company_url,
     createdAt: new Date(x.created_at).getTime(),
     ageDays: differenceInDays(new Date(), new Date(x.created_at)),
-    ageHours: differenceInHours(new Date(), new Date(x.created_at)),
-    description: x.description,
+    ageHours: differenceInHours(new Date(), new Date(x.created_at)), // description: x.description,
     id: x.id,
     location: getLocation(x.location),
     title: normalizeTitle(x.title).replace(/(\(.*?\))/g, ''),
@@ -425,4 +424,22 @@ export function mapperGithubJobs(input: any): Job[] {
     tags: getTagsFromTitle(x.title),
     providerId: PROVIDERS.GITHUB,
   }));
+}
+export function mapperRemoteOkJobs(input: any): Job[] {
+  return input.slice(1, input.length).map(x => {
+    return {
+      id: x.id,
+      title: x.position,
+      location: '',
+      url: x.url, // description: x.description,
+      company: x.company,
+      companyLogo: x.company_logo,
+      companyUrl: '',
+      createdAt: new Date(x.date).getTime(),
+      ageDays: differenceInDays(new Date(), new Date(x.date)),
+      ageHours: differenceInHours(new Date(), new Date(x.date)),
+      tags: Array.from(new Set(x.tags)),
+      providerId: PROVIDERS.REMOTEOK,
+    };
+  });
 }

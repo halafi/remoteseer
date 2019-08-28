@@ -73,6 +73,19 @@ const PeriodTitle = styled.span`
 `}
 `;
 
+const getProviderImg = (providerId: number): string => {
+  if (providerId === 0) {
+    return `url('images/github.svg')`;
+  }
+  if (providerId === 1) {
+    return `url('images/stackoverflow.svg')`;
+  }
+  if (providerId === 2) {
+    return `url('images/remoteok.ico')`;
+  }
+  return '';
+};
+
 const CompanyLogo = styled(Flex)`
   color: #dad6d2;
   font-size: 22px;
@@ -80,8 +93,7 @@ const CompanyLogo = styled(Flex)`
   width: 22px;
   margin-right: 14px;
   text-align: center;
-  background-image: ${({ provider }) =>
-    provider === 0 ? `url('images/github.svg')` : `url('images/stackoverflow.svg')`};
+  background-image: ${({ provider }) => getProviderImg(provider)};
   background-repeat: no-repeat;
   background-size: 14px;
   background-position: 100% 100%;

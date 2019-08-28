@@ -49,6 +49,7 @@ async function fetchData() {
     'https://github-jobs-proxy.appspot.com/positions?utf8=%E2%9C%93&description=&location=remote',
     'githubJobs.json',
   );
+  await downloadJson('https://remoteok.io/api', 'remoteOkJobs.json');
   // stackoverflow careers
   await downloadRss(
     'https://stackoverflow.com/jobs/feed?l=Remote&u=Km&d=20',
