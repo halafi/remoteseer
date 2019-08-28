@@ -43,11 +43,7 @@ const Subheader = styled.h2`
 
 const JobList = styled(Flex)`
   margin: 40px auto;
-  width: 100%;
-  max-width: 100%;
-  ${mq.TABLET`
-    max-width: 950px;
-  `}
+  max-width: 950px;
 `;
 
 const TimeBlock = styled(Flex)`
@@ -142,6 +138,10 @@ const Tag = styled(Box)`
   text-align: center;
 `;
 
+const Providers = styled(Flex)`
+  margin-top: 12px;
+`;
+
 // const useGithubRemoteJobs = () => {
 //   const url = `https://github-jobs-proxy.appspot.com/positions?utf8=%E2%9C%93&description=&location=remote`;
 //   const [data, updateData] = React.useState([]);
@@ -157,6 +157,12 @@ const Tag = styled(Box)`
 //   return data;
 // };
 
+const Provider = styled.img`
+  padding: 12px;
+  width: 32px;
+  height: 32px;
+`;
+
 const Root = () => {
   const { jobs } = useStateValue();
   const groupedJobs = jobs ? groupJobs(jobs) : {};
@@ -168,10 +174,15 @@ const Root = () => {
         <Header>Remote Seer</Header>
         <Description>
           <Subheader>
-            Find remote work and <strong>work from anywhere</strong>. We aggregate providers so that
-            we can bring you the <strong>largest listing of remote jobs</strong>. Find all remote
-            jobs in one place.
+            Find remote work and <strong>work from anywhere</strong>. We aggregate providers and
+            remote job boards to bring you the <strong>largest listing of remote jobs</strong>. Find
+            all the latest remote jobs in one place.
           </Subheader>
+          <Providers justifyContent="center">
+            <Provider src="/images/github.svg" alt="Github jobs" />
+            <Provider src="/images/stackoverflow.svg" alt="StackOverflow jobs" />
+            <Provider src="/images/remoteok.ico" alt="RemoteOk jobs" />
+          </Providers>
         </Description>
         <JobList flexDirection="column">
           {jobs &&
