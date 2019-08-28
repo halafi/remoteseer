@@ -90,7 +90,7 @@ const CompanyLogo = styled(Flex)`
   color: #dad6d2;
   font-size: 22px;
   font-weight: 900;
-  width: 22px;
+  width: 40px;
   margin-right: 14px;
   text-align: center;
   background-image: ${({ provider }) => getProviderImg(provider)};
