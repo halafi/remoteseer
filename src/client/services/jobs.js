@@ -46,10 +46,13 @@ export const TAGS = {
   SYMFONY: 'symfony',
   LARAVEL: 'laravel',
   WORDPRESS: 'wordpress',
+  DRUPAL: 'drupal',
+  MAGENTO: 'magento',
   ELIXIR: 'elixir',
   LINUX: 'linux',
   // JAVA: 'java',
   SPRING: 'spring',
+  WINDOWS: 'windows',
   SCALA: 'scala',
   PYTHON: 'python',
   CLOUD: 'cloud',
@@ -65,22 +68,27 @@ export const TAGS = {
   HIPTEST: 'hiptest',
   OPENGL: 'opengl',
   ANDROID: 'android',
+  CLOJURE: 'clojure',
   RUBY: 'ruby',
   RAILS: 'rails',
   IOS: 'ios',
-  DEVOPS: 'devops',
+  XAMARIN: 'xamarin',
+  SWIFT: 'swift',
+  // MANAGER: 'manager',
   CPP: 'c++',
   SQL: 'sql',
   ELASTICSEARCH: 'elasticsearch',
   AWS: 'aws',
   SALES: 'sales',
-  // SENIOR: 'senior',
-  // LEAD: 'lead',
   SECURITY: 'security',
   GRAPHQL: 'graphql',
   DOCKER: 'docker',
   KUBERNETES: 'kubernetes',
   RANCHER: 'rancher',
+  HADOOP: 'hadoop',
+  SPARK: 'spark',
+  FLINK: 'flink',
+  ERLANG: 'erlang',
 };
 
 function getLocation(input: string): string {
@@ -98,6 +106,7 @@ function getTagsFromTitle(title: string): string[] {
   const tags = [];
   const lowerCaseTitle = title.toLowerCase();
   if (
+    lowerCaseTitle.includes('entwickler') ||
     lowerCaseTitle.includes('developer') ||
     lowerCaseTitle.includes('engineer') ||
     lowerCaseTitle.includes('development') ||
@@ -108,16 +117,35 @@ function getTagsFromTitle(title: string): string[] {
   if (lowerCaseTitle.includes('product manager')) {
     tags.push('product management');
   }
+  if (
+    lowerCaseTitle.includes('director') ||
+    lowerCaseTitle.includes('lead') ||
+    lowerCaseTitle.includes('vp ')
+  ) {
+    tags.push('lead');
+  }
   if (lowerCaseTitle.includes('big data')) {
     tags.push('big data');
+  }
+  if (
+    lowerCaseTitle.includes('ops') ||
+    lowerCaseTitle.includes('system admin') ||
+    lowerCaseTitle.includes('infrastructure')
+  ) {
+    tags.push('devops');
   }
   if (lowerCaseTitle.includes('compiler')) {
     tags.push('compilers');
   }
+  if (lowerCaseTitle.includes('react') && lowerCaseTitle.includes('react native')) {
+    tags.push('mobile');
+  }
   if (
     lowerCaseTitle.includes('mobile') ||
+    lowerCaseTitle.includes('xamarin') ||
     lowerCaseTitle.includes('ios') ||
-    lowerCaseTitle.includes('android')
+    lowerCaseTitle.includes('android') ||
+    lowerCaseTitle.includes('swift')
   ) {
     tags.push('mobile');
   }
@@ -167,11 +195,8 @@ function getTagsFromTitle(title: string): string[] {
     lowerCaseTitle.includes(', js') ||
     lowerCaseTitle.includes('frontend') ||
     lowerCaseTitle.includes('front-end') ||
-    lowerCaseTitle.includes('web dev') ||
-    lowerCaseTitle.includes('web-dev') ||
-    lowerCaseTitle.includes('web app') ||
-    lowerCaseTitle.includes('website') ||
-    lowerCaseTitle.includes('react') ||
+    lowerCaseTitle.includes('web') ||
+    (lowerCaseTitle.includes('react') && !lowerCaseTitle.includes('react native')) ||
     lowerCaseTitle.includes('angular') ||
     lowerCaseTitle.includes('vue') ||
     lowerCaseTitle.includes('php')
@@ -204,7 +229,12 @@ function getTagsFromTitle(title: string): string[] {
   if (!lowerCaseTitle.includes('javascript') && lowerCaseTitle.includes('java')) {
     tags.push('java');
   }
+  if (lowerCaseTitle.includes('.net')) {
+    tags.push('.net');
+    tags.push('c#');
+  }
   if (
+    lowerCaseTitle.startsWith('go ') ||
     lowerCaseTitle.includes('golang') ||
     lowerCaseTitle.includes(' go ') ||
     lowerCaseTitle.includes('(go)')
@@ -213,6 +243,9 @@ function getTagsFromTitle(title: string): string[] {
   }
   if (lowerCaseTitle.includes('node')) {
     tags.push('nodejs');
+  }
+  if (lowerCaseTitle.startsWith('r ')) {
+    tags.push('r');
   }
   return tags;
 }
@@ -258,6 +291,15 @@ export function groupJobs(input: any): any {
 }
 const normalizeTitle = title =>
   title
+    .replace('- 100% Remote ', '')
+    .replace(' | 100% Remote | ', '')
+    .replace(' - 100% remote', '')
+    .replace('-- 100% Remote, Flexible hours', '')
+    .replace('-- 100% REMOTE, FLEXIBLE HOURS', '')
+    .replace('- 100% REMOTE, FLEXIBLE HOURS', '')
+    .replace(' - Onsite or Remote', '')
+    .replace('Remote or On Site-', '')
+    .replace('- Full remote', '')
     .replace(' (allows remote)', '')
     .replace(' ()', '')
     .replace('Sr ', 'Senior ')
@@ -273,14 +315,13 @@ const normalizeTitle = title =>
     .replace('/ Remote ', '')
     .replace(' - REMOTE', '')
     .replace('REMOTE ', '')
-    .replace('- Full remote', '')
-    .replace('-- 100% Remote, Flexible hours', '')
-    .replace('-- 100% REMOTE, FLEXIBLE HOURS', '')
-    .replace('- 100% REMOTE, FLEXIBLE HOURS', '')
     .replace('(Go)', '')
     .replace('(UK/EU only)', '')
     .replace('(UK/EU Only)', '')
-    .replace('Remote ', '');
+    .replace('Remote ', '')
+    .replace(', remote-friendly ', '')
+    .replace(' work from home', '')
+    .replace(' Remote/Homeoffice ', '');
 
 export function mapperStackOverflowJobs(input: any): Job[] {
   return input.map(x => {
@@ -331,7 +372,7 @@ export function mapperStackOverflowJobs(input: any): Job[] {
       } else if (location.includes('budapest')) {
         finalLocation = '🇭🇺 Hungary';
       } else if (location.includes('australia')) {
-        finalLocation = '🇦🇺 Australia 🦘';
+        finalLocation = '🇦🇺 Australia';
       } else if (location.includes('netherlands')) {
         finalLocation = '🇳🇱 Amsterdam';
       } else if (location.includes('sweden')) {

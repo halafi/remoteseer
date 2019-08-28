@@ -91,7 +91,7 @@ const CompanyLogo = styled(Flex)`
   `}
 `;
 
-const JobTitle = styled.h2`
+const JobTitle = styled.h3`
   margin-block-start: 4px;
   margin-block-end: 4px;
   font-size: 16px;
