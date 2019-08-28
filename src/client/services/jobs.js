@@ -1,4 +1,5 @@
 // @flow
+import * as R from 'ramda';
 import {
   isToday,
   isWithinInterval,
@@ -12,6 +13,7 @@ import {
 type Job = {
   company: string,
   companyLogo: ?string,
+  logo?: ?string,
   companyUrl: ?string,
   createdAt: number,
   ageDays: number,
@@ -310,6 +312,7 @@ const normalizeTitle = title =>
     .replace(' (remote)', '')
     .replace(' (REMOTE)', '')
     .replace(' [REMOTE]', '')
+    .replace('REMOTE: ', '')
     .replace(' - [Remote]', '')
     .replace(' - Remote', '')
     .replace(', Remote', '')
@@ -322,12 +325,13 @@ const normalizeTitle = title =>
     .replace('Remote ', '')
     .replace(', remote-friendly ', '')
     .replace(' work from home', '')
-    .replace(' Remote/Homeoffice ', '');
+    .replace(' Remote/Homeoffice ', '')
+    .trim();
 export function mapperStackOverflowJobs(input: any): Job[] {
   return input.map(x => {
     const title = normalizeTitle(x.title);
     const companyMatch = title.match(/.+ at ([^(]+)/);
-    const company = companyMatch && companyMatch[1] ? companyMatch[1] : '';
+    const company = companyMatch && companyMatch[1] ? companyMatch[1].trim() : '';
     const locationMatch = title.match(/.+(\(.*\))/);
     const location = locationMatch && locationMatch[1].toLowerCase();
     let finalLocation = x.title.toLowerCase().includes('uk/eu only') ? '🇪🇺🇬🇧 EU or UK only' : '';
@@ -388,7 +392,7 @@ export function mapperStackOverflowJobs(input: any): Job[] {
     if (location) {
       finalTitle = finalTitle.replace(`${locationMatch[1]}`, '');
     }
-    finalTitle = finalTitle.replace(/(\(.*?\))/g, '');
+    finalTitle = finalTitle.replace(/(\(.*?\))/g, '').trim();
     return {
       id: x.guid,
       url: x.link,
@@ -418,7 +422,9 @@ export function mapperGithubJobs(input: any): Job[] {
     ageHours: differenceInHours(new Date(), new Date(x.created_at)), // description: x.description,
     id: x.id,
     location: getLocation(x.location),
-    title: normalizeTitle(x.title).replace(/(\(.*?\))/g, ''),
+    title: normalizeTitle(x.title)
+      .replace(/(\(.*?\))/g, '')
+      .trim(),
     type: x.type,
     url: x.url,
     tags: getTagsFromTitle(x.title),
@@ -434,6 +440,7 @@ export function mapperRemoteOkJobs(input: any): Job[] {
       url: x.url, // description: x.description,
       company: x.company,
       companyLogo: x.company_logo,
+      logo: x.logo,
       companyUrl: '',
       createdAt: new Date(x.date).getTime(),
       ageDays: differenceInDays(new Date(), new Date(x.date)),
@@ -442,4 +449,27 @@ export function mapperRemoteOkJobs(input: any): Job[] {
       providerId: PROVIDERS.REMOTEOK,
     };
   });
+}
+export function filterDuplicates(input: Job[]): Job[] {
+  const groupedByProviders = R.groupBy(R.prop('providerId'))(input);
+  const notremoteok = groupedByProviders[PROVIDERS.GITHUB].concat(
+    groupedByProviders[PROVIDERS.STACKOVERFLOW],
+  );
+  const filteredOk = groupedByProviders[PROVIDERS.REMOTEOK].filter(
+    remoteOkJob =>
+      !notremoteok.some(job => {
+        const match =
+          job.createdAt === remoteOkJob.createdAt ||
+          (job.title.toLowerCase() === remoteOkJob.title.toLowerCase() &&
+            job.company.toLowerCase().includes(remoteOkJob.company.toLowerCase()));
+        return match;
+      }),
+  );
+  const doubleFilteredOk = filteredOk.filter(
+    (remoteOkJob, i) =>
+      !R.remove(0, i + 1, filteredOk).some(
+        x => x.title === remoteOkJob.title && x.company === remoteOkJob.company,
+      ),
+  );
+  return doubleFilteredOk.concat(notremoteok);
 }

@@ -6,6 +6,7 @@ import {
   mapperGithubJobs,
   mapperStackOverflowJobs,
   mapperRemoteOkJobs,
+  filterDuplicates,
 } from '../client/services/jobs';
 
 const DATA_DIR = path.resolve(__dirname, '../../data');
@@ -21,8 +22,10 @@ export const getJobs = () => {
   const stackoverflowjobs = fs.readJsonSync(path.join(DATA_DIR, 'stackOverflowJobs.json'));
   const remoteOkJobs = fs.readJsonSync(path.join(DATA_DIR, 'remoteOkJobs.json'));
   return sortFn(
-    mapperGithubJobs(githubjobs).concat(
-      mapperStackOverflowJobs(stackoverflowjobs).concat(mapperRemoteOkJobs(remoteOkJobs)),
+    filterDuplicates(
+      mapperGithubJobs(githubjobs).concat(
+        mapperStackOverflowJobs(stackoverflowjobs).concat(mapperRemoteOkJobs(remoteOkJobs)),
+      ),
     ),
   );
 };
