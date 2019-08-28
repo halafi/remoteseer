@@ -83,6 +83,9 @@ const getProviderImg = (providerId: number): string => {
   if (providerId === 2) {
     return `url('images/remoteok.ico')`;
   }
+  if (providerId === 3) {
+    return `url('images/wwr.png')`;
+  }
   return '';
 };
 
@@ -182,6 +185,7 @@ const Root = () => {
             <Provider src="/images/github.svg" alt="Github jobs" />
             <Provider src="/images/stackoverflow.svg" alt="StackOverflow jobs" />
             <Provider src="/images/remoteok.ico" alt="RemoteOk jobs" />
+            <Provider src="/images/wwr.png" alt="We Wrok Remotely jobs" />
           </Providers>
         </Description>
         <JobList flexDirection="column">

@@ -35,7 +35,7 @@ async function downloadRss(url, file) {
       );
       return acc;
     }, [])
-    .filter(x => x.link && x.category);
+    .filter(x => x.link && (x.category || x.guid)); // link and category for soverflow, link and guid for wwr
   const outputFile = path.join(DATA_DIR, file);
   await fs.outputJson(outputFile, jobs);
   console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
@@ -55,6 +55,7 @@ async function fetchData() {
     'https://stackoverflow.com/jobs/feed?l=Remote&u=Km&d=20',
     'stackOverflowJobs.json',
   );
+  await downloadRss('https://weworkremotely.com/remote-jobs.rss', 'wwrJobs.json');
   console.log('[fetchData] done');
 }
 

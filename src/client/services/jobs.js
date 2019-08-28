@@ -32,6 +32,7 @@ const PROVIDERS = {
   GITHUB: 0,
   STACKOVERFLOW: 1,
   REMOTEOK: 2,
+  WWR: 3,
 };
 
 export const PERIODS = {
@@ -119,6 +120,9 @@ function getTagsFromTitle(title: string): string[] {
   }
   if (lowerCaseTitle.includes('product manager')) {
     tags.push('product management');
+  }
+  if (lowerCaseTitle.includes('project manager')) {
+    tags.push('project management');
   }
   if (
     lowerCaseTitle.includes('director') ||
@@ -450,10 +454,33 @@ export function mapperRemoteOkJobs(input: any): Job[] {
     };
   });
 }
+export function mapperWwrJobs(input: any): Job[] {
+  // TODO: investigate why so little WWR jobs, are they filtered?
+  // TODO: one remoteok job doesn't have company name
+  // TODO: check for eerrors job board
+  return input.map(x => {
+    const split = x.title.split(': ');
+    return {
+      id: x.guid,
+      title: normalizeTitle(split[1]).trim(),
+      location: '',
+      url: x.link, // description: x.description,
+      company: split[0],
+      companyLogo: '',
+      companyUrl: '',
+      createdAt: new Date(x.pubDate).getTime(),
+      ageDays: differenceInDays(new Date(), new Date(x.pubDate)),
+      ageHours: differenceInHours(new Date(), new Date(x.pubDate)),
+      tags: getTagsFromTitle(split[1]),
+      providerId: PROVIDERS.WWR,
+    };
+  });
+}
 export function filterDuplicates(input: Job[]): Job[] {
   const groupedByProviders = R.groupBy(R.prop('providerId'))(input);
   const notremoteok = groupedByProviders[PROVIDERS.GITHUB].concat(
     groupedByProviders[PROVIDERS.STACKOVERFLOW],
+    groupedByProviders[PROVIDERS.WWR],
   );
   const filteredOk = groupedByProviders[PROVIDERS.REMOTEOK].filter(
     remoteOkJob =>
