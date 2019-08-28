@@ -43,7 +43,11 @@ const Subheader = styled.h2`
 
 const JobList = styled(Flex)`
   margin: 40px auto;
-  max-width: 950px;
+  width: 100%;
+  max-width: 100%;
+  ${mq.TABLET`
+    max-width: 950px;
+  `}
 `;
 
 const TimeBlock = styled(Flex)`
@@ -128,6 +132,7 @@ const JobInfo = styled(Flex)`
 const Tags = styled(Flex)``;
 
 const Tag = styled(Box)`
+  margin-bottom: 4px;
   margin-right: 4px;
   border-radius: 0.3em;
   border: 1px solid #0f1115;
@@ -188,7 +193,7 @@ const Root = () => {
                           <Flex flexDirection="column">
                             {job.company} <JobTitle>{job.title}</JobTitle>
                             {job.location && <JobLocation>{job.location}</JobLocation>}
-                            <Tags alignItems="center">
+                            <Tags alignItems="center" flexWrap="wrap">
                               {job.tags.map(x => (
                                 <Tag>{x.toUpperCase()}</Tag>
                               ))}
