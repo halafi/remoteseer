@@ -1,10 +1,10 @@
 // @flow
 import fs from 'fs-extra';
 import path from 'path';
-import { WWR_CATEGORIES } from './consts/wwr';
-import getProcessedJobs from '../client/services/jobs/getProcessedJobs';
+import { WWR_CATEGORIES } from '../../consts/wwr';
+import getProcessedJobs from '../../../client/services/jobs/getProcessedJobs';
 
-const DATA_DIR = path.resolve(__dirname, '../../data');
+const DATA_DIR = path.resolve(__dirname, '../../../../data');
 
 // eslint-disable-next-line import/prefer-default-export
 export const getJobs = (category: string) => {

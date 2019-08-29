@@ -3,7 +3,7 @@
 // hreflang x hrefLang jsx issue
 import * as React from 'react';
 import GoogleAnalytics from './components/GoogleAnalytics';
-import { CATEGORIES_META } from '../consts/categories';
+import { CATEGORIES_META } from '../../consts/categories';
 
 type Props = {
   root: string,
@@ -13,15 +13,10 @@ type Props = {
 };
 
 const getDescription = (category: string) => {
-  if (category === 'design') {
-    return 'Browse through a listing of remote design, user experience and interaction jobs from multiple websites at once.';
+  if (CATEGORIES_META[category]) {
+    return CATEGORIES_META[category].description;
   }
-  if (category === 'development') {
-    return 'Browse through a listing of remote software development jobs from multiple websites at once.';
-  }
-  if (category === 'customer-support') {
-    return 'Browse through a listing of remote customer support jobs from multiple websites at once.';
-  }
+
   return 'Remote Seer is an aggregator of remote job sites. Find remote work in development, design, customer support and more.';
 };
 

@@ -7,7 +7,7 @@ import type { Context } from 'koa';
 import logger from 'koa-logger';
 import serve from 'koa-static';
 import path from 'path';
-import markup from './markup/index';
+import markup from './services/markup/index';
 
 const app = new Koa();
 

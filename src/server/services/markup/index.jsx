@@ -14,9 +14,9 @@ import {
   createGlobalStyle,
 } from 'styled-components';
 
-import Theme from '../../client/records/Theme';
-import Routes from '../../client/Routes';
-import { StateProvider } from '../../client/State';
+import Theme from '../../../client/records/Theme';
+import Routes from '../../../client/Routes';
+import { StateProvider } from '../../../client/State';
 import Html from './Html';
 import * as data from '../dataFiles';
 

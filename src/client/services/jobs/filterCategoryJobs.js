@@ -5,7 +5,7 @@ import type { Job } from '../../records/Job';
 
 export default function filterByCategory(jobs: Job[], category: string): Job[] {
   if (Object.keys(CATEGORIES).includes(category)) {
-    return jobs.filter(job => R.all(tag => job.tags.includes(tag))(CATEGORIES[category]));
+    return jobs.filter(job => R.any(tag => job.tags.includes(tag))(CATEGORIES[category]));
   }
   return jobs;
 }

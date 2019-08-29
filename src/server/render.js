@@ -5,7 +5,7 @@ import 'regenerator-runtime/runtime';
 import fs from 'fs-extra';
 import path from 'path';
 import colors from 'colors';
-import markup from './markup/index';
+import markup from './services/markup/index';
 import { CATEGORIES } from './consts/categories';
 
 function getFilesizeInMegaBytes(filename: string) {
