@@ -6,7 +6,20 @@ import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs-extra';
 import convert from 'xml-js';
-import { WWR_CATEGORIES } from '../src/server/consts/wwr';
+
+// DUPLICATE
+const WWR_CATEGORIES = [
+  'remote-customer-support-jobs',
+  'product',
+  'remote-programming-jobs',
+  'sales-and-marketing',
+  'business-and-management',
+  'remote-copywriting-jobs',
+  'remote-design-jobs',
+  'remote-devops-sysadmin-jobs',
+  'finance-and-legal',
+  'remote-jobs',
+];
 
 const DATA_DIR = path.resolve(__dirname, '../data');
 
