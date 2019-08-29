@@ -3,19 +3,37 @@
 // hreflang x hrefLang jsx issue
 import * as React from 'react';
 import GoogleAnalytics from './components/GoogleAnalytics';
+import { CATEGORIES_META } from '../consts/categories';
 
 type Props = {
   root: string,
   styleElement: React.Node, // css
   state: any,
+  category: string,
 };
 
-const Html = ({ root, styleElement, state }: Props) => {
+const getDescription = (category: string) => {
+  if (category === 'design') {
+    return 'Browse through a listing of remote design, user experience and interaction jobs from multiple websites at once.';
+  }
+  if (category === 'development') {
+    return 'Browse through a listing of remote software development jobs from multiple websites at once.';
+  }
+  if (category === 'customer-support') {
+    return 'Browse through a listing of remote customer support jobs from multiple websites at once.';
+  }
+  return 'Remote Seer is an aggregator of remote job sites. Find remote work in development, design, customer support and more.';
+};
+
+const Html = ({ root, styleElement, state, category }: Props) => {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <title>Remote Seer - the ultimate aggregator of remote jobs</title>
+        <title>
+          {category ? `Remote ${CATEGORIES_META[category].title} Jobs` : 'Remote Jobs'} | Remote
+          Seer - largest listing of remote jobs
+        </title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {process.env.NODE_ENV === 'production' && (
           <>
@@ -23,10 +41,7 @@ const Html = ({ root, styleElement, state }: Props) => {
             <GoogleAnalytics />
           </>
         )}
-        <meta
-          name="description"
-          content="Remote seer is an aggregator of remote jobs. Find remote work in development, design and more."
-        />
+        <meta name="description" content={getDescription(category)} />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -44,7 +59,7 @@ const Html = ({ root, styleElement, state }: Props) => {
       </head>
       <body>
         <div id="root" dangerouslySetInnerHTML={{ __html: root }} />
-        {/* <script src="bundle.js" /> */}
+        {process.env.NODE_ENV !== 'production' && <script src="bundle.js" />}
       </body>
     </html>
   );

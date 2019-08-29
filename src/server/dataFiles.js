@@ -9,6 +9,7 @@ import {
   mapperRemoteOkJobs,
   mapperWwrJobs,
   filterDuplicates,
+  filterByCategory,
 } from '../client/services/jobs';
 
 const DATA_DIR = path.resolve(__dirname, '../../data');
@@ -19,7 +20,7 @@ const sortFn = R.compose(
 );
 
 // eslint-disable-next-line import/prefer-default-export
-export const getJobs = () => {
+export const getJobs = (category: string) => {
   const githubjobs = fs.readJsonSync(path.join(DATA_DIR, 'githubJobs.json'));
   const stackoverflowjobs = fs.readJsonSync(path.join(DATA_DIR, 'stackOverflowJobs.json'));
   const remoteOkJobs = fs.readJsonSync(path.join(DATA_DIR, 'remoteOkJobs.json'));
@@ -28,7 +29,7 @@ export const getJobs = () => {
     const jobs = fs.readJsonSync(path.join(DATA_DIR, `wwr-${cat}.json`));
     return acc.concat(jobs.map(x => ({ ...x, category: cat })));
   }, []);
-  return sortFn(
+  const allJobs = sortFn(
     filterDuplicates(
       mapperGithubJobs(githubjobs).concat(
         mapperStackOverflowJobs(stackoverflowjobs)
@@ -37,4 +38,5 @@ export const getJobs = () => {
       ),
     ),
   );
+  return filterByCategory(allJobs, category);
 };

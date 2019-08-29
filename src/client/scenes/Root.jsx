@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import { groupJobs, PERIODS } from '../services/jobs';
 import mq from '../services/mediaQuery';
 import { useStateValue } from '../State';
+import { CATEGORIES_META } from '../../server/consts/categories';
 
 const Link = styled.a`
   color: initial;
@@ -43,7 +44,10 @@ const Subheader = styled.h2`
 
 const JobList = styled(Flex)`
   margin: 40px auto;
-  max-width: 950px;
+  width: 100%;
+  ${mq.DESKTOP`
+    width: 950px;
+  `}
 `;
 
 const TimeBlock = styled(Flex)`
@@ -166,6 +170,31 @@ const Provider = styled.img`
   height: 32px;
 `;
 
+const JobCategories = styled(Flex)`
+  width: 100%;
+`;
+
+const JobCategory = styled.a`
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px;
+  color: initial;
+  max-width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 12px;
+  border-bottom: 1px solid transparent;
+  span {
+    margin-bottom: 8px;
+  }
+  :hover {
+    border-bottom: 1px solid black;
+  }
+`;
+
 const Root = () => {
   const { jobs } = useStateValue();
   const groupedJobs = jobs ? groupJobs(jobs) : {};
@@ -189,6 +218,22 @@ const Root = () => {
           </Providers>
         </Description>
         <JobList flexDirection="column">
+          <JobCategories justifyContent="center" flexWrap="wrap">
+            <JobCategory href="/" key="remote jobs">
+              <span role="img" aria-label="remote jobs">
+                🌴
+              </span>
+              remote jobs
+            </JobCategory>
+            {Object.keys(CATEGORIES_META).map(category => (
+              <JobCategory href={CATEGORIES_META[category].link} key={category}>
+                <span role="img" aria-label={CATEGORIES_META[category].title}>
+                  {CATEGORIES_META[category].img}
+                </span>
+                {CATEGORIES_META[category].title}
+              </JobCategory>
+            ))}
+          </JobCategories>
           {jobs &&
             Object.keys(groupedJobs).map(period => (
               <Box key={period}>
@@ -227,5 +272,4 @@ const Root = () => {
     </>
   );
 };
-
 export default Root;

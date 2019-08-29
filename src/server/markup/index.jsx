@@ -33,7 +33,8 @@ const GlobalStyle = createGlobalStyle`
 
 function markup(url: string) {
   const sheet = new ServerStyleSheet();
-  const state = { jobs: data.getJobs() };
+  const category = url !== '/' ? url.slice(1, url.length).split('-jobs')[0] : '';
+  const state = { jobs: data.getJobs(category) };
   const root = renderToString(
     <StyleSheetManager sheet={sheet.instance}>
       <>
@@ -54,7 +55,7 @@ function markup(url: string) {
   pass.write(`<!DOCTYPE html>`);
 
   const htmlStream = renderToStaticNodeStream(
-    <Html root={root} styleElement={sheet.getStyleElement()} state={state} />,
+    <Html root={root} styleElement={sheet.getStyleElement()} state={state} category={category} />,
   );
 
   return htmlStream.pipe(pass);

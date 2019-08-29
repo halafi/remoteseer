@@ -9,6 +9,7 @@ import {
   differenceInDays,
   differenceInHours,
 } from 'date-fns';
+import { CATEGORIES } from '../../server/consts/categories';
 
 type Job = {
   company: string,
@@ -532,4 +533,10 @@ export function filterDuplicates(input: Job[]): Job[] {
       ),
   );
   return doubleFilteredOk.concat(notremoteok);
+}
+export function filterByCategory(jobs: Job[], category: string): Job[] {
+  if (Object.keys(CATEGORIES).includes(category)) {
+    return jobs.filter(job => R.all(tag => job.tags.includes(tag))(CATEGORIES[category]));
+  }
+  return jobs;
 }
