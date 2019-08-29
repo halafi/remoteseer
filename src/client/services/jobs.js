@@ -158,7 +158,7 @@ function getTagsFromTitle(title: string): string[] {
     lowerCaseTitle.includes('ios') ||
     lowerCaseTitle.includes('android') ||
     lowerCaseTitle.includes('swift') ||
-    lowerCaseTitle.includes('ionic') ||
+    lowerCaseTitle.includes('ionic')
   ) {
     tags.push('mobile');
   }
