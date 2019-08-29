@@ -2,11 +2,12 @@
 import React from 'react';
 import { Box, Flex } from '@rebass/grid';
 import styled from 'styled-components';
-import Navbar from '../components/Navbar';
-import { groupJobs, PERIODS } from '../services/jobs';
-import mq from '../services/mediaQuery';
-import { useStateValue } from '../State';
-import { CATEGORIES_META } from '../../server/consts/categories';
+import Navbar from '../../components/Navbar';
+import groupJobsByPeriod from '../../services/jobs/groupJobsByPeriod';
+import mq from '../../services/mediaQuery';
+import { useStateValue } from '../../State';
+import { CATEGORIES_META } from '../../../server/consts/categories';
+import PERIODS from '../../consts/Periods';
 
 const Link = styled.a`
   color: initial;
@@ -149,21 +150,6 @@ const Providers = styled(Flex)`
   margin-top: 12px;
 `;
 
-// const useGithubRemoteJobs = () => {
-//   const url = `https://github-jobs-proxy.appspot.com/positions?utf8=%E2%9C%93&description=&location=remote`;
-//   const [data, updateData] = React.useState([]);
-//   React.useEffect(() => {
-//     fetch(url)
-//       .then(res => {
-//         return res.json();
-//       })
-//       .then(json => {
-//         updateData(mapperGithubJobs(json));
-//       });
-//   }, []);
-//   return data;
-// };
-
 const Provider = styled.img`
   padding: 12px;
   width: 32px;
@@ -197,7 +183,7 @@ const JobCategory = styled.a`
 
 const Root = () => {
   const { jobs } = useStateValue();
-  const groupedJobs = jobs ? groupJobs(jobs) : {};
+  const groupedJobs = jobs ? groupJobsByPeriod(jobs) : {};
   return (
     <>
       <Navbar />
