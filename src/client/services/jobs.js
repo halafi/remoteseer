@@ -14,6 +14,7 @@ type Job = {
   company: string,
   companyLogo: ?string,
   logo?: ?string,
+  category?: string, // wwrcategory
   companyUrl: ?string,
   createdAt: number,
   ageDays: number,
@@ -90,6 +91,7 @@ export const TAGS = {
   KUBERNETES: 'kubernetes',
   RANCHER: 'rancher',
   HADOOP: 'hadoop',
+  PRODUCT: 'product',
   SPARK: 'spark',
   FLINK: 'flink',
   ERLANG: 'erlang',
@@ -196,6 +198,12 @@ function getTagsFromTitle(title: string): string[] {
     lowerCaseTitle.includes('qa ')
   ) {
     tags.push('testing');
+  }
+  if (lowerCaseTitle.includes('support') || lowerCaseTitle.includes('customer')) {
+    tags.push('customer support');
+  }
+  if (lowerCaseTitle.includes('hr ')) {
+    tags.push('human resources');
   }
   if (
     lowerCaseTitle.includes('javascript') ||
@@ -328,6 +336,8 @@ const normalizeTitle = title =>
     .replace('(UK/EU Only)', '')
     .replace('Remote ', '')
     .replace(', remote-friendly ', '')
+    .replace(' - Work From Home', '')
+    .replace(', work from home', '')
     .replace(' work from home', '')
     .replace(' Remote/Homeoffice ', '')
     .trim();
@@ -436,30 +446,44 @@ export function mapperGithubJobs(input: any): Job[] {
   }));
 }
 export function mapperRemoteOkJobs(input: any): Job[] {
-  return input.slice(1, input.length).map(x => {
-    return {
-      id: x.id,
-      title: x.position,
-      location: '',
-      url: x.url, // description: x.description,
-      company: x.company,
-      companyLogo: x.company_logo,
-      logo: x.logo,
-      companyUrl: '',
-      createdAt: new Date(x.date).getTime(),
-      ageDays: differenceInDays(new Date(), new Date(x.date)),
-      ageHours: differenceInHours(new Date(), new Date(x.date)),
-      tags: Array.from(new Set(x.tags)),
-      providerId: PROVIDERS.REMOTEOK,
-    };
-  });
+  return input.map(x => ({
+    id: x.id,
+    title: x.position,
+    location: '',
+    url: x.url, // description: x.description,
+    company: x.company,
+    companyLogo: x.company_logo,
+    logo: x.logo,
+    companyUrl: '',
+    createdAt: new Date(x.date).getTime(),
+    ageDays: differenceInDays(new Date(), new Date(x.date)),
+    ageHours: differenceInHours(new Date(), new Date(x.date)),
+    tags: Array.from(new Set(x.tags)),
+    providerId: PROVIDERS.REMOTEOK,
+  }));
 }
+const WWR_TAGS = {
+  'remote-customer-support-jobs': 'customer support',
+  product: 'product',
+  'remote-programming-jobs': 'dev',
+  'sales-and-marketing': 'sales and marketing',
+  'business-and-management': 'management',
+  'remote-copywriting-jobs': 'copywriting',
+  'remote-design-jobs': 'design',
+  'remote-devops-sysadmin-jobs': 'devops',
+  'finance-and-legal': 'finance and legal',
+  'remote-jobs': '',
+};
 export function mapperWwrJobs(input: any): Job[] {
   // TODO: investigate why so little WWR jobs, are they filtered?
   // TODO: one remoteok job doesn't have company name
   // TODO: check for eerrors job board
   return input.map(x => {
     const split = x.title.split(': ');
+    const tags = getTagsFromTitle(split[1]);
+    if (WWR_TAGS[x.category] && !tags.includes(WWR_TAGS[x.category])) {
+      tags.push(WWR_TAGS[x.category]);
+    }
     return {
       id: x.guid,
       title: normalizeTitle(split[1]).trim(),
@@ -471,7 +495,7 @@ export function mapperWwrJobs(input: any): Job[] {
       createdAt: new Date(x.pubDate).getTime(),
       ageDays: differenceInDays(new Date(), new Date(x.pubDate)),
       ageHours: differenceInHours(new Date(), new Date(x.pubDate)),
-      tags: getTagsFromTitle(split[1]),
+      tags,
       providerId: PROVIDERS.WWR,
     };
   });

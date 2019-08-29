@@ -6,6 +6,7 @@ import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs-extra';
 import convert from 'xml-js';
+import { WWR_CATEGORIES } from '../src/server/consts/wwr';
 
 const DATA_DIR = path.resolve(__dirname, '../data');
 
@@ -55,7 +56,11 @@ async function fetchData() {
     'https://stackoverflow.com/jobs/feed?l=Remote&u=Km&d=20',
     'stackOverflowJobs.json',
   );
-  await downloadRss('https://weworkremotely.com/remote-jobs.rss', 'wwrJobs.json');
+  await Promise.all(
+    WWR_CATEGORIES.map(wwrCat =>
+      downloadRss(`https://weworkremotely.com/categories/${wwrCat}.rss`, `wwr-${wwrCat}.json`),
+    ),
+  );
   console.log('[fetchData] done');
 }
 
