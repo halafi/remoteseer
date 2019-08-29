@@ -77,8 +77,10 @@ export const TAGS = {
   RUBY: 'ruby',
   RAILS: 'rails',
   IOS: 'ios',
+  IONIC: 'ionic',
   XAMARIN: 'xamarin',
   SWIFT: 'swift',
+  SEO: 'seo',
   // MANAGER: 'manager',
   CPP: 'c++',
   SQL: 'sql',
@@ -129,7 +131,8 @@ function getTagsFromTitle(title: string): string[] {
   if (
     lowerCaseTitle.includes('director') ||
     lowerCaseTitle.includes('lead') ||
-    lowerCaseTitle.includes('vp ')
+    lowerCaseTitle.includes('vp ') ||
+    lowerCaseTitle.includes('vice president')
   ) {
     tags.push('lead');
   }
@@ -154,7 +157,8 @@ function getTagsFromTitle(title: string): string[] {
     lowerCaseTitle.includes('xamarin') ||
     lowerCaseTitle.includes('ios') ||
     lowerCaseTitle.includes('android') ||
-    lowerCaseTitle.includes('swift')
+    lowerCaseTitle.includes('swift') ||
+    lowerCaseTitle.includes('ionic') ||
   ) {
     tags.push('mobile');
   }
@@ -247,6 +251,8 @@ function getTagsFromTitle(title: string): string[] {
   if (lowerCaseTitle.includes('.net')) {
     tags.push('.net');
     tags.push('c#');
+  } else if (lowerCaseTitle.includes('c#')) {
+    tags.push('c#');
   }
   if (
     lowerCaseTitle.startsWith('go ') ||
@@ -255,6 +261,9 @@ function getTagsFromTitle(title: string): string[] {
     lowerCaseTitle.includes('(go)')
   ) {
     tags.push('golang');
+  }
+  if (lowerCaseTitle.includes('copywrit') || lowerCaseTitle.includes('writer')) {
+    tags.push('copywriting');
   }
   if (lowerCaseTitle.includes('node')) {
     tags.push('nodejs');
