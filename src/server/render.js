@@ -56,7 +56,7 @@ async function render() {
     Object.keys(CATEGORIES).map(async category => {
       const filepath = path.join(rootDir, `${category}-jobs`);
       await fs.ensureDir(filepath);
-      await renderPage(`/${category}-jobs`, fs.ensureDir(filepath));
+      await renderPage(`/${category}-jobs`, filepath);
     }),
   );
   console.log('[render] done');
