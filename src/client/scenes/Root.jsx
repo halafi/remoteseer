@@ -79,16 +79,16 @@ const PeriodTitle = styled.span`
 
 const getProviderImg = (providerId: number): string => {
   if (providerId === 0) {
-    return `url('images/github.svg')`;
+    return `url('/images/github.svg')`;
   }
   if (providerId === 1) {
-    return `url('images/stackoverflow.svg')`;
+    return `url('/images/stackoverflow.svg')`;
   }
   if (providerId === 2) {
-    return `url('images/remoteok.ico')`;
+    return `url('/images/remoteok.ico')`;
   }
   if (providerId === 3) {
-    return `url('images/wwr.png')`;
+    return `url('/images/wwr.png')`;
   }
   return '';
 };
@@ -202,7 +202,7 @@ const Root = () => {
     <>
       <Navbar />
       <Flex alignItems="center" flexDirection="column">
-        <Image alt="work remotely" src="images/work_remotely.svg" />
+        <Image alt="work remotely" src="/images/work_remotely.svg" />
         <Header>Remote Seer</Header>
         <Description>
           <Subheader>

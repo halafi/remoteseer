@@ -8,17 +8,17 @@ export const CATEGORIES = {
 
 export const CATEGORIES_META = {
   development: {
-    link: '/development-jobs',
+    link: '/development-jobs/',
     img: '💻',
     title: 'Development',
   },
   design: {
-    link: '/design-jobs',
+    link: '/design-jobs/',
     img: '🎨',
     title: 'Design',
   },
   'customer-support': {
-    link: '/customer-support-jobs',
+    link: '/customer-support-jobs/',
     img: '🧯🔥',
     title: 'Customer Support',
   },
