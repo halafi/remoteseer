@@ -44,7 +44,7 @@ const Html = ({ root, styleElement, state }: Props) => {
       </head>
       <body>
         <div id="root" dangerouslySetInnerHTML={{ __html: root }} />
-        <script src="bundle.js" />
+        {/* <script src="bundle.js" /> */}
       </body>
     </html>
   );
