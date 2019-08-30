@@ -4,6 +4,7 @@ import 'core-js';
 import 'regenerator-runtime/runtime';
 import fetch from 'node-fetch';
 import path from 'path';
+import cheerio from 'cheerio';
 import fs from 'fs-extra';
 import convert from 'xml-js';
 
@@ -34,6 +35,57 @@ async function downloadJson(url, file) {
   console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
 }
 
+async function downloadHtml(url, file) {
+  const response = await fetch(url);
+  const data = await response.text();
+  const outputFile = path.join(DATA_DIR, file).replace('.html', '.json');
+  const $ = cheerio.load(data);
+  const jobs = [];
+  let date = 'Today';
+  $('.all-of-the-jobs')
+    .children()
+    .each((i, e) => {
+      const className = $(e)
+        .attr('class')
+        .split(' ')
+        .join('.');
+      if (className === 'jobs-date') {
+        date = $(e)
+          .html()
+          .trim(); // August 1 or August 11
+      } else if (className === 'jobs-list') {
+        $(e)
+          .find('a.item-link')
+          .each((j, job) => {
+            // for each job in day period
+            const link = `https://dribbble.com${$(job).attr('href')}`;
+            const location = $(job)
+              .find('.item-meta')
+              .html()
+              .trim();
+            const company = $(job)
+              .find('.item-title')
+              .html()
+              .trim();
+            const title = $(job)
+              .find('.item-desc')
+              .html()
+              .trim();
+            jobs.push({
+              id: `drb-${j}`,
+              date,
+              link,
+              title,
+              location,
+              company,
+            });
+          });
+      }
+    });
+  await fs.outputJson(outputFile, jobs);
+  console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
+}
+
 async function downloadRss(url, file) {
   const response = await fetch(url);
   const data = await response.text();
@@ -58,13 +110,11 @@ async function downloadRss(url, file) {
 async function fetchData() {
   console.log('[fetchData] start');
   await fs.ensureDir(DATA_DIR);
-  // github
   await downloadJson(
     'https://github-jobs-proxy.appspot.com/positions?utf8=%E2%9C%93&description=&location=remote',
     'githubJobs.json',
   );
   await downloadJson('https://remoteok.io/api', 'remoteOkJobs.json');
-  // stackoverflow careers
   await downloadRss(
     'https://stackoverflow.com/jobs/feed?l=Remote&u=Km&d=20',
     'stackOverflowJobs.json',
@@ -73,6 +123,10 @@ async function fetchData() {
     WWR_CATEGORIES.map(wwrCat =>
       downloadRss(`https://weworkremotely.com/categories/${wwrCat}.rss`, `wwr-${wwrCat}.json`),
     ),
+  );
+  await downloadHtml(
+    'https://dribbble.com/jobs?utf8=%E2%9C%93&category=&anywhere=true&location=Anywhere&role_type=',
+    'dribbbleJobs.html',
   );
   console.log('[fetchData] done');
 }

@@ -5,6 +5,7 @@ import mapperGithubJobs from './mapper/github';
 import mapperStackOverflowJobs from './mapper/stackoverflow';
 import mapperRemoteOkJobs from './mapper/remoteok';
 import mapperWwrJobs from './mapper/wwr';
+import mapperDribbbleJobs from './mapper/dribbble';
 import filterDuplicateJobs from './filterDuplicateJobs';
 import filterCategoryJobs from './filterCategoryJobs';
 
@@ -14,7 +15,7 @@ const sortFn = R.compose(
 );
 
 export default function getJobs(
-  jobs: { github: Job[], stackoverflow: Job[], wwr: Job[], remoteok: Job[] },
+  jobs: { github: Job[], stackoverflow: Job[], wwr: Job[], remoteok: Job[], dribbble: Job[] },
   category: string,
 ): Job[] {
   const allJobs = sortFn(
@@ -22,7 +23,8 @@ export default function getJobs(
       mapperGithubJobs(jobs.github).concat(
         mapperStackOverflowJobs(jobs.stackoverflow)
           .concat(mapperRemoteOkJobs(jobs.remoteok))
-          .concat(mapperWwrJobs(jobs.wwr)),
+          .concat(mapperWwrJobs(jobs.wwr))
+          .concat(mapperDribbbleJobs(jobs.dribbble)),
       ),
     ),
   );

@@ -19,6 +19,7 @@ export const getJobs = (category: string) => {
         const jobs = fs.readJsonSync(path.join(DATA_DIR, `wwr-${cat}.json`));
         return acc.concat(jobs.map(x => ({ ...x, category: cat })));
       }, []),
+      dribbble: fs.readJsonSync(path.join(DATA_DIR, 'dribbbleJobs.json')),
     },
     category,
   );

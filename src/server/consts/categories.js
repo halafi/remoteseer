@@ -45,3 +45,13 @@ export const CATEGORIES_META = {
       'Browse through a listing of remote copywriting job openings from multiple websites at once.',
   },
 };
+
+// export const DEVELOPMENT_CATEGORIES = {
+//   development: {
+//     link: '/development-jobs/',
+//     img: '💻',
+//     title: 'Development',
+//     description:
+//       'Browse through a listing of remote software development job openings from multiple websites at once.',
+//   },
+// };
