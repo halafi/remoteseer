@@ -71,6 +71,11 @@ async function downloadHtml(url, file) {
               .find('.item-desc')
               .html()
               .trim();
+            const companyLogo = $(job)
+              .find('.item-team img')
+              .attr('src')
+              .trim();
+            console.log(companyLogo);
             jobs.push({
               id: `drb-${j}`,
               date,

@@ -19,9 +19,19 @@ const Link = styled.a`
   }
 `;
 
-const Image = styled.img`
-  height: 200px;
-  width: 300px;
+const Main = styled(Box)`
+  background-color: #fcfdfe;
+  background-image: url('/images/cover-pattern.svg');
+  width: 100%;
+  border-bottom: 1px solid #ebeffb;
+`;
+
+const MainContent = styled(Flex)`
+  margin: 30px auto;
+  width: 100%;
+  ${mq.DESKTOP`
+    width: 950px;
+  `}
 `;
 
 const Description = styled(Box)`
@@ -31,13 +41,21 @@ const Description = styled(Box)`
 
 const Header = styled.h1`
   margin-block-start: 0;
-  margin-block-end: 10px;
+  margin-block-end: 0;
+  font-size: 36px;
+  line-height: 2.25;
+  font-weight: 900;
+  text-transform: uppercase;
+  ${mq.TABLET`
+    font-size: 54px;
+`}
 `;
 
 const Subheader = styled.h2`
   margin: 0 6px;
   font-size: 16px;
   font-weight: 400;
+  line-height: 1.6;
   ${mq.TABLET`
     font-size: 19px;
   `}
@@ -191,22 +209,26 @@ const Root = () => {
     <>
       <Navbar />
       <Flex alignItems="center" flexDirection="column">
-        <Image alt="work remotely" src="/images/work_remotely.svg" />
-        <Header>Remote Seer</Header>
-        <Description>
-          <Subheader>
-            Find remote work and <strong>work from anywhere</strong>. We aggregate providers and
-            remote job boards to bring you the <strong>largest listing of remote jobs</strong>. Find
-            all the latest remote jobs in one place.
-          </Subheader>
-          <Providers justifyContent="center">
-            <Provider src="/images/github.svg" alt="Github jobs" />
-            <Provider src="/images/stackoverflow.svg" alt="StackOverflow jobs" />
-            <Provider src="/images/remoteok.ico" alt="RemoteOk jobs" />
-            <Provider src="/images/wwr.png" alt="We Wrok Remotely jobs" />
-            <Provider src="/images/dribbble.svg" alt="Dribbble jobs" />
-          </Providers>
-        </Description>
+        <Main>
+          <MainContent alignItems="center" flexDirection="column">
+            <Header>Remote Seer</Header>
+            {/* <Image alt="work remotely" src="/images/digital_nomad.svg" /> */}
+            <Description>
+              <Subheader>
+                Find remote work and <strong>work from anywhere</strong>. We aggregate providers and
+                remote job boards to bring you the <strong>largest listing of remote jobs</strong>.
+                Find all the latest remote jobs from:
+              </Subheader>
+              <Providers justifyContent="center">
+                <Provider src="/images/github.svg" alt="Github jobs" />
+                <Provider src="/images/stackoverflow.svg" alt="StackOverflow jobs" />
+                <Provider src="/images/remoteok.ico" alt="RemoteOk jobs" />
+                <Provider src="/images/wwr.png" alt="We Wrok Remotely jobs" />
+                <Provider src="/images/dribbble.svg" alt="Dribbble jobs" />
+              </Providers>
+            </Description>
+          </MainContent>
+        </Main>
         <JobList flexDirection="column">
           <JobCategories justifyContent="center" flexWrap="wrap">
             <JobCategory href="/" key="remote jobs">

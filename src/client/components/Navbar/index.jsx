@@ -5,7 +5,6 @@ import { Flex } from '@rebass/grid';
 
 // $FlowFixMe
 const HeaderWrapper = styled.div`
-  margin-bottom: 12px;
   background: ${({ theme }) => theme.primary};
   width: 100%;
 `;
