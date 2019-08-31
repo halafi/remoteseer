@@ -3,6 +3,7 @@ import { differenceInDays, differenceInHours, parse } from 'date-fns';
 import type { Job } from '../../../../records/Job';
 import { PROVIDERS } from '../../../../records/Job';
 import getTags from '../../tags';
+import normalizeTitle from '../../normalizeTitle';
 
 export default function mapperDribbbleJobs(input: any): Job[] {
   return input.map(x => {
@@ -46,7 +47,7 @@ export default function mapperDribbbleJobs(input: any): Job[] {
     }
     return {
       id: x.id,
-      title: x.title.replace('&amp;', '&'),
+      title: normalizeTitle(x.title).replace('&amp;', '&'),
       location,
       url: x.link, // description: x.description,
       company: x.company

@@ -1,6 +1,7 @@
 // @flow
 import * as R from 'ramda';
 import type { Job } from '../../records/Job';
+import { PROVIDERS } from '../../records/Job';
 import mapperGithubJobs from './mapper/github';
 import mapperStackOverflowJobs from './mapper/stackoverflow';
 import mapperRemoteOkJobs from './mapper/remoteok';
@@ -8,13 +9,37 @@ import mapperWwrJobs from './mapper/wwr';
 import mapperDribbbleJobs from './mapper/dribbble';
 import mapperJustRemoteJobs from './mapper/justremote/index';
 import mapperRemoteCo from './mapper/remoteco/index';
-import filterDuplicateJobs from './filterDuplicateJobs';
 import filterCategoryJobs from './filterCategoryJobs';
 
 const sortFn = R.compose(
   R.reverse,
   R.sortBy(R.prop('createdAt')),
 );
+
+function filterRemoteCoDuplicates(input: Job[]): Job[] {
+  return input.reduce((acc, job) => {
+    if (acc.find(x => x.title === job.title && x.company === job.company)) {
+      return acc;
+    }
+    return acc.concat(job);
+  }, []);
+}
+
+function putJobs(allJobs: Job[], newJobs: Job[], label: string) {
+  const filtered = newJobs.filter(
+    newJob =>
+      !allJobs.find(
+        job =>
+          (job.title === newJob.title && job.company === newJob.company) ||
+          (newJob.providerId === PROVIDERS.REMOTEOK && job.createdAt === newJob.createdAt),
+      ),
+  );
+  // eslint-disable-next-line no-console
+  console.log(
+    `[getProcessedJobs] put ${label} jobs: ${filtered.length} (out of ${newJobs.length})`,
+  );
+  return allJobs.concat(filtered);
+}
 
 export default function getJobs(
   jobs: {
@@ -28,17 +53,23 @@ export default function getJobs(
   },
   category: string,
 ): Job[] {
-  const allJobs = sortFn(
-    filterDuplicateJobs(
-      mapperGithubJobs(jobs.github).concat(
-        mapperStackOverflowJobs(jobs.stackoverflow)
-          .concat(mapperRemoteOkJobs(jobs.remoteok))
-          .concat(mapperWwrJobs(jobs.wwr))
-          .concat(mapperDribbbleJobs(jobs.dribbble))
-          .concat(mapperJustRemoteJobs(jobs.justremote))
-          .concat(mapperRemoteCo(jobs.remoteco)),
-      ),
-    ),
-  );
+  // should be added by priority and duplicates should not be added further
+  const { github, dribbble, justremote, stackoverflow, remoteok, wwr, remoteco } = jobs;
+  const githubJobs = mapperGithubJobs(github);
+  const dribbbleJobs = mapperDribbbleJobs(dribbble);
+  const justRemoteJobs = mapperJustRemoteJobs(justremote);
+  const stackOverflowJobs = mapperStackOverflowJobs(stackoverflow);
+  const remoteokJobs = mapperRemoteOkJobs(remoteok);
+  const wwrJobs = mapperWwrJobs(wwr);
+  const remotecoJobs = filterRemoteCoDuplicates(mapperRemoteCo(remoteco));
+
+  let allJobs = putJobs([], githubJobs, 'github.com');
+  allJobs = putJobs(allJobs, dribbbleJobs, 'dribbble.com');
+  allJobs = putJobs(allJobs, justRemoteJobs, 'justremote.co');
+  allJobs = putJobs(allJobs, stackOverflowJobs, 'stackoverflow');
+  allJobs = putJobs(allJobs, remoteokJobs, 'remoteok.io');
+  allJobs = putJobs(allJobs, wwrJobs, 'weworkremotely.com');
+  allJobs = sortFn(putJobs(allJobs, remotecoJobs));
+
   return filterCategoryJobs(allJobs, category);
 }
