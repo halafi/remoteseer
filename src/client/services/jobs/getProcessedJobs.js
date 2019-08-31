@@ -71,5 +71,16 @@ export default function getJobs(
   allJobs = putJobs(allJobs, wwrJobs, 'weworkremotely.com');
   allJobs = sortFn(putJobs(allJobs, remotecoJobs));
 
-  return filterCategoryJobs(allJobs, category);
+  return filterCategoryJobs(allJobs, category).map(x => ({
+    id: x.id,
+    title: x.title,
+    company: x.company,
+    createdAt: x.createdAt,
+    ageDays: x.ageDays,
+    ageHours: x.ageHours,
+    location: x.location,
+    url: x.url,
+    tags: x.tags,
+    providerId: x.providerId,
+  }));
 }

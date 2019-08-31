@@ -321,7 +321,9 @@ const Root = () => {
                               ))}
                             </Tags>
                           </Flex>
-                          <Box>{job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}</Box>
+                          <Box px={2}>
+                            {job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}
+                          </Box>
                         </JobInfo>
                       </Job>
                     </Link>
@@ -344,14 +346,8 @@ const Root = () => {
               </a>
             </Flex>
             <FooterHtml>
-              <span>
-                © 2019 Made with{' '}
-                <span role="img" aria-label="love">
-                  ❤️
-                </span>{' '}
-                working remotely
-              </span>
-              {/* <a href="mailto:hello@remoteseer.net">Contact</a> */}
+              <span>© 2019 Made with love working remotely</span>
+              <a href="mailto:hello@remoteseer.net">Contact</a>
             </FooterHtml>
           </Footer>
         </FooterWrapper>
