@@ -222,7 +222,10 @@ const FooterWrapper = styled(Box)`
 const Footer = styled(Flex)`
   margin: 0px auto;
   padding: 0 16px;
-  max-width: 950px;
+  width: 100%;
+  ${mq.DESKTOP`
+    width: 950px;
+  `}
 `;
 
 const FooterHtml = styled.footer`
@@ -334,8 +337,21 @@ const Root = () => {
         </JobList>
         <FooterWrapper>
           <Footer flexDirection="column">
-            <Flex justifyContent="flex-end" py={4} mt={2}>
-              <a href="#">Back to top ↑</a>
+            <Flex
+              flexDirection={['column', null, 'row']}
+              justifyContent="space-between"
+              py={4}
+              mt={2}
+            >
+              <Flex flexDirection="column">
+                <a href="/">Remote Jobs</a>
+                {Object.keys(CATEGORIES_META).map(cat => (
+                  <a href={CATEGORIES_META[cat].link}>Remote {CATEGORIES_META[cat].title} Jobs</a>
+                ))}
+              </Flex>
+              <Box mt={[4, null, 0]}>
+                <a href="#">Back to top ↑</a>
+              </Box>
             </Flex>
             <Flex justifyContent="space-between" alignItems="center" py={2}>
               <Disclaimer>

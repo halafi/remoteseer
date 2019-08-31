@@ -12,7 +12,7 @@ export const CATEGORIES_META = {
   development: {
     link: '/development-jobs/',
     img: '💻',
-    title: 'Development',
+    title: 'Software Development',
     description:
       'Browse through a listing of remote software development job openings from multiple websites at once.',
   },
