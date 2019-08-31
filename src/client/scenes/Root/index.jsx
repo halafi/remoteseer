@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Box, Flex } from '@rebass/grid';
 import styled from 'styled-components';
@@ -208,8 +209,43 @@ const JobCategory = styled.a`
   }
 `;
 
+const FooterWrapper = styled(Box)`
+  color: #ffffff;
+  background-color: #212429;
+  width: 100%;
+  font-size: 14px;
+  a {
+    color: #ffffff;
+  }
+`;
+
+const Footer = styled(Flex)`
+  margin: 0px auto;
+  padding: 0 16px;
+  max-width: 950px;
+`;
+
+const FooterHtml = styled.footer`
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #8a8b8b;
+`;
+
+const Disclaimer = styled.p`
+  font-size: 12px;
+  margin-right: 4px;
+`;
+
+const Icon = styled.img`
+  padding: 8px;
+  width: 20px;
+  height: 20px;
+`;
+
 const Root = () => {
-  const { jobs } = useStateValue();
+  const { jobs, category } = useStateValue();
   const groupedJobs = jobs ? groupJobsByPeriod(jobs) : {};
   return (
     <>
@@ -225,9 +261,13 @@ const Root = () => {
                 remote job boards to bring you the <strong>largest listing of remote jobs</strong>.
                 <br />
                 <br />
-                <strong>{jobs.length} remote jobs</strong> from <strong>well trusted sites</strong>:
+                <strong>
+                  {jobs.length} remote jobs
+                  {category ? ` in ${CATEGORIES_META[category].title}` : ''}
+                </strong>{' '}
+                from <strong>well trusted sites</strong>:
               </Subheader>
-              <Providers justifyContent="center">
+              <Providers justifyContent="center" flexWrap="wrap">
                 <Provider src="/images/github.svg" alt="Github jobs" />
                 <Provider src="/images/stackoverflow.svg" alt="StackOverflow jobs" />
                 <Provider src="/images/remoteok.ico" alt="RemoteOk jobs" />
@@ -247,12 +287,12 @@ const Root = () => {
               </span>
               remote jobs
             </JobCategory>
-            {Object.keys(CATEGORIES_META).map(category => (
-              <JobCategory href={CATEGORIES_META[category].link} key={category}>
-                <span role="img" aria-label={CATEGORIES_META[category].title}>
-                  {CATEGORIES_META[category].img}
+            {Object.keys(CATEGORIES_META).map(cat => (
+              <JobCategory href={CATEGORIES_META[cat].link} key={cat}>
+                <span role="img" aria-label={CATEGORIES_META[cat].title}>
+                  {CATEGORIES_META[cat].img}
                 </span>
-                {CATEGORIES_META[category].title}
+                {CATEGORIES_META[cat].title}
               </JobCategory>
             ))}
           </JobCategories>
@@ -290,6 +330,31 @@ const Root = () => {
               </Box>
             ))}
         </JobList>
+        <FooterWrapper>
+          <Footer flexDirection="column">
+            <Flex justifyContent="flex-end" py={4} mt={2}>
+              <a href="#">Back to top ↑</a>
+            </Flex>
+            <Flex justifyContent="space-between" alignItems="center" py={2}>
+              <Disclaimer>
+                By using the site you agree that we use cookies for analysis of visitor behaviour.
+              </Disclaimer>
+              <a href="https://twitter.com/remote_seer" target="_blank" rel="noopener noreferrer">
+                <Icon src="/images/icons/twitter.svg" alt="twitter" />
+              </a>
+            </Flex>
+            <FooterHtml>
+              <span>
+                © 2019 Made with{' '}
+                <span role="img" aria-label="love">
+                  ❤️
+                </span>{' '}
+                working remotely
+              </span>
+              {/* <a href="mailto:hello@remoteseer.net">Contact</a> */}
+            </FooterHtml>
+          </Footer>
+        </FooterWrapper>
       </Flex>
     </>
   );

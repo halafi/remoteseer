@@ -34,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
 function markup(url: string) {
   const sheet = new ServerStyleSheet();
   const category = url !== '/' ? url.slice(1, url.length).split('-jobs')[0] : '';
-  const state = { jobs: data.getJobs(category) };
+  const state = { jobs: data.getJobs(category), category };
   const root = renderToString(
     <StyleSheetManager sheet={sheet.instance}>
       <>
