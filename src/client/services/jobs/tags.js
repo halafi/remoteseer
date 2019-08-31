@@ -39,6 +39,7 @@ const TAGS = {
   XAMARIN: 'xamarin',
   SWIFT: 'swift',
   SEO: 'seo',
+  ACCOUNTING: 'accounting',
   // MANAGER: 'manager',
   CPP: 'c++',
   SQL: 'sql',
@@ -142,6 +143,9 @@ export default function getTags(title: string): string[] {
   }
   if (lowerCaseTitle.includes('desktop')) {
     tags.push('desktop apps');
+  }
+  if (lowerCaseTitle.includes('health')) {
+    tags.push('healthcare');
   }
   if (
     lowerCaseTitle.includes('test') ||

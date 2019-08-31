@@ -10,6 +10,7 @@ export default function filterDuplicateJobs(input: Job[]): Job[] {
     groupedByProviders[PROVIDERS.WWR],
     groupedByProviders[PROVIDERS.DRIBBBLE],
     groupedByProviders[PROVIDERS.JUSTREMOTE],
+    groupedByProviders[PROVIDERS.REMOTECO],
   );
   const filteredOk = groupedByProviders[PROVIDERS.REMOTEOK].filter(
     remoteOkJob =>

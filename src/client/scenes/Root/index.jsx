@@ -115,6 +115,9 @@ const getProviderImg = (providerId: number): string => {
   if (providerId === 5) {
     return `url('/images/justremote.png')`;
   }
+  if (providerId === 6) {
+    return `url('/images/remote_co.png')`;
+  }
   return '';
 };
 
@@ -220,7 +223,9 @@ const Root = () => {
               <Subheader>
                 Find remote work and <strong>work from anywhere</strong>. We aggregate providers and
                 remote job boards to bring you the <strong>largest listing of remote jobs</strong>.
-                Find all the latest remote jobs from:
+                <br />
+                <br />
+                <strong>{jobs.length} remote jobs</strong> from <strong>well trusted sites</strong>:
               </Subheader>
               <Providers justifyContent="center">
                 <Provider src="/images/github.svg" alt="Github jobs" />
@@ -229,6 +234,7 @@ const Root = () => {
                 <Provider src="/images/wwr.png" alt="We Wrok Remotely jobs" />
                 <Provider src="/images/dribbble.svg" alt="Dribbble jobs" />
                 <Provider src="/images/justremote.png" alt="JustRemote jobs" />
+                <Provider src="/images/remote_co.png" alt="Remote.co jobs" />
               </Providers>
             </Description>
           </MainContent>

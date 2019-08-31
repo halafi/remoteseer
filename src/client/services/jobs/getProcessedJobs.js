@@ -7,6 +7,7 @@ import mapperRemoteOkJobs from './mapper/remoteok';
 import mapperWwrJobs from './mapper/wwr';
 import mapperDribbbleJobs from './mapper/dribbble';
 import mapperJustRemoteJobs from './mapper/justremote/index';
+import mapperRemoteCo from './mapper/remoteco/index';
 import filterDuplicateJobs from './filterDuplicateJobs';
 import filterCategoryJobs from './filterCategoryJobs';
 
@@ -23,6 +24,7 @@ export default function getJobs(
     remoteok: Job[],
     dribbble: Job[],
     justremote: Job[],
+    remoteco: Job[],
   },
   category: string,
 ): Job[] {
@@ -33,7 +35,8 @@ export default function getJobs(
           .concat(mapperRemoteOkJobs(jobs.remoteok))
           .concat(mapperWwrJobs(jobs.wwr))
           .concat(mapperDribbbleJobs(jobs.dribbble))
-          .concat(mapperJustRemoteJobs(jobs.justremote)),
+          .concat(mapperJustRemoteJobs(jobs.justremote))
+          .concat(mapperRemoteCo(jobs.remoteco)),
       ),
     ),
   );

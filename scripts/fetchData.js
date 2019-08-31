@@ -29,6 +29,28 @@ const JUSTREMOTE_CATEGORIES = [
   'remote-manager-exec-jobs',
 ];
 
+const REMOTECO_CATEGORIES = [
+  'developer',
+  'accounting',
+  'customer-service',
+  'online-data-entry',
+  'design',
+  'developer',
+  'online-editing',
+  'healthcare',
+  'it',
+  'legal',
+  'marketing',
+  'project-management',
+  'qa',
+  'recruiter',
+  'sales',
+  'online-teaching',
+  'virtual-assistant',
+  'writing',
+  'other',
+];
+
 const DATA_DIR = path.resolve(__dirname, '../data');
 
 async function downloadJson(url, file) {
@@ -42,6 +64,45 @@ async function downloadJson(url, file) {
   console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
 }
 
+async function downloadRemoteCo(url, file, category) {
+  const response = await fetch(url);
+  const data = await response.text();
+  const outputFile = path.join(DATA_DIR, file);
+  const $ = cheerio.load(data);
+  const jobs = [];
+  $('.job_listing').each((i, e) => {
+    // console.log($(e).html());
+    const id = `rco-${category}-${i}`;
+    const link = $(e)
+      .find('a')
+      .attr('href');
+    const companyLogo = $(e)
+      .find('img')
+      .attr('src');
+    const title = $(e)
+      .find('h3')
+      .html()
+      .trim();
+    const company = $(e)
+      .find('.company span')
+      .html();
+    const date = $(e)
+      .find('.date date')
+      .html()
+      .trim();
+    jobs.push({
+      id,
+      title,
+      company,
+      companyLogo,
+      date,
+      category,
+      link,
+    });
+  });
+  await fs.outputJson(outputFile, jobs);
+  console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
+}
 async function downloadJustRemote(url, file, category) {
   const response = await fetch(url);
   const data = await response.text();
@@ -178,6 +239,15 @@ async function fetchData() {
   await downloadDribbble(
     'https://dribbble.com/jobs?utf8=%E2%9C%93&category=&anywhere=true&location=Anywhere&role_type=',
     'dribbbleJobs.html',
+  );
+  await Promise.all(
+    REMOTECO_CATEGORIES.map(remoteCoCategory =>
+      downloadRemoteCo(
+        `https://remote.co/remote-jobs/${remoteCoCategory}/`,
+        `remoteco-${remoteCoCategory}.json`,
+        remoteCoCategory,
+      ),
+    ),
   );
   await Promise.all(
     JUSTREMOTE_CATEGORIES.map(justRemoteCategory =>

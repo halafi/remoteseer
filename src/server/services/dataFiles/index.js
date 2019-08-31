@@ -3,6 +3,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import { WWR_CATEGORIES } from '../../consts/wwr';
 import { JUSTREMOTE_CATEGORIES } from '../../consts/justremote';
+import { REMOTECO_CATEGORIES } from '../../consts/remoteco';
 
 import getProcessedJobs from '../../../client/services/jobs/getProcessedJobs';
 
@@ -24,6 +25,10 @@ export const getJobs = (category: string) => {
       dribbble: fs.readJsonSync(path.join(DATA_DIR, 'dribbbleJobs.json')),
       justremote: JUSTREMOTE_CATEGORIES.reduce((acc, cat) => {
         const jobs = fs.readJsonSync(path.join(DATA_DIR, `justremote-${cat}.json`));
+        return acc.concat(jobs.map(x => ({ ...x, category: cat })));
+      }, []),
+      remoteco: REMOTECO_CATEGORIES.reduce((acc, cat) => {
+        const jobs = fs.readJsonSync(path.join(DATA_DIR, `remoteco-${cat}.json`));
         return acc.concat(jobs.map(x => ({ ...x, category: cat })));
       }, []),
     },
