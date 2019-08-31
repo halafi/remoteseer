@@ -22,6 +22,13 @@ const WWR_CATEGORIES = [
   'remote-jobs',
 ];
 
+const JUSTREMOTE_CATEGORIES = [
+  'remote-developer-jobs',
+  'remote-marketing-jobs',
+  'remote-design-jobs',
+  'remote-manager-exec-jobs',
+];
+
 const DATA_DIR = path.resolve(__dirname, '../data');
 
 async function downloadJson(url, file) {
@@ -35,7 +42,47 @@ async function downloadJson(url, file) {
   console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
 }
 
-async function downloadHtml(url, file) {
+async function downloadJustRemote(url, file, category) {
+  const response = await fetch(url);
+  const data = await response.text();
+  const outputFile = path.join(DATA_DIR, file);
+  const $ = cheerio.load(data);
+  const jobs = [];
+  $('.job-item__JobItemWrapper-s2jmpga-0').each((i, e) => {
+    // console.log($(e).html());
+    const id = `jr-${category}-${i}`;
+    const link = `https://justremote.co/${$(e)
+      .find('a')
+      .attr('href')
+      .trim()}`;
+    const title = $(e)
+      .find('a div > h4')
+      .html()
+      .trim();
+    const company = $(e)
+      .find('a div > div')
+      .html()
+      .trim();
+    const date = $(e)
+      .find('a')
+      .children()
+      .eq(1)
+      .html()
+      .trim();
+    jobs.push({
+      id,
+      title,
+      company,
+      date,
+      category,
+      link,
+    });
+  });
+  await fs.outputJson(outputFile, jobs);
+  console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
+}
+
+async function downloadDribbble(url, file) {
   const response = await fetch(url);
   const data = await response.text();
   const outputFile = path.join(DATA_DIR, file).replace('.html', '.json');
@@ -128,9 +175,18 @@ async function fetchData() {
       downloadRss(`https://weworkremotely.com/categories/${wwrCat}.rss`, `wwr-${wwrCat}.json`),
     ),
   );
-  await downloadHtml(
+  await downloadDribbble(
     'https://dribbble.com/jobs?utf8=%E2%9C%93&category=&anywhere=true&location=Anywhere&role_type=',
     'dribbbleJobs.html',
+  );
+  await Promise.all(
+    JUSTREMOTE_CATEGORIES.map(justRemoteCategory =>
+      downloadJustRemote(
+        `https://justremote.co/${justRemoteCategory}`,
+        `justremote-${justRemoteCategory}.json`,
+        justRemoteCategory,
+      ),
+    ),
   );
   console.log('[fetchData] done');
 }

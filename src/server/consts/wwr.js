@@ -1,3 +1,4 @@
+// @flow
 // eslint-disable-next-line
 export const WWR_CATEGORIES = [
   'remote-customer-support-jobs',

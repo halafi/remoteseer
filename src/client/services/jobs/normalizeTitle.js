@@ -3,6 +3,7 @@
 export default function normalizeTitle(title: string): string {
   return title
     .replace('- 100% Remote ', '')
+    .replace(' (100% Remote)', '')
     .replace(' | 100% Remote | ', '')
     .replace(' - 100% remote', '')
     .replace('-- 100% Remote, Flexible hours', '')

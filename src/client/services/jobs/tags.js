@@ -18,6 +18,7 @@ const TAGS = {
   SCALA: 'scala',
   PYTHON: 'python',
   CLOUD: 'cloud',
+  FIREBASE: 'firebase',
   DESIGN: 'design',
   DJANGO: 'django',
   FLASK: 'flask',

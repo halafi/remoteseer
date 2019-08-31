@@ -112,6 +112,9 @@ const getProviderImg = (providerId: number): string => {
   if (providerId === 4) {
     return `url('/images/dribbble.svg')`;
   }
+  if (providerId === 5) {
+    return `url('/images/justremote.png')`;
+  }
   return '';
 };
 
@@ -225,6 +228,7 @@ const Root = () => {
                 <Provider src="/images/remoteok.ico" alt="RemoteOk jobs" />
                 <Provider src="/images/wwr.png" alt="We Wrok Remotely jobs" />
                 <Provider src="/images/dribbble.svg" alt="Dribbble jobs" />
+                <Provider src="/images/justremote.png" alt="JustRemote jobs" />
               </Providers>
             </Description>
           </MainContent>

@@ -46,11 +46,13 @@ export default function mapperDribbbleJobs(input: any): Job[] {
     }
     return {
       id: x.id,
-      title: x.title,
+      title: x.title.replace('&amp;', '&'),
       location,
-      url: x.link,
-      // description: x.description,
-      company: x.company,
+      url: x.link, // description: x.description,
+      company: x.company
+        .replace('&amp;', '&')
+        .replace('&apos;', "'")
+        .replace('&#x14D;', 'ō'),
       companyLogo: '',
       logo: '',
       companyUrl: '',

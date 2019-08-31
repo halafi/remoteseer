@@ -2,6 +2,8 @@
 import fs from 'fs-extra';
 import path from 'path';
 import { WWR_CATEGORIES } from '../../consts/wwr';
+import { JUSTREMOTE_CATEGORIES } from '../../consts/justremote';
+
 import getProcessedJobs from '../../../client/services/jobs/getProcessedJobs';
 
 const DATA_DIR = path.resolve(__dirname, '../../../../data');
@@ -20,6 +22,10 @@ export const getJobs = (category: string) => {
         return acc.concat(jobs.map(x => ({ ...x, category: cat })));
       }, []),
       dribbble: fs.readJsonSync(path.join(DATA_DIR, 'dribbbleJobs.json')),
+      justremote: JUSTREMOTE_CATEGORIES.reduce((acc, cat) => {
+        const jobs = fs.readJsonSync(path.join(DATA_DIR, `justremote-${cat}.json`));
+        return acc.concat(jobs.map(x => ({ ...x, category: cat })));
+      }, []),
     },
     category,
   );

@@ -6,6 +6,7 @@ export const PROVIDERS = {
   REMOTEOK: 2,
   WWR: 3,
   DRIBBBLE: 4,
+  JUSTREMOTE: 5,
 };
 
 type ProviderId = 0 | 1 | 2 | 3;
