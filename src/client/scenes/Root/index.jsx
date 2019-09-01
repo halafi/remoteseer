@@ -125,6 +125,9 @@ const getProviderImg = (providerId: number): string => {
   if (providerId === 8) {
     return `url('/images/cryptocurrencyjobs.png')`;
   }
+  if (providerId === 9) {
+    return `url('/images/remotive.png')`;
+  }
   return '';
 };
 
@@ -286,6 +289,7 @@ const Root = () => {
                 <Provider src="/images/remote_co.png" alt="Remote.co jobs" />
                 <Provider src="/images/nodesk.png" alt="Nodesk jobs" />
                 <Provider src="/images/cryptocurrencyjobs.png" alt="Cryptocurrency jobs" />
+                <Provider src="/images/remotive.png" alt="Remotive jobs" />
               </Providers>
             </Description>
           </MainContent>

@@ -1,5 +1,12 @@
 // @flow
-import { isToday, isWithinInterval, startOfYesterday, startOfToday, subDays } from 'date-fns';
+import {
+  isToday,
+  isYesterday,
+  isWithinInterval,
+  startOfYesterday,
+  startOfToday,
+  subDays,
+} from 'date-fns';
 
 export default function groupJobs(input: any): any {
   return input.reduce((acc, x) => {
@@ -9,10 +16,16 @@ export default function groupJobs(input: any): any {
       } else {
         acc.today.push(x);
       }
+    } else if (isYesterday(x.createdAt)) {
+      if (!acc.yesterday) {
+        acc.yesterday = [x];
+      } else {
+        acc.yesterday.push(x);
+      }
     } else if (
       isWithinInterval(x.createdAt, {
         start: subDays(startOfYesterday(), 6),
-        end: startOfToday(),
+        end: startOfYesterday(),
       })
     ) {
       if (!acc.week) {

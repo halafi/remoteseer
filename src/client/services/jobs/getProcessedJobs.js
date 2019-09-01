@@ -12,15 +12,22 @@ import mapperRemoteCo from './mapper/remoteco/index';
 import mapperNodeskJobs from './mapper/nodesk/index';
 import filterCategoryJobs from './filterCategoryJobs';
 import mapperCryptocurrencyJobs from './mapper/cryptocurrencyjobs/index';
+import mapperRemotiveJobs from './mapper/remotive/index';
 
 const sortFn = R.compose(
   R.reverse,
   R.sortBy(R.prop('createdAt')),
 );
 
-function filterRemoteCoDuplicates(input: Job[]): Job[] {
+function filterDuplicates(input: Job[]): Job[] {
   return input.reduce((acc, job) => {
-    if (acc.find(x => x.title === job.title && x.company === job.company)) {
+    if (
+      acc.find(
+        x =>
+          x.title.toLowerCase() === job.title.toLowerCase() &&
+          x.company.toLowerCase() === job.company.toLowerCase(),
+      )
+    ) {
       return acc;
     }
     return acc.concat(job);
@@ -32,7 +39,8 @@ function putJobs(allJobs: Job[], newJobs: Job[], label: string) {
     newJob =>
       !allJobs.find(
         job =>
-          (job.title === newJob.title && job.company === newJob.company) ||
+          (job.title.toLowerCase() === newJob.title.toLowerCase() &&
+            job.company.toLowerCase() === newJob.company.toLowerCase()) ||
           (newJob.providerId === PROVIDERS.REMOTEOK && job.createdAt === newJob.createdAt),
       ),
   );
@@ -54,6 +62,7 @@ export default function getJobs(
     remoteco: Job[],
     nodesk: Job[],
     cryptocurrency: Job[],
+    remotive: Job[],
   },
   category: string,
 ): Job[] {
@@ -68,6 +77,7 @@ export default function getJobs(
     remoteco,
     nodesk,
     cryptocurrency,
+    remotive,
   } = jobs;
   const githubJobs = mapperGithubJobs(github);
   const dribbbleJobs = mapperDribbbleJobs(dribbble);
@@ -75,9 +85,12 @@ export default function getJobs(
   const stackOverflowJobs = mapperStackOverflowJobs(stackoverflow);
   const remoteokJobs = mapperRemoteOkJobs(remoteok);
   const wwrJobs = mapperWwrJobs(wwr);
-  const remotecoJobs = filterRemoteCoDuplicates(mapperRemoteCo(remoteco));
+  const remotecoJobs = filterDuplicates(mapperRemoteCo(remoteco));
   const nodeskJobs = mapperNodeskJobs(nodesk);
   const cryptocurrencyJobs = mapperCryptocurrencyJobs(cryptocurrency);
+  const remotiveJobs = filterDuplicates(
+    mapperRemotiveJobs(remotive.filter(x => !x.date.includes('<i'))),
+  );
 
   let allJobs = putJobs([], githubJobs, 'github.com');
   allJobs = putJobs(allJobs, dribbbleJobs, 'dribbble.com');
@@ -87,6 +100,7 @@ export default function getJobs(
   allJobs = putJobs(allJobs, wwrJobs, 'weworkremotely.com');
   allJobs = putJobs(allJobs, remotecoJobs, 'remote.co');
   allJobs = putJobs(allJobs, nodeskJobs, 'nodesk.co');
+  allJobs = putJobs(allJobs, remotiveJobs, 'remotive.io');
   allJobs = sortFn(putJobs(allJobs, cryptocurrencyJobs, 'cryptocurrencyjobs.co'));
 
   return filterCategoryJobs(allJobs, category).map(x => ({

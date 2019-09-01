@@ -4,6 +4,7 @@ import path from 'path';
 import { WWR_CATEGORIES } from '../../consts/wwr';
 import { JUSTREMOTE_CATEGORIES } from '../../consts/justremote';
 import { REMOTECO_CATEGORIES } from '../../consts/remoteco';
+import { REMOTIVE_CATEGORIES } from '../../consts/remotive';
 
 import getProcessedJobs from '../../../client/services/jobs/getProcessedJobs';
 
@@ -33,6 +34,10 @@ export const getJobs = (category: string) => {
       }, []),
       nodesk: fs.readJsonSync(path.join(DATA_DIR, 'nodeskJobs.json')),
       cryptocurrency: fs.readJsonSync(path.join(DATA_DIR, 'cryptocurrencyJobs.json')),
+      remotive: REMOTIVE_CATEGORIES.reduce((acc, cat) => {
+        const jobs = fs.readJsonSync(path.join(DATA_DIR, `remotive-${cat}-jobs.json`));
+        return acc.concat(jobs.map(x => ({ ...x, category: cat })));
+      }, []),
     },
     category,
   );

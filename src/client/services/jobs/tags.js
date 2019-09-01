@@ -46,6 +46,7 @@ const TAGS = {
   ELASTICSEARCH: 'elasticsearch',
   AWS: 'aws',
   SALES: 'sales',
+  MARKETING: 'marketing',
   SECURITY: 'security',
   GRAPHQL: 'graphql',
   DOCKER: 'docker',
@@ -204,6 +205,9 @@ export default function getTags(title: string): string[] {
   });
   if (!lowerCaseTitle.includes('javascript') && lowerCaseTitle.includes('java')) {
     tags.push('java');
+  }
+  if (lowerCaseTitle.includes('marketing') || lowerCaseTitle.includes('sales')) {
+    tags.push('sales and marketing');
   }
   if (lowerCaseTitle.includes('.net')) {
     tags.push('.net');

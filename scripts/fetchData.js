@@ -29,6 +29,15 @@ const JUSTREMOTE_CATEGORIES = [
   'remote-manager-exec-jobs',
 ];
 
+const REMOTIVE_CATEGORIES = [
+  'software-dev',
+  'customer-support',
+  'design',
+  'marketing-sales',
+  'product',
+  'others',
+];
+
 const REMOTECO_CATEGORIES = [
   'developer',
   'accounting',
@@ -128,6 +137,44 @@ async function downloadJustRemote(url, file, category) {
       .find('a')
       .children()
       .eq(1)
+      .html()
+      .trim();
+    jobs.push({
+      id,
+      title,
+      company,
+      date,
+      category,
+      link,
+    });
+  });
+  await fs.outputJson(outputFile, jobs);
+  console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
+}
+
+async function downloadRemotive(url, file, category) {
+  const response = await fetch(url);
+  const data = await response.text();
+  const outputFile = path.join(DATA_DIR, file);
+  const $ = cheerio.load(data);
+  const jobs = [];
+  $('.job-list-item').each((i, e) => {
+    // console.log($(e).html());
+    const id = `jr-${category}-${i}`;
+    const link = `https://remotive.io/${$(e)
+      .find('.position a')
+      .attr('href')
+      .trim()}`;
+    const title = $(e)
+      .find('.position a')
+      .html()
+      .trim();
+    const company = $(e)
+      .find('.company span')
+      .html()
+      .trim();
+    const date = $(e)
+      .find('.job-date > span')
       .html()
       .trim();
     jobs.push({
@@ -282,6 +329,16 @@ async function fetchData() {
       ),
     ),
   );
+  await Promise.all(
+    REMOTIVE_CATEGORIES.map(remotiveCategory =>
+      downloadRemotive(
+        `https://remotive.io/remote-jobs/${remotiveCategory}`,
+        `remotive-${remotiveCategory}-jobs.json`,
+        remotiveCategory,
+      ),
+    ),
+  );
+  await downloadRemotive('https://remotive.io/remote-jobs/software-dev', 'remotiveJobs.json');
   console.log('[fetchData] done');
 }
 

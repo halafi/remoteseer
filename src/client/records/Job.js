@@ -10,6 +10,7 @@ export const PROVIDERS = {
   REMOTECO: 6,
   NODESK: 7,
   CRYPTOCURRENCYJOBS: 8,
+  REMOTIVE: 9,
 };
 
 type ProviderId = 0 | 1 | 2 | 3;
