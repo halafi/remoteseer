@@ -8,6 +8,8 @@ export const PROVIDERS = {
   DRIBBBLE: 4,
   JUSTREMOTE: 5,
   REMOTECO: 6,
+  NODESK: 7,
+  CRYPTOCURRENCYJOBS: 8,
 };
 
 type ProviderId = 0 | 1 | 2 | 3;

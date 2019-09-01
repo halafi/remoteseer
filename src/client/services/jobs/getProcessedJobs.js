@@ -9,7 +9,9 @@ import mapperWwrJobs from './mapper/wwr';
 import mapperDribbbleJobs from './mapper/dribbble';
 import mapperJustRemoteJobs from './mapper/justremote/index';
 import mapperRemoteCo from './mapper/remoteco/index';
+import mapperNodeskJobs from './mapper/nodesk/index';
 import filterCategoryJobs from './filterCategoryJobs';
+import mapperCryptocurrencyJobs from './mapper/cryptocurrencyjobs/index';
 
 const sortFn = R.compose(
   R.reverse,
@@ -50,11 +52,23 @@ export default function getJobs(
     dribbble: Job[],
     justremote: Job[],
     remoteco: Job[],
+    nodesk: Job[],
+    cryptocurrency: Job[],
   },
   category: string,
 ): Job[] {
   // should be added by priority and duplicates should not be added further
-  const { github, dribbble, justremote, stackoverflow, remoteok, wwr, remoteco } = jobs;
+  const {
+    github,
+    dribbble,
+    justremote,
+    stackoverflow,
+    remoteok,
+    wwr,
+    remoteco,
+    nodesk,
+    cryptocurrency,
+  } = jobs;
   const githubJobs = mapperGithubJobs(github);
   const dribbbleJobs = mapperDribbbleJobs(dribbble);
   const justRemoteJobs = mapperJustRemoteJobs(justremote);
@@ -62,6 +76,8 @@ export default function getJobs(
   const remoteokJobs = mapperRemoteOkJobs(remoteok);
   const wwrJobs = mapperWwrJobs(wwr);
   const remotecoJobs = filterRemoteCoDuplicates(mapperRemoteCo(remoteco));
+  const nodeskJobs = mapperNodeskJobs(nodesk);
+  const cryptocurrencyJobs = mapperCryptocurrencyJobs(cryptocurrency);
 
   let allJobs = putJobs([], githubJobs, 'github.com');
   allJobs = putJobs(allJobs, dribbbleJobs, 'dribbble.com');
@@ -69,7 +85,9 @@ export default function getJobs(
   allJobs = putJobs(allJobs, stackOverflowJobs, 'stackoverflow');
   allJobs = putJobs(allJobs, remoteokJobs, 'remoteok.io');
   allJobs = putJobs(allJobs, wwrJobs, 'weworkremotely.com');
-  allJobs = sortFn(putJobs(allJobs, remotecoJobs));
+  allJobs = putJobs(allJobs, remotecoJobs, 'remote.co');
+  allJobs = putJobs(allJobs, nodeskJobs, 'nodesk.co');
+  allJobs = sortFn(putJobs(allJobs, cryptocurrencyJobs, 'cryptocurrencyjobs.co'));
 
   return filterCategoryJobs(allJobs, category).map(x => ({
     id: x.id,

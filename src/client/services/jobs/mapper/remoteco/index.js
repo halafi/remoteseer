@@ -5,6 +5,7 @@ import { PROVIDERS } from '../../../../records/Job';
 import getTags from '../../tags';
 
 export default function mapperRemoteCo(input: any): Job[] {
+  const today = new Date();
   return input.map(x => {
     const hours = x.date.includes('hours ago') ? Number(x.date.split(' hours ago')[0]) : 0;
     let days = 0;
@@ -15,11 +16,11 @@ export default function mapperRemoteCo(input: any): Job[] {
     } else if (x.date.includes('month')) {
       days = Number(x.date.split(' month')[0]) * 30;
     }
-    let createdAt = new Date();
+    let createdAt = today;
     if (hours) {
-      createdAt = subHours(new Date(), hours);
+      createdAt = subHours(today, hours);
     } else if (days) {
-      createdAt = subDays(new Date(), days);
+      createdAt = subDays(today, days);
     }
     const tags = getTags(x.title);
     if (x.category.includes('writing') && !tags.includes('copywriting')) {
@@ -87,9 +88,9 @@ export default function mapperRemoteCo(input: any): Job[] {
       companyLogo: '',
       logo: '',
       companyUrl: '',
-      createdAt,
-      ageDays: days || differenceInDays(new Date(), createdAt),
-      ageHours: hours || differenceInHours(new Date(), createdAt),
+      createdAt: createdAt.getTime(),
+      ageDays: days || differenceInDays(today, createdAt),
+      ageHours: hours || differenceInHours(today, createdAt),
       id: x.id,
       location: '',
       title: x.title

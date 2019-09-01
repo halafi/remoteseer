@@ -119,6 +119,12 @@ const getProviderImg = (providerId: number): string => {
   if (providerId === 6) {
     return `url('/images/remote_co.png')`;
   }
+  if (providerId === 7) {
+    return `url('/images/nodesk.png')`;
+  }
+  if (providerId === 8) {
+    return `url('/images/cryptocurrencyjobs.png')`;
+  }
   return '';
 };
 
@@ -278,6 +284,8 @@ const Root = () => {
                 <Provider src="/images/dribbble.svg" alt="Dribbble jobs" />
                 <Provider src="/images/justremote.png" alt="JustRemote jobs" />
                 <Provider src="/images/remote_co.png" alt="Remote.co jobs" />
+                <Provider src="/images/nodesk.png" alt="Nodesk jobs" />
+                <Provider src="/images/cryptocurrencyjobs.png" alt="Cryptocurrency jobs" />
               </Providers>
             </Description>
           </MainContent>
@@ -320,7 +328,7 @@ const Root = () => {
                             {job.location && <JobLocation>{job.location}</JobLocation>}
                             <Tags alignItems="center" flexWrap="wrap">
                               {job.tags.map(x => (
-                                <Tag>{x.toUpperCase()}</Tag>
+                                <Tag key={x}>{x.toUpperCase()}</Tag>
                               ))}
                             </Tags>
                           </Flex>
@@ -346,7 +354,9 @@ const Root = () => {
               <Flex flexDirection="column">
                 <a href="/">Remote Jobs</a>
                 {Object.keys(CATEGORIES_META).map(cat => (
-                  <a href={CATEGORIES_META[cat].link}>Remote {CATEGORIES_META[cat].title} Jobs</a>
+                  <a key={cat} href={CATEGORIES_META[cat].link}>
+                    Remote {CATEGORIES_META[cat].title} Jobs
+                  </a>
                 ))}
               </Flex>
               <Box mt={[4, null, 0]}>

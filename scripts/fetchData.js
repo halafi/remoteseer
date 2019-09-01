@@ -198,6 +198,28 @@ async function downloadDribbble(url, file) {
   console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
 }
 
+async function downloadNodeskRss(url, file, linkFilter) {
+  const response = await fetch(url);
+  const data = await response.text();
+  const xml = await convert.xml2js(data);
+  const items = xml.elements[0].elements[0].elements;
+  const jobs = items
+    .filter(x => x.name === 'item')
+    .map(x => x.elements)
+    .reduce((acc, jobArr) => {
+      acc.push(
+        jobArr.reduce((subacc, prop) => {
+          return { ...subacc, [prop.name]: prop.elements && prop.elements[0].text };
+        }, {}),
+      );
+      return acc;
+    }, [])
+    .filter(x => (x.link && linkFilter ? x.link.includes('remote-jobs') : true));
+  const outputFile = path.join(DATA_DIR, file);
+  await fs.outputJson(outputFile, jobs);
+  console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
+}
+
 async function downloadRss(url, file) {
   const response = await fetch(url);
   const data = await response.text();
@@ -231,6 +253,8 @@ async function fetchData() {
     'https://stackoverflow.com/jobs/feed?l=Remote&u=Km&d=20',
     'stackOverflowJobs.json',
   );
+  await downloadNodeskRss('https://nodesk.co/index.xml', 'nodeskJobs.json', true);
+  await downloadNodeskRss('https://cryptocurrencyjobs.co/index.xml', 'cryptocurrencyJobs.json', false);
   await Promise.all(
     WWR_CATEGORIES.map(wwrCat =>
       downloadRss(`https://weworkremotely.com/categories/${wwrCat}.rss`, `wwr-${wwrCat}.json`),

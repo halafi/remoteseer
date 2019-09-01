@@ -1,5 +1,5 @@
 // @flow
-import { differenceInDays, differenceInHours } from 'date-fns';
+import { differenceInDays, differenceInHours, parse } from 'date-fns';
 import getTags from '../../tags';
 import type { Job } from '../../../../records/Job';
 import { PROVIDERS } from '../../../../records/Job';
@@ -20,6 +20,7 @@ const WWR_TAGS = {
 
 export default function mapperWwrJobs(input: any): Job[] {
   return input.map(x => {
+    const createdAt = parse(x.pubDate.split(', ')[1], 'dd LLL yyyy HH:mm:ss xx', new Date());
     const split = x.title.split(': ');
     const tags = getTags(split[1]);
     if (WWR_TAGS[x.category] && !tags.includes(WWR_TAGS[x.category])) {
@@ -33,9 +34,9 @@ export default function mapperWwrJobs(input: any): Job[] {
       company: split[0],
       companyLogo: '',
       companyUrl: '',
-      createdAt: new Date(x.pubDate).getTime(),
-      ageDays: differenceInDays(new Date(), new Date(x.pubDate)),
-      ageHours: differenceInHours(new Date(), new Date(x.pubDate)),
+      createdAt: createdAt.getTime(),
+      ageDays: differenceInDays(new Date(), createdAt),
+      ageHours: differenceInHours(new Date(), createdAt),
       tags,
       providerId: PROVIDERS.WWR,
     };

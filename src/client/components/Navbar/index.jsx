@@ -5,7 +5,7 @@ import { Flex } from '@rebass/grid';
 
 // $FlowFixMe
 const HeaderWrapper = styled.div`
-  background: ${({ theme }) => theme.primary};
+  background-color: #212429;
   width: 100%;
 `;
 

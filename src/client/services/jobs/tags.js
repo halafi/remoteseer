@@ -97,6 +97,9 @@ export default function getTags(title: string): string[] {
   if (lowerCaseTitle.includes('compiler')) {
     tags.push('compilers');
   }
+  if (lowerCaseTitle.includes('exec')) {
+    tags.push('exec');
+  }
   if (lowerCaseTitle.includes('react') && lowerCaseTitle.includes('react native')) {
     tags.push('mobile');
   }
@@ -157,7 +160,10 @@ export default function getTags(title: string): string[] {
   if (lowerCaseTitle.includes('support') || lowerCaseTitle.includes('customer')) {
     tags.push('customer support');
   }
-  if (lowerCaseTitle.includes('hr ')) {
+  if (
+    lowerCaseTitle.includes('hr ') ||
+    (lowerCaseTitle.includes('human') && lowerCaseTitle.includes('resources'))
+  ) {
     tags.push('human resources');
   }
   if (

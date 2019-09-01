@@ -31,6 +31,8 @@ export const getJobs = (category: string) => {
         const jobs = fs.readJsonSync(path.join(DATA_DIR, `remoteco-${cat}.json`));
         return acc.concat(jobs.map(x => ({ ...x, category: cat })));
       }, []),
+      nodesk: fs.readJsonSync(path.join(DATA_DIR, 'nodeskJobs.json')),
+      cryptocurrency: fs.readJsonSync(path.join(DATA_DIR, 'cryptocurrencyJobs.json')),
     },
     category,
   );
