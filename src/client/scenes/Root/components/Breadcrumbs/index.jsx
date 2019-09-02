@@ -1,0 +1,85 @@
+// @flow
+/* eslint-disable react/no-danger */
+import * as React from 'react';
+import styled from 'styled-components';
+import { Box } from '@rebass/grid';
+import { CATEGORIES_META } from '../../../../../server/consts/categories';
+
+const Container: any = styled(Box)`
+  margin: 16px;
+`;
+
+const StyledList = styled.ol`
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+
+  li + li:before {
+    display: inline-block;
+    padding: 0 4px;
+    color: ${({ theme }) => theme.gray};
+    content: '/';
+  }
+`;
+
+const ListItem = styled.li`
+  display: inline;
+  font-size: 14px;
+  line-height: 1.4;
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
+const Link = styled.a`
+  color: ${({ selected, theme }) => (!selected ? theme.primary : theme.gray)};
+  font-weight: ${({ selected }) => (!selected ? 900 : 400)};
+  text-decoration: none;
+`;
+
+type Props = {
+  category: string,
+  className?: ?string,
+};
+
+// TEST: https://search.google.com/structured-data/testing-tool/u/0/
+// GUIDE: https://audisto.com/insights/guides/2/
+// https://schema.org/BreadcrumbList microdata
+const Breadcrumbs = ({ className, category }: Props) => (
+  <Container>
+    <StyledList className={className} itemScope itemType="http://schema.org/BreadcrumbList">
+      <ListItem
+        key="home"
+        itemProp="itemListElement"
+        itemScope
+        itemType="http://schema.org/ListItem"
+      >
+        {/* $FlowFixMe */}
+        <Link itemProp="item" href="/">
+          <span itemProp="name">Remote Jobs</span>
+        </Link>
+        <meta itemProp="position" content={1} />
+      </ListItem>
+      {category && (
+        <ListItem
+          key="home"
+          itemProp="itemListElement"
+          itemScope
+          itemType="http://schema.org/ListItem"
+        >
+          <Link selected={Boolean(category)} itemProp="item" href={CATEGORIES_META[category].link}>
+            <span itemProp="name">{CATEGORIES_META[category].title}</span>
+          </Link>
+          <meta itemProp="position" content={2} />
+        </ListItem>
+      )}
+    </StyledList>
+  </Container>
+);
+
+Breadcrumbs.defaultProps = {
+  className: null,
+};
+
+export default Breadcrumbs;

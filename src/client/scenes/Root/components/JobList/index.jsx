@@ -5,17 +5,8 @@ import styled from 'styled-components';
 import { Flex, Box } from '@rebass/grid';
 import mq from '../../../../services/mediaQuery';
 import type { Job as JobType } from '../../../../records/Job';
-import { CATEGORIES_META } from '../../../../../server/consts/categories';
 import PERIODS from '../../../../consts/Periods';
 import groupJobsByPeriod from '../../../../services/jobs/groupJobsByPeriod';
-
-const JobListWrapper: any = styled(Flex)`
-  margin: 40px auto;
-  width: 100%;
-  ${mq.DESKTOP`
-    width: 950px;
-  `}
-`;
 
 const Link = styled.a`
   color: initial;
@@ -140,31 +131,6 @@ const Tag = styled(Box)`
   text-align: center;
 `;
 
-const JobCategories = styled(Flex)`
-  width: 100%;
-`;
-
-const JobCategory = styled.a`
-  font-size: 14px;
-  font-weight: 700;
-  padding: 8px;
-  color: initial;
-  max-width: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  text-transform: uppercase;
-  margin: 0 12px;
-  border-bottom: 1px solid transparent;
-  span {
-    margin-bottom: 8px;
-  }
-  :hover {
-    border-bottom: 1px solid black;
-  }
-`;
-
 type Props = {
   jobs: JobType[],
 };
@@ -173,23 +139,7 @@ const JobList = ({ jobs }: Props) => {
   const groupedJobs = groupJobsByPeriod(jobs);
 
   return (
-    <JobListWrapper flexDirection="column">
-      <JobCategories justifyContent="center" flexWrap="wrap">
-        <JobCategory href="/" key="remote jobs">
-          <span role="img" aria-label="remote jobs">
-            🌴
-          </span>
-          remote jobs
-        </JobCategory>
-        {Object.keys(CATEGORIES_META).map(cat => (
-          <JobCategory href={CATEGORIES_META[cat].link} key={cat}>
-            <span role="img" aria-label={CATEGORIES_META[cat].title}>
-              {CATEGORIES_META[cat].img}
-            </span>
-            {CATEGORIES_META[cat].title}
-          </JobCategory>
-        ))}
-      </JobCategories>
+    <>
       {Object.keys(groupedJobs).map(period => (
         <Box key={period}>
           <TimeBlock flexDirection="column">
@@ -222,7 +172,8 @@ const JobList = ({ jobs }: Props) => {
           </TimeBlock>
         </Box>
       ))}
-    </JobListWrapper>
+    </>
   );
 };
+
 export default JobList;
