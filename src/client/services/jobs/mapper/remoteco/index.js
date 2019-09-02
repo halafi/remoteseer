@@ -16,11 +16,11 @@ export default function mapperRemoteCo(input: any): Job[] {
     } else if (x.date.includes('month')) {
       days = Number(x.date.split(' month')[0]) * 30;
     }
-    let createdAt = today;
+    let createdAt = subHours(today, 1);
     if (hours) {
       createdAt = subHours(today, hours);
     } else if (days) {
-      createdAt = subDays(today, days);
+      createdAt = subHours(subDays(today, days), 1);
     }
     const tags = getTags(x.title);
     if (x.category.includes('writing') && !tags.includes('copywriting')) {
