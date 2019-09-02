@@ -3,10 +3,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Box } from '@rebass/grid';
-import { CATEGORIES_META } from '../../../../../server/consts/categories';
+import { CATEGORIES_META } from '../../../server/consts/categories';
 
 const Container: any = styled(Box)`
-  margin: 16px;
+  margin: 30px 0;
+  padding: 0 12px;
 `;
 
 const StyledList = styled.ol`

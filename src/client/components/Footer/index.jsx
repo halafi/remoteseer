@@ -3,8 +3,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Flex, Box } from '@rebass/grid';
-import mq from '../../../../services/mediaQuery';
-import { CATEGORIES_META } from '../../../../../server/consts/categories';
+import mq from '../../services/mediaQuery';
+import { CATEGORIES_META } from '../../../server/consts/categories';
 
 const FooterWrapper: any = styled(Box)`
   color: #ffffff;

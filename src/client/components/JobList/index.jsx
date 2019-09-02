@@ -3,10 +3,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Flex, Box } from '@rebass/grid';
-import mq from '../../../../services/mediaQuery';
-import type { Job as JobType } from '../../../../records/Job';
-import PERIODS from '../../../../consts/Periods';
-import groupJobsByPeriod from '../../../../services/jobs/groupJobsByPeriod';
+import mq from '../../services/mediaQuery';
+import type { Job as JobType } from '../../records/Job';
+import PERIODS from '../../consts/Periods';
+import groupJobsByPeriod from '../../services/jobs/groupJobsByPeriod';
 
 const Link = styled.a`
   color: initial;
@@ -133,11 +133,39 @@ const Tag = styled(Box)`
 
 type Props = {
   jobs: JobType[],
+  nogroup?: boolean,
 };
 
-const JobList = ({ jobs }: Props) => {
+const JobList = ({ jobs, nogroup }: Props) => {
   const groupedJobs = groupJobsByPeriod(jobs);
 
+  if (nogroup) {
+    return (
+      <Box>
+        {jobs.map((job, i) => (
+          <Link key={job.id} href={job.url} target="_blank" rel="noopener noreferrer">
+            <Job alignItems="center" last={i === 14}>
+              <CompanyLogo provider={job.providerId} justifyContent="center" alignItems="center">
+                {job.company.slice(0, 1).toUpperCase()}
+              </CompanyLogo>
+              <JobInfo alignItems="center" justifyContent="space-between">
+                <Flex flexDirection="column">
+                  {job.company} <JobTitle>{job.title}</JobTitle>
+                  {job.location && <JobLocation>{job.location}</JobLocation>}
+                  <Tags alignItems="center" flexWrap="wrap">
+                    {job.tags.map(x => (
+                      <Tag key={x}>{x.toUpperCase()}</Tag>
+                    ))}
+                  </Tags>
+                </Flex>
+                <Box px={2}>{job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}</Box>
+              </JobInfo>
+            </Job>
+          </Link>
+        ))}
+      </Box>
+    );
+  }
   return (
     <>
       {Object.keys(groupedJobs).map(period => (
@@ -174,6 +202,10 @@ const JobList = ({ jobs }: Props) => {
       ))}
     </>
   );
+};
+
+JobList.defaultProps = {
+  nogroup: false,
 };
 
 export default JobList;

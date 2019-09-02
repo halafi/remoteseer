@@ -3,8 +3,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Flex, Box } from '@rebass/grid';
-import mq from '../../../../services/mediaQuery';
-import { CATEGORIES_META } from '../../../../../server/consts/categories';
+import mq from '../../services/mediaQuery';
+import { CATEGORIES_META } from '../../../server/consts/categories';
 
 const Main: any = styled(Box)`
   background-color: #fcfdfe;

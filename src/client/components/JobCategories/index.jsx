@@ -2,7 +2,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Flex } from '@rebass/grid';
-import { CATEGORIES_META } from '../../../../../server/consts/categories';
+import { CATEGORIES_META } from '../../../server/consts/categories';
 
 const JobCategoriesWrapper: any = styled(Flex)`
   width: 100%;
