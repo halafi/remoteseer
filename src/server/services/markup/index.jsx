@@ -34,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
 function markup(url: string) {
   const sheet = new ServerStyleSheet();
   let category = url !== '/' ? url.slice(1, url.length).split('-jobs')[0] : '';
+  console.log(category);
   // eslint-disable-next-line
   category = category.split('remote-')[1];
   const subcategory = url !== '/' ? url.slice(1, url.length - 1).split('-jobs/')[1] : '';

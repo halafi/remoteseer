@@ -78,7 +78,8 @@ const Headline = ({ jobsCount, category }: Props) => (
             {jobsCount} remote jobs
             {category && CATEGORIES_META[category] ? ` in ${CATEGORIES_META[category].title}` : ''}
             {category && DEV_CATEGORIES_META[category]
-              ? ` in ${DEV_CATEGORIES_META[category].title}`
+              ? ` in ${DEV_CATEGORIES_META[category].headline ||
+                  DEV_CATEGORIES_META[category].title}`
               : ''}
           </strong>{' '}
           from <strong>well trusted sites</strong>:

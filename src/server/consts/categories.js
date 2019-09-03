@@ -20,6 +20,7 @@ export const ALL_CATEGORIES = {
   'full-stack': ['fullstack', 'full stack'],
   devops: ['devops'],
   blockchain: ['blockchain', 'cryptocurrency'],
+  games: ['game dev'],
 };
 
 export const DEV_CATEGORIES = {
@@ -29,6 +30,7 @@ export const DEV_CATEGORIES = {
   'full-stack': ['fullstack', 'full stack'],
   devops: ['devops'],
   blockchain: ['blockchain', 'cryptocurrency'],
+  games: ['game dev'],
 };
 
 export const CATEGORIES_META = {
@@ -73,6 +75,7 @@ export const DEV_CATEGORIES_META = {
     link: '/remote-development-jobs/mobile/',
     img: '📱',
     title: 'Mobile',
+    headline: 'Mobile App Development',
     description:
       'Browse through a listing of remote mobile development jobs from multiple websites at once.',
   },
@@ -80,6 +83,7 @@ export const DEV_CATEGORIES_META = {
     link: '/remote-development-jobs/frontend/',
     img: '🎠',
     title: 'Frontend',
+    headline: 'Frontend Development',
     description:
       'Browse through a listing of remote frontend development jobs from multiple websites at once.',
   },
@@ -87,6 +91,7 @@ export const DEV_CATEGORIES_META = {
     link: '/remote-development-jobs/backend/',
     img: '⚙️',
     title: 'Backend',
+    headline: 'Backend Development',
     description:
       'Browse through a listing of remote backend development jobs from multiple websites at once.',
   },
@@ -94,6 +99,7 @@ export const DEV_CATEGORIES_META = {
     link: '/remote-development-jobs/full-stack/',
     img: '🎰',
     title: 'Full Stack',
+    headline: 'Full Stack Development',
     description:
       'Browse through a listing of remote full stack jobs from multiple websites at once.',
   },
@@ -103,10 +109,19 @@ export const DEV_CATEGORIES_META = {
     title: 'Devops',
     description: 'Browse through a listing of remote devops jobs from multiple websites at once.',
   },
+  games: {
+    link: '/remote-development-jobs/games/',
+    img: '🎮',
+    title: 'Games',
+    headline: 'Game Development',
+    description:
+      'Browse through a listing of remote game development jobs from multiple websites at once.',
+  },
   blockchain: {
     link: '/remote-development-jobs/blockchain/',
     img: '⛓️',
     title: 'Blockchain',
+    headline: 'Blockchain Development',
     description:
       'Browse through a listing of remote blockchain development jobs from multiple websites at once.',
   },
