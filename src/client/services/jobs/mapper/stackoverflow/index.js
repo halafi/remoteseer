@@ -9,7 +9,10 @@ export default function mapperStackOverflowJobs(input: any): Job[] {
   return input.map(x => {
     const title = normalizeTitle(x.title);
     const companyMatch = title.match(/.+ at ([^(]+)/);
-    const company = companyMatch && companyMatch[1] ? companyMatch[1].trim() : '';
+    let company = companyMatch && companyMatch[1] ? companyMatch[1].trim() : '';
+    if (company.includes('[A]')) {
+      company = 'A';
+    }
     const locationMatch = title.match(/.+(\(.*\))/);
     const location = locationMatch && locationMatch[1].toLowerCase();
     let finalLocation = x.title.toLowerCase().includes('uk/eu only') ? '🇪🇺🇬🇧 EU or UK only' : '';
@@ -81,8 +84,7 @@ export default function mapperStackOverflowJobs(input: any): Job[] {
       ageHours: differenceInHours(new Date(), new Date(x.pubDate)),
       company,
       companyLogo: null,
-      companyUrl: null,
-      // location: getLocation(title), needs more strictness
+      companyUrl: null, // location: getLocation(title), needs more strictness
       location: finalLocation,
       type: x.category,
       tags: getTags(title),

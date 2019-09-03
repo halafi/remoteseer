@@ -1,12 +1,5 @@
 // @flow
-import {
-  isToday,
-  isYesterday,
-  isWithinInterval,
-  startOfYesterday,
-  startOfToday,
-  subDays,
-} from 'date-fns';
+import { isToday, isYesterday, isWithinInterval, startOfYesterday, subDays } from 'date-fns';
 
 export default function groupJobs(input: any): any {
   return input.reduce((acc, x) => {

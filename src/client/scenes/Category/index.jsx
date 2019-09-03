@@ -9,6 +9,7 @@ import JobList from '../../components/JobList/index';
 import Headline from '../../components/Headline/index';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import mq from '../../services/mediaQuery';
+import DevCategories from '../../components/DevCategories';
 // import JobCategories from '../../components/JobCategories';
 
 const JobListWrapper: any = styled(Flex)`
@@ -20,14 +21,15 @@ const JobListWrapper: any = styled(Flex)`
 `;
 
 const Root = () => {
-  const { jobs, category } = useStateValue();
+  const { jobs, category, subcategory } = useStateValue();
   return (
     <>
       <Navbar />
       <Flex alignItems="center" flexDirection="column">
-        <Headline jobsCount={jobs.length} category={category} />
+        <Headline jobsCount={jobs.length} category={subcategory || category} />
         <JobListWrapper flexDirection="column">
-          <Breadcrumbs category={category} />
+          <Breadcrumbs category={category} subcategory={subcategory} />
+          {category === 'development' && !subcategory && <DevCategories />}
           {/* <JobCategories /> */}
           <JobList jobs={jobs} />
         </JobListWrapper>

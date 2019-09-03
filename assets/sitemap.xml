@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url><loc>https://remoteseer.net</loc></url>
-  <url><loc>https://remoteseer.net/development-jobs/</loc></url>
-  <url><loc>https://remoteseer.net/design-jobs/</loc></url>
-  <url><loc>https://remoteseer.net/customer-support-jobs/</loc></url>
-  <url><loc>https://remoteseer.net/sales-and-marketing-jobs/</loc></url>
-  <url><loc>https://remoteseer.net/copywriting-jobs/</loc></url>
+  <url><loc>https://remoteseer.net/remote-development-jobs/</loc></url>
+  <url><loc>https://remoteseer.net/remote-design-jobs/</loc></url>
+  <url><loc>https://remoteseer.net/remote-customer-support-jobs/</loc></url>
+  <url><loc>https://remoteseer.net/remote-sales-and-marketing-jobs/</loc></url>
+  <url><loc>https://remoteseer.net/remote-copywriting-jobs/</loc></url>
+  <url><loc>https://remoteseer.net/remote-development-jobs/mobile/</loc></url>
+  <url><loc>https://remoteseer.net/remote-development-jobs/frontend/</loc></url>
+  <url><loc>https://remoteseer.net/remote-development-jobs/backend/</loc></url>
+  <url><loc>https://remoteseer.net/remote-development-jobs/full-stack/</loc></url>
+  <url><loc>https://remoteseer.net/remote-development-jobs/devops/</loc></url>
+  <url><loc>https://remoteseer.net/remote-development-jobs/blockchain/</loc></url>
 </urlset>

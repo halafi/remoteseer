@@ -33,8 +33,11 @@ const GlobalStyle = createGlobalStyle`
 
 function markup(url: string) {
   const sheet = new ServerStyleSheet();
-  const category = url !== '/' ? url.slice(1, url.length).split('-jobs')[0] : '';
-  const state = { jobs: data.getJobs(category), category };
+  let category = url !== '/' ? url.slice(1, url.length).split('-jobs')[0] : '';
+  // eslint-disable-next-line
+  category = category.split('remote-')[1];
+  const subcategory = url !== '/' ? url.slice(1, url.length - 1).split('-jobs/')[1] : '';
+  const state = { jobs: data.getJobs(subcategory), category, subcategory };
   const root = renderToString(
     <StyleSheetManager sheet={sheet.instance}>
       <>

@@ -5,6 +5,7 @@ export const StateContext = React.createContext({});
 export type State = {
   jobs: any[],
   category: string,
+  subcategory: string,
 };
 
 type Props = {

@@ -7,6 +7,7 @@ import Category from './scenes/Category';
 
 const Routes = () => (
   <Switch>
+    <Route component={Category} exact path="/*-jobs/*/" />
     <Route component={Category} exact path="/*-jobs/" />
     <Route component={Root} exact path="/" />
     <Route component={Root} />

@@ -4,7 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Flex, Box } from '@rebass/grid';
 import mq from '../../services/mediaQuery';
-import { CATEGORIES_META } from '../../../server/consts/categories';
+import { CATEGORIES_META, DEV_CATEGORIES_META } from '../../../server/consts/categories';
 
 const Main: any = styled(Box)`
   background-color: #fcfdfe;
@@ -76,7 +76,10 @@ const Headline = ({ jobsCount, category }: Props) => (
           <br />
           <strong>
             {jobsCount} remote jobs
-            {category ? ` in ${CATEGORIES_META[category].title}` : ''}
+            {category && CATEGORIES_META[category] ? ` in ${CATEGORIES_META[category].title}` : ''}
+            {category && DEV_CATEGORIES_META[category]
+              ? ` in ${DEV_CATEGORIES_META[category].title}`
+              : ''}
           </strong>{' '}
           from <strong>well trusted sites</strong>:
         </Subheader>

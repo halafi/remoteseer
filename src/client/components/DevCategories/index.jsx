@@ -2,7 +2,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Flex } from '@rebass/grid';
-import { CATEGORIES_META } from '../../../server/consts/categories';
+import { DEV_CATEGORIES_META } from '../../../server/consts/categories';
 
 const JobCategoriesWrapper: any = styled(Flex)`
   width: 100%;
@@ -30,16 +30,16 @@ const JobCategory = styled.a`
   }
 `;
 
-const JobCategories = () => (
+const DevCategories = () => (
   <JobCategoriesWrapper justifyContent="center" flexWrap="wrap">
-    {Object.keys(CATEGORIES_META).map(cat => (
-      <JobCategory href={CATEGORIES_META[cat].link} key={cat}>
-        <span role="img" aria-label={CATEGORIES_META[cat].title}>
-          {CATEGORIES_META[cat].img}
+    {Object.keys(DEV_CATEGORIES_META).map(cat => (
+      <JobCategory href={DEV_CATEGORIES_META[cat].link} key={cat}>
+        <span role="img" aria-label={DEV_CATEGORIES_META[cat].title}>
+          {DEV_CATEGORIES_META[cat].img}
         </span>
-        {CATEGORIES_META[cat].title}
+        {DEV_CATEGORIES_META[cat].title}
       </JobCategory>
     ))}
   </JobCategoriesWrapper>
 );
-export default JobCategories;
+export default DevCategories;

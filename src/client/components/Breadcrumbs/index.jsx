@@ -3,7 +3,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Box } from '@rebass/grid';
-import { CATEGORIES_META } from '../../../server/consts/categories';
+import { CATEGORIES_META, DEV_CATEGORIES_META } from '../../../server/consts/categories';
 
 const Container: any = styled(Box)`
   margin: 30px 0;
@@ -41,13 +41,14 @@ const Link = styled.a`
 
 type Props = {
   category: string,
+  subcategory?: ?string,
   className?: ?string,
 };
 
 // TEST: https://search.google.com/structured-data/testing-tool/u/0/
 // GUIDE: https://audisto.com/insights/guides/2/
 // https://schema.org/BreadcrumbList microdata
-const Breadcrumbs = ({ className, category }: Props) => (
+const Breadcrumbs = ({ className, category, subcategory }: Props) => (
   <Container>
     <StyledList className={className} itemScope itemType="http://schema.org/BreadcrumbList">
       <ListItem
@@ -69,10 +70,31 @@ const Breadcrumbs = ({ className, category }: Props) => (
           itemScope
           itemType="http://schema.org/ListItem"
         >
-          <Link selected={Boolean(category)} itemProp="item" href={CATEGORIES_META[category].link}>
+          <Link
+            selected={Boolean(category && !subcategory)}
+            itemProp="item"
+            href={CATEGORIES_META[category].link}
+          >
             <span itemProp="name">{CATEGORIES_META[category].title}</span>
           </Link>
           <meta itemProp="position" content={2} />
+        </ListItem>
+      )}
+      {subcategory && (
+        <ListItem
+          key="home"
+          itemProp="itemListElement"
+          itemScope
+          itemType="http://schema.org/ListItem"
+        >
+          <Link
+            selected={Boolean(subcategory)}
+            itemProp="item"
+            href={DEV_CATEGORIES_META[subcategory].link}
+          >
+            <span itemProp="name">{DEV_CATEGORIES_META[subcategory].title}</span>
+          </Link>
+          <meta itemProp="position" content={3} />
         </ListItem>
       )}
     </StyledList>
@@ -80,6 +102,7 @@ const Breadcrumbs = ({ className, category }: Props) => (
 );
 
 Breadcrumbs.defaultProps = {
+  subcategory: null,
   className: null,
 };
 
