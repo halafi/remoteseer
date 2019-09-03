@@ -6,6 +6,23 @@ export const CATEGORIES = {
   'customer-support': ['customer support'],
   'sales-and-marketing': ['marketing', 'sales and marketing', 'sales'],
   copywriting: ['copywriting'],
+};
+
+export const ALL_CATEGORIES = {
+  development: ['dev'],
+  design: ['design'],
+  'customer-support': ['customer support'],
+  'sales-and-marketing': ['marketing', 'sales and marketing', 'sales'],
+  copywriting: ['copywriting'],
+  mobile: ['mobile'],
+  frontend: ['frontend'],
+  backend: ['backend'],
+  'full-stack': ['fullstack', 'full stack'],
+  devops: ['devops'],
+  blockchain: ['blockchain', 'cryptocurrency'],
+};
+
+export const DEV_CATEGORIES = {
   mobile: ['mobile'],
   frontend: ['frontend'],
   backend: ['backend'],
@@ -50,13 +67,6 @@ export const CATEGORIES_META = {
     description:
       'Browse through a listing of remote copywriting job openings from multiple websites at once.',
   },
-};
-export const DEV_CATEGORIES = {
-  mobile: ['mobile'],
-  frontend: ['frontend'],
-  backend: ['backend'],
-  'full-stack': ['fullstack'],
-  devops: ['devops'],
 };
 export const DEV_CATEGORIES_META = {
   mobile: {

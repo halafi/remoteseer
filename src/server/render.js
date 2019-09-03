@@ -6,7 +6,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import colors from 'colors';
 import markup from './services/markup/index';
-import { CATEGORIES } from './consts/categories';
+import { CATEGORIES, DEV_CATEGORIES } from './consts/categories';
 
 function getFilesizeInMegaBytes(filename: string) {
   const stats = fs.statSync(filename);
@@ -54,9 +54,16 @@ async function render() {
   await renderPage(`/`, rootDir); // put main index.html to static
   await Promise.all(
     Object.keys(CATEGORIES).map(async category => {
-      const filepath = path.join(rootDir, `${category}-jobs`);
+      const filepath = path.join(rootDir, `remote-${category}-jobs`);
       await fs.ensureDir(filepath);
-      await renderPage(`/${category}-jobs`, filepath);
+      await renderPage(`/remote-${category}-jobs/`, filepath);
+    }),
+  );
+  await Promise.all(
+    Object.keys(DEV_CATEGORIES).map(async category => {
+      const filepath = path.join(rootDir, `remote-development-jobs/${category}`);
+      await fs.ensureDir(filepath);
+      await renderPage(`/remote-development-jobs/${category}/`, filepath);
     }),
   );
   console.log('[render] done');
