@@ -1,3 +1,8 @@
 # Redirects from what the browser requests to what we serve
 http://remoteseer.netlify.com/*  https://remoteseer.net/:splat 301!
 https://remoteseer.netlify.com/*  https://remoteseer.net/:splat 301!
+https://remoteseer.com/design-jobs/  https://remoteseer.net/remote-design-jobs/ 302!
+https://remoteseer.com/development-jobs/  https://remoteseer.net/remote-development-jobs/ 302!
+https://remoteseer.com/customer-support-jobs/  https://remoteseer.net/remote-customer-support-jobs/ 302!
+https://remoteseer.com/sales-and-marketing-jobs/  https://remoteseer.net/remote-sales-and-marketing-jobs/ 302!
+https://remoteseer.com/copywriting-jobs/  https://remoteseer.net/remote-copywriting-jobs/ 302!
