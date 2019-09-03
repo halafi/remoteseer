@@ -4,8 +4,10 @@
 import * as React from 'react';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import { CATEGORIES_META, DEV_CATEGORIES_META } from '../../consts/categories';
+import SEO from './components/SEO/index';
 
 type Props = {
+  url: string,
   root: string,
   styleElement: React.Node, // css
   state: any,
@@ -34,32 +36,44 @@ const getDescription = (category: string, subcategory: string) => {
   return 'Remote Seer is an aggregator of remote job sites. Find remote work in development, design, customer support and more.';
 };
 
-const Html = ({ root, styleElement, state, category, subcategory }: Props) => {
+const Html = ({ url, root, styleElement, state, category, subcategory }: Props) => {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <title>{getTitle(category, subcategory)}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+          as="fetch"
+          crossOrigin="anonymous"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {process.env.NODE_ENV === 'production' && (
           <>
+            <link rel="preconnect" href="https://www.googletagmanager.com" />
+            <link rel="preconnect" href="https://www.google-analytics.com" />
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132360635-3" />
             <GoogleAnalytics />
           </>
         )}
-        <meta name="description" content={getDescription(category, subcategory)} />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="manifest" href="/manifest.json" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.__STATE__ = ${JSON.stringify(state)};`,
-          }}
+        <SEO
+          title={getTitle(category, subcategory)}
+          description={getDescription(category, subcategory)}
+          url={url}
         />
         <link
           href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
           rel="stylesheet"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__STATE__ = ${JSON.stringify(state)};`,
+          }}
         />
         {styleElement}
       </head>
