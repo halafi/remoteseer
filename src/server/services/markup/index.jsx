@@ -58,7 +58,13 @@ function markup(url: string) {
   pass.write(`<!DOCTYPE html>`);
 
   const htmlStream = renderToStaticNodeStream(
-    <Html root={root} styleElement={sheet.getStyleElement()} state={state} category={category} />,
+    <Html
+      root={root}
+      styleElement={sheet.getStyleElement()}
+      state={state}
+      category={category}
+      subcategory={subcategory}
+    />,
   );
 
   return htmlStream.pipe(pass);

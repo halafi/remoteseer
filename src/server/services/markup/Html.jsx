@@ -3,16 +3,30 @@
 // hreflang x hrefLang jsx issue
 import * as React from 'react';
 import GoogleAnalytics from './components/GoogleAnalytics';
-import { CATEGORIES_META } from '../../consts/categories';
+import { CATEGORIES_META, DEV_CATEGORIES_META } from '../../consts/categories';
 
 type Props = {
   root: string,
   styleElement: React.Node, // css
   state: any,
   category: string,
+  subcategory: string,
 };
 
-const getDescription = (category: string) => {
+const getTitle = (category: string, subcategory: string) => {
+  if (subcategory) {
+    return `Remote ${DEV_CATEGORIES_META[subcategory].title} Jobs | Remote Seer - largest listing of remote jobs`;
+  }
+  if (category) {
+    return `Remote ${CATEGORIES_META[category].title} Jobs | Remote Seer - largest listing of remote jobs`;
+  }
+  return `Remote Jobs | Remote Seer - largest listing of remote jobs`;
+};
+
+const getDescription = (category: string, subcategory: string) => {
+  if (subcategory && DEV_CATEGORIES_META[subcategory]) {
+    return DEV_CATEGORIES_META[subcategory].description;
+  }
   if (CATEGORIES_META[category]) {
     return CATEGORIES_META[category].description;
   }
@@ -20,15 +34,12 @@ const getDescription = (category: string) => {
   return 'Remote Seer is an aggregator of remote job sites. Find remote work in development, design, customer support and more.';
 };
 
-const Html = ({ root, styleElement, state, category }: Props) => {
+const Html = ({ root, styleElement, state, category, subcategory }: Props) => {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <title>
-          {category ? `Remote ${CATEGORIES_META[category].title} Jobs` : 'Remote Jobs'} | Remote
-          Seer - largest listing of remote jobs
-        </title>
+        <title>{getTitle(category, subcategory)}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {process.env.NODE_ENV === 'production' && (
           <>
@@ -36,7 +47,7 @@ const Html = ({ root, styleElement, state, category }: Props) => {
             <GoogleAnalytics />
           </>
         )}
-        <meta name="description" content={getDescription(category)} />
+        <meta name="description" content={getDescription(category, subcategory)} />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
