@@ -78,11 +78,13 @@ const Html = ({ url, root, styleElement, state, category, subcategory }: Props) 
         />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.__STATE__ = ${JSON.stringify(state)};`,
-          }}
-        />
+        {process.env.NODE_ENV !== 'production' && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__STATE__ = ${JSON.stringify(state)};`,
+            }}
+          />
+        )}
         {styleElement}
       </head>
       <body>
