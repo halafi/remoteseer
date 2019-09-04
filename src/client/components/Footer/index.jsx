@@ -59,25 +59,6 @@ const Footer = () => (
           <a href="/">Remote Jobs</a>
 
           {Object.keys(CATEGORIES_META).map(cat => {
-            if (cat === 'development') {
-              return (
-                <>
-                  <a key={cat} href={CATEGORIES_META[cat].link}>
-                    Remote {CATEGORIES_META[cat].title} Jobs
-                  </a>
-                  <List>
-                    {Object.keys(DEV_CATEGORIES_META).map(devcat => (
-                      <li>
-                        <a key={devcat} href={DEV_CATEGORIES_META[devcat].link}>
-                          Remote {DEV_CATEGORIES_META[devcat].title}
-                          {devcat !== 'devops' ? ' Development' : ''} Jobs
-                        </a>
-                      </li>
-                    ))}
-                  </List>
-                </>
-              );
-            }
             return (
               <a key={cat} href={CATEGORIES_META[cat].link}>
                 Remote {CATEGORIES_META[cat].title} Jobs

@@ -28,7 +28,7 @@ const ListItem = styled.li`
   display: inline;
   font-size: 14px;
   line-height: 1.4;
-  :hover {
+  a:hover {
     text-decoration: underline;
   }
 `;
@@ -37,6 +37,11 @@ const Link = styled.a`
   color: ${({ selected, theme }) => (!selected ? theme.primary : theme.gray)};
   font-weight: ${({ selected }) => (!selected ? 900 : 400)};
   text-decoration: none;
+`;
+
+const Selected = styled.span`
+  color: ${({ theme }) => theme.gray};
+  font-weight: 400;
 `;
 
 type Props = {
@@ -70,13 +75,19 @@ const Breadcrumbs = ({ className, category, subcategory }: Props) => (
           itemScope
           itemType="http://schema.org/ListItem"
         >
-          <Link
-            selected={Boolean(category && !subcategory)}
-            itemProp="item"
-            href={CATEGORIES_META[category].link}
-          >
-            <span itemProp="name">{CATEGORIES_META[category].title}</span>
-          </Link>
+          {!subcategory ? (
+            <Selected itemProp="item">
+              <span itemProp="name">{CATEGORIES_META[category].title}</span>
+            </Selected>
+          ) : (
+            <Link
+              selected={Boolean(category && !subcategory)}
+              itemProp="item"
+              href={CATEGORIES_META[category].link}
+            >
+              <span itemProp="name">{CATEGORIES_META[category].title}</span>
+            </Link>
+          )}
           <meta itemProp="position" content={2} />
         </ListItem>
       )}
@@ -87,13 +98,9 @@ const Breadcrumbs = ({ className, category, subcategory }: Props) => (
           itemScope
           itemType="http://schema.org/ListItem"
         >
-          <Link
-            selected={Boolean(subcategory)}
-            itemProp="item"
-            href={DEV_CATEGORIES_META[subcategory].link}
-          >
+          <Selected itemProp="item">
             <span itemProp="name">{DEV_CATEGORIES_META[subcategory].title}</span>
-          </Link>
+          </Selected>
           <meta itemProp="position" content={3} />
         </ListItem>
       )}
