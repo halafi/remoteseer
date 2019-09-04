@@ -17,15 +17,11 @@ type Props = {
 
 const getTitle = (category: string, subcategory: string) => {
   if (subcategory) {
-    return `${
-      DEV_CATEGORIES_META[subcategory].seoIcon ? `${DEV_CATEGORIES_META[subcategory].img} ` : ''
-    }Remote ${DEV_CATEGORIES_META[subcategory].headline ||
+    return `Remote ${DEV_CATEGORIES_META[subcategory].headline ||
       DEV_CATEGORIES_META[subcategory].title} Jobs | Remote Seer - largest listing of remote jobs`;
   }
   if (category) {
-    return `${
-      CATEGORIES_META[category].seoIcon ? `${CATEGORIES_META[category].img} ` : ''
-    }Remote ${CATEGORIES_META[category].headline ||
+    return `Remote ${CATEGORIES_META[category].headline ||
       CATEGORIES_META[category].title} Jobs | Remote Seer - largest listing of remote jobs`;
   }
   return `Remote Jobs | Remote Seer - largest listing of remote jobs`;
