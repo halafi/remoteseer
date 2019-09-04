@@ -78,7 +78,7 @@ const Html = ({ url, root, styleElement, state, category, subcategory }: Props) 
           rel="alternate"
           type="application/rss+xml"
           title="Subscribe to Remote Jobs"
-          href="http://remoteseer.net/remote-jobs.rss"
+          href="https://remoteseer.net/remote-jobs.rss"
         />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" />
