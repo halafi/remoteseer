@@ -89,7 +89,7 @@ const Footer = () => (
           <a href="#">Back to top ↑</a>
         </Box>
       </Flex>
-      <a type="application/rss+xml" href="./remote-jobs.rss">
+      <a type="application/rss+xml" href="https://remoteseer.net/remote-jobs.rss">
         RSS Feed
       </a>
       <Flex justifyContent="space-between" alignItems="center" py={2}>
