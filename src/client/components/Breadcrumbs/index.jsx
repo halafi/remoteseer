@@ -76,7 +76,7 @@ const Breadcrumbs = ({ className, category, subcategory }: Props) => (
           itemType="http://schema.org/ListItem"
         >
           {!subcategory ? (
-            <Selected itemProp="item">
+            <Selected itemProp="item" href={CATEGORIES_META[category].link}>
               <span itemProp="name">{CATEGORIES_META[category].title}</span>
             </Selected>
           ) : (
@@ -98,7 +98,7 @@ const Breadcrumbs = ({ className, category, subcategory }: Props) => (
           itemScope
           itemType="http://schema.org/ListItem"
         >
-          <Selected itemProp="item">
+          <Selected itemProp="item" href={DEV_CATEGORIES_META[subcategory].link}>
             <span itemProp="name">{DEV_CATEGORIES_META[subcategory].title}</span>
           </Selected>
           <meta itemProp="position" content={3} />
