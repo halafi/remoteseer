@@ -17,10 +17,16 @@ type Props = {
 
 const getTitle = (category: string, subcategory: string) => {
   if (subcategory) {
-    return `Remote ${DEV_CATEGORIES_META[subcategory].title} Jobs | Remote Seer - largest listing of remote jobs`;
+    return `${
+      DEV_CATEGORIES_META[subcategory].seoIcon ? `${DEV_CATEGORIES_META[subcategory].img} ` : ''
+    }Remote ${DEV_CATEGORIES_META[subcategory].headline ||
+      DEV_CATEGORIES_META[subcategory].title} Jobs | Remote Seer - largest listing of remote jobs`;
   }
   if (category) {
-    return `Remote ${CATEGORIES_META[category].title} Jobs | Remote Seer - largest listing of remote jobs`;
+    return `${
+      CATEGORIES_META[category].seoIcon ? `${CATEGORIES_META[category].img} ` : ''
+    }Remote ${CATEGORIES_META[category].headline ||
+      CATEGORIES_META[category].title} Jobs | Remote Seer - largest listing of remote jobs`;
   }
   return `Remote Jobs | Remote Seer - largest listing of remote jobs`;
 };
@@ -68,6 +74,12 @@ const Html = ({ url, root, styleElement, state, category, subcategory }: Props) 
           rel="stylesheet"
         />
         <link rel="manifest" href="/manifest.json" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Subscribe to Remote Jobs"
+          href="http://remoteseer.net/remote-jobs.rss"
+        />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" />
         <script

@@ -64,6 +64,7 @@ export const DEV_CATEGORIES_META = {
   mobile: {
     link: '/remote-development-jobs/mobile/',
     img: '📱',
+    seoIcon: true,
     title: 'Mobile',
     headline: 'Mobile App Development',
     description:
@@ -101,6 +102,7 @@ export const DEV_CATEGORIES_META = {
   },
   games: {
     link: '/remote-development-jobs/games/',
+    seoIcon: true,
     img: '🎮',
     title: 'Games',
     headline: 'Game Development',
@@ -109,6 +111,7 @@ export const DEV_CATEGORIES_META = {
   },
   blockchain: {
     link: '/remote-development-jobs/blockchain/',
+    seoIcon: true,
     img: '⛓️',
     title: 'Blockchain',
     headline: 'Blockchain Development',

@@ -57,6 +57,7 @@ const Footer = () => (
       <Flex flexDirection={['column', null, 'row']} justifyContent="space-between" py={4} mt={2}>
         <Flex flexDirection="column">
           <a href="/">Remote Jobs</a>
+
           {Object.keys(CATEGORIES_META).map(cat => {
             if (cat === 'development') {
               return (
@@ -88,6 +89,9 @@ const Footer = () => (
           <a href="#">Back to top ↑</a>
         </Box>
       </Flex>
+      <a type="application/rss+xml" href="./remote-jobs.rss">
+        RSS Feed
+      </a>
       <Flex justifyContent="space-between" alignItems="center" py={2}>
         <Disclaimer>
           By using the site you agree that we use cookies for analysis of visitor behaviour.
@@ -97,7 +101,13 @@ const Footer = () => (
         </a>
       </Flex>
       <FooterHtml>
-        <span>© 2019 Made with love working remotely</span>
+        <span>
+          © 2019 Made with{' '}
+          <span role="img" aria-label="love">
+            ❤️
+          </span>{' '}
+          working remotely
+        </span>
         <a href="mailto:hello@remoteseer.net">Contact</a>
       </FooterHtml>
     </FooterContent>
