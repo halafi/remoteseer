@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run clean && npm run copy:assets && run-p server:dev webpack:dev",
-    "build": "npm run clean && npm run babel && npm run fetch && npm run sitemap && npm run rss && npm run render && npm run webpack:prod && npm run copy:assets",
+    "build": "npm run clean && npm run babel && npm run fetch && npm run render && npm run webpack:prod && npm run copy:assets && npm run sitemap && npm run rss",
     "clean": "rimraf dist",
     "babel": "NODE_ENV=production babel src --verbose -d dist --ignore '**/__tests__/*'",
     "babel:scripts": "NODE_ENV=production babel scripts --verbose -d dist",
