@@ -56,7 +56,12 @@ type Props = {
 const Breadcrumbs = ({ className, category, subcategory }: Props) => (
   <Container>
     <StyledList className={className} itemScope itemType="http://schema.org/BreadcrumbList">
-      <ListItem itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
+      <ListItem
+        key="home"
+        itemProp="itemListElement"
+        itemScope
+        itemType="http://schema.org/ListItem"
+      >
         {/* $FlowFixMe */}
         <Link itemProp="item" href="/">
           <span itemProp="name">Remote Jobs</span>
@@ -64,30 +69,39 @@ const Breadcrumbs = ({ className, category, subcategory }: Props) => (
         <meta itemProp="position" content={1} />
       </ListItem>
       {category && (
-        <>
+        <ListItem
+          key="home"
+          itemProp="itemListElement"
+          itemScope
+          itemType="http://schema.org/ListItem"
+        >
           {!subcategory ? (
-            <ListItem>
-              <Selected itemProp="item">
-                <span itemProp="name">{CATEGORIES_META[category].title}</span>
-              </Selected>
-            </ListItem>
+            <Selected itemProp="item">
+              <span itemProp="name">{CATEGORIES_META[category].title}</span>
+            </Selected>
           ) : (
-            <ListItem itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
-              <Link
-                selected={Boolean(category && !subcategory)}
-                itemProp="item"
-                href={CATEGORIES_META[category].link}
-              >
-                <span itemProp="name">{CATEGORIES_META[category].title}</span>
-              </Link>
-              <meta itemProp="position" content={2} />
-            </ListItem>
+            <Link
+              selected={Boolean(category && !subcategory)}
+              itemProp="item"
+              href={CATEGORIES_META[category].link}
+            >
+              <span itemProp="name">{CATEGORIES_META[category].title}</span>
+            </Link>
           )}
-        </>
+          <meta itemProp="position" content={2} />
+        </ListItem>
       )}
       {subcategory && (
-        <ListItem>
-          <Selected>{DEV_CATEGORIES_META[subcategory].title}</Selected>
+        <ListItem
+          key="home"
+          itemProp="itemListElement"
+          itemScope
+          itemType="http://schema.org/ListItem"
+        >
+          <Selected itemProp="item">
+            <span itemProp="name">{DEV_CATEGORIES_META[subcategory].title}</span>
+          </Selected>
+          <meta itemProp="position" content={3} />
         </ListItem>
       )}
     </StyledList>
