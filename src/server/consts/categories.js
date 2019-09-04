@@ -8,12 +8,7 @@ export const CATEGORIES = {
   copywriting: ['copywriting'],
 };
 
-export const ALL_CATEGORIES = {
-  development: ['dev'],
-  design: ['design'],
-  'customer-support': ['customer support'],
-  'sales-and-marketing': ['marketing', 'sales and marketing', 'sales'],
-  copywriting: ['copywriting'],
+export const DEV_CATEGORIES = {
   mobile: ['mobile'],
   frontend: ['frontend'],
   backend: ['backend'],
@@ -23,14 +18,9 @@ export const ALL_CATEGORIES = {
   games: ['game dev'],
 };
 
-export const DEV_CATEGORIES = {
-  mobile: ['mobile'],
-  frontend: ['frontend'],
-  backend: ['backend'],
-  'full-stack': ['fullstack', 'full stack'],
-  devops: ['devops'],
-  blockchain: ['blockchain', 'cryptocurrency'],
-  games: ['game dev'],
+export const ALL_CATEGORIES = {
+  ...CATEGORIES,
+  ...DEV_CATEGORIES,
 };
 
 export const CATEGORIES_META = {

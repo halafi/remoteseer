@@ -7,12 +7,7 @@ import path from 'path';
 import colors from 'colors';
 import markup from './services/markup/index';
 import { CATEGORIES, DEV_CATEGORIES } from './consts/categories';
-
-function getFilesizeInMegaBytes(filename: string) {
-  const stats = fs.statSync(filename);
-  const fileSizeInBytes = stats.size / 1000000.0;
-  return `${fileSizeInBytes.toFixed(2)}MB`;
-}
+import getFilesizeInMegaBytes from './services/fileSize/index';
 
 function renderPage(url: string, pagePath: string): Promise<boolean | Error> {
   return new Promise((resolve, reject) => {
