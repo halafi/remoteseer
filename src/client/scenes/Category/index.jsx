@@ -9,8 +9,8 @@ import JobList from '../../components/JobList/index';
 import Headline from '../../components/Headline/index';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import mq from '../../services/mediaQuery';
-import DevCategories from '../../components/DevCategories';
-// import JobCategories from '../../components/JobCategories';
+import Categories from '../../components/Categories';
+import { DEV_CATEGORIES_META } from '../../../server/consts/categories';
 
 const JobListWrapper: any = styled(Flex)`
   margin: 0 auto 40px;
@@ -29,8 +29,9 @@ const Root = () => {
         <Headline jobsCount={jobs.length} category={subcategory || category} />
         <JobListWrapper flexDirection="column">
           <Breadcrumbs category={category} subcategory={subcategory} />
-          {category === 'development' && !subcategory && <DevCategories />}
-          {/* <JobCategories /> */}
+          {category === 'development' && !subcategory && (
+            <Categories categories={DEV_CATEGORIES_META} />
+          )}
           <JobList jobs={jobs} />
         </JobListWrapper>
         <Footer />

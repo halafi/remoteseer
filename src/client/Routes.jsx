@@ -7,8 +7,16 @@ import Category from './scenes/Category';
 
 const Routes = () => (
   <Switch>
-    <Route component={Category} exact path="/*-jobs/*/" />
-    <Route component={Category} exact path="/*-jobs/" />
+    <Route
+      component={Category}
+      exact
+      path="/remote-development-jobs/(mobile|frontend|backend|full-stack|devops|games|blockchain)/"
+    />
+    <Route
+      component={Category}
+      exact
+      path="/remote-(development|design|customer-support|sales-and-marketing|copywriting)-jobs/"
+    />
     <Route component={Root} exact path="/" />
     <Route component={Root} />
   </Switch>

@@ -60,6 +60,7 @@ export const CATEGORIES_META = {
       'Browse through a listing of remote copywriting job openings from multiple websites at once.',
   },
 };
+
 export const DEV_CATEGORIES_META = {
   mobile: {
     link: '/remote-development-jobs/mobile/',

@@ -22,8 +22,6 @@ const SEO = ({ title, description, url }: Props) => (
     <meta name="twitter:creator" content="@remote_seer" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    {/* <meta itemprop="name" content="TicketLens" />
-    <link itemprop="url" href="http://www.ticketlens.com" /> */}
   </>
 );
 

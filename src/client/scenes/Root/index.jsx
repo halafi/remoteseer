@@ -8,9 +8,9 @@ import Footer from '../../components/Footer/index';
 import JobList from '../../components/JobList/index';
 import Headline from '../../components/Headline/index';
 import mq from '../../services/mediaQuery';
-import JobCategories from '../../components/JobCategories';
 import { CATEGORIES_META } from '../../../server/consts/categories';
 import filterCategoryJobs from '../../services/jobs/filterCategoryJobs';
+import Categories from '../../components/Categories';
 
 const JobListWrapper: any = styled(Flex)`
   margin: 0 auto 40px;
@@ -61,7 +61,7 @@ const Root = () => {
       <Flex alignItems="center" flexDirection="column">
         <Headline jobsCount={jobs.length} category={category} />
         <JobListWrapper flexDirection="column">
-          <JobCategories />
+          <Categories categories={CATEGORIES_META} />
           {Object.keys(CATEGORIES_META).map(cat => (
             <Category key={cat}>
               <Link href={CATEGORIES_META[cat].link}>
