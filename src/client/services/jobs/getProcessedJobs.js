@@ -34,7 +34,7 @@ function filterDuplicates(input: Job[]): Job[] {
   }, []);
 }
 
-function putJobs(allJobs: Job[], newJobs: Job[], label: string) {
+function putJobs(allJobs: Job[], newJobs: Job[]) {
   const filtered = newJobs.filter(
     newJob =>
       !allJobs.find(
@@ -44,10 +44,9 @@ function putJobs(allJobs: Job[], newJobs: Job[], label: string) {
           (newJob.providerId === PROVIDERS.REMOTEOK && job.createdAt === newJob.createdAt),
       ),
   );
-  // eslint-disable-next-line no-console
-  console.log(
-    `[getProcessedJobs] put ${label} jobs: ${filtered.length} (out of ${newJobs.length})`,
-  );
+  // console.log(
+  //   `[getProcessedJobs] put ${label} jobs: ${filtered.length} (out of ${newJobs.length})`,
+  // );
   return allJobs.concat(filtered);
 }
 
@@ -141,15 +140,15 @@ export default function getJobs(
     mapperRemotiveJobs(remotive.filter(x => !x.date.includes('<i'))),
   );
 
-  let allJobs = putJobs([], githubJobs, 'github.com');
-  allJobs = putJobs(allJobs, dribbbleJobs, 'dribbble.com');
-  allJobs = putJobs(allJobs, justRemoteJobs, 'justremote.co');
-  allJobs = putJobs(allJobs, stackOverflowJobs, 'stackoverflow');
-  allJobs = putJobs(allJobs, remoteokJobs, 'remoteok.io');
-  allJobs = putJobs(allJobs, wwrJobs, 'weworkremotely.com');
-  allJobs = putJobs(allJobs, remotecoJobs, 'remote.co');
-  allJobs = putJobs(allJobs, nodeskJobs, 'nodesk.co');
-  allJobs = putJobs(allJobs, remotiveJobs, 'remotive.io');
+  let allJobs = putJobs([], githubJobs);
+  allJobs = putJobs(allJobs, dribbbleJobs);
+  allJobs = putJobs(allJobs, justRemoteJobs);
+  allJobs = putJobs(allJobs, stackOverflowJobs);
+  allJobs = putJobs(allJobs, remoteokJobs);
+  allJobs = putJobs(allJobs, wwrJobs);
+  allJobs = putJobs(allJobs, remotecoJobs);
+  allJobs = putJobs(allJobs, nodeskJobs);
+  allJobs = putJobs(allJobs, remotiveJobs);
   allJobs = sortFn(putJobs(allJobs, cryptocurrencyJobs, 'cryptocurrencyjobs.co'));
 
   return filterCategoryJobs(allJobs, category).map(x => ({
