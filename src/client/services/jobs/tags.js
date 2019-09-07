@@ -95,7 +95,11 @@ export default function getTags(title: string): string[] {
   ) {
     tags.push('devops');
   }
-  if (lowerCaseTitle.includes('compiler')) {
+  if (
+    lowerCaseTitle.includes('compiler') ||
+    lowerCaseTitle.includes('interpreter') ||
+    lowerCaseTitle.includes('type-system')
+  ) {
     tags.push('compilers');
   }
   if (lowerCaseTitle.includes('exec')) {
