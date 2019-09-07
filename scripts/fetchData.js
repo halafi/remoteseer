@@ -291,17 +291,18 @@ async function downloadRss(url, file) {
 async function fetchData() {
   console.log('[fetchData] start');
   await fs.ensureDir(DATA_DIR);
-  await downloadJson(
-    'https://github-jobs-proxy.appspot.com/positions?utf8=%E2%9C%93&description=&location=remote',
-    'githubJobs.json',
-  );
+  await downloadJson('https://jobs.github.com/positions.json?location=remote', 'githubJobs.json');
   await downloadJson('https://remoteok.io/api', 'remoteOkJobs.json');
   await downloadRss(
     'https://stackoverflow.com/jobs/feed?l=Remote&u=Km&d=20',
     'stackOverflowJobs.json',
   );
   await downloadNodeskRss('https://nodesk.co/index.xml', 'nodeskJobs.json', true);
-  await downloadNodeskRss('https://cryptocurrencyjobs.co/index.xml', 'cryptocurrencyJobs.json', false);
+  await downloadNodeskRss(
+    'https://cryptocurrencyjobs.co/index.xml',
+    'cryptocurrencyJobs.json',
+    false,
+  );
   await Promise.all(
     WWR_CATEGORIES.map(wwrCat =>
       downloadRss(`https://weworkremotely.com/categories/${wwrCat}.rss`, `wwr-${wwrCat}.json`),

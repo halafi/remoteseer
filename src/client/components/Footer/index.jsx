@@ -4,7 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Flex, Box } from '@rebass/grid';
 import mq from '../../services/mediaQuery';
-import { CATEGORIES_META, DEV_CATEGORIES_META } from '../../../server/consts/categories';
+import { CATEGORIES_META } from '../../../server/consts/categories';
 
 const FooterWrapper: any = styled(Box)`
   color: #ffffff;
@@ -44,12 +44,12 @@ const Icon = styled.img`
   height: 20px;
 `;
 
-const List = styled.ul`
-  margin-block-start: 0;
-  margin-block-end: 0;
-  padding-inline-start: 0;
-  list-style-type: none;
-`;
+// const List = styled.ul`
+//   margin-block-start: 0;
+//   margin-block-end: 0;
+//   padding-inline-start: 0;
+//   list-style-type: none;
+// `;
 
 const Footer = () => (
   <FooterWrapper>
@@ -70,6 +70,8 @@ const Footer = () => (
           <a href="#">Back to top ↑</a>
         </Box>
       </Flex>
+      <a href="/about/">About</a>
+      <a href="mailto:hello@remoteseer.net">Contact</a>
       <a type="application/rss+xml" href="https://remoteseer.net/remote-jobs.rss">
         RSS Feed
       </a>
@@ -89,7 +91,6 @@ const Footer = () => (
           </span>{' '}
           working remotely
         </span>
-        <a href="mailto:hello@remoteseer.net">Contact</a>
       </FooterHtml>
     </FooterContent>
   </FooterWrapper>

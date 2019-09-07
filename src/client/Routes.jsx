@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader';
 import { Route, Switch } from 'react-router-dom';
 import Root from './scenes/Root';
 import Category from './scenes/Category';
+import Stats from './scenes/Stats';
 
 const Routes = () => (
   <Switch>
@@ -17,6 +18,7 @@ const Routes = () => (
       exact
       path="/remote-(development|design|customer-support|sales-and-marketing|copywriting)-jobs/"
     />
+    <Route component={Stats} exact path="/about/" />
     <Route component={Root} exact path="/" />
     <Route component={Root} />
   </Switch>

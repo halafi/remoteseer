@@ -51,6 +51,55 @@ function putJobs(allJobs: Job[], newJobs: Job[], label: string) {
   return allJobs.concat(filtered);
 }
 
+export function getProcessedJobStats(jobs: {
+  github: Job[],
+  stackoverflow: Job[],
+  wwr: Job[],
+  remoteok: Job[],
+  dribbble: Job[],
+  justremote: Job[],
+  remoteco: Job[],
+  nodesk: Job[],
+  cryptocurrency: Job[],
+  remotive: Job[],
+}) {
+  const {
+    github,
+    dribbble,
+    justremote,
+    stackoverflow,
+    remoteok,
+    wwr,
+    remoteco,
+    nodesk,
+    cryptocurrency,
+    remotive,
+  } = jobs;
+  const githubJobs = mapperGithubJobs(github);
+  const dribbbleJobs = mapperDribbbleJobs(dribbble);
+  const justRemoteJobs = mapperJustRemoteJobs(justremote);
+  const stackOverflowJobs = mapperStackOverflowJobs(stackoverflow);
+  const remoteokJobs = mapperRemoteOkJobs(remoteok);
+  const wwrJobs = mapperWwrJobs(wwr);
+  const remotecoJobs = filterDuplicates(mapperRemoteCo(remoteco));
+  const nodeskJobs = mapperNodeskJobs(nodesk);
+  const cryptocurrencyJobs = mapperCryptocurrencyJobs(cryptocurrency);
+  const remotiveJobs = filterDuplicates(
+    mapperRemotiveJobs(remotive.filter(x => !x.date.includes('<i'))),
+  );
+  return {
+    github: githubJobs.length,
+    dribbble: dribbbleJobs.length,
+    justremote: justRemoteJobs.length,
+    stackoverflow: stackOverflowJobs.length,
+    remoteok: remoteokJobs.length,
+    wwr: wwrJobs.length,
+    remoteco: remotecoJobs.length,
+    nodesk: nodeskJobs.length,
+    cryptocurrency: cryptocurrencyJobs.length,
+    remotive: remotiveJobs.length,
+  };
+}
 export default function getJobs(
   jobs: {
     github: Job[],

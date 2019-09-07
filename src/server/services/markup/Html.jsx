@@ -89,7 +89,7 @@ const Html = ({ url, root, styleElement, state, category, subcategory }: Props) 
       </head>
       <body>
         <div id="root" dangerouslySetInnerHTML={{ __html: root }} />
-        {process.env.NODE_ENV !== 'production' && <script src="bundle.js" />}
+        {process.env.NODE_ENV !== 'production' && <script src="/bundle.js" />}
       </body>
     </html>
   );

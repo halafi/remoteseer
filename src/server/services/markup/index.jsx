@@ -37,7 +37,12 @@ function markup(url: string) {
   // eslint-disable-next-line
   category = category.split('remote-')[1];
   const subcategory = url !== '/' ? url.slice(1, url.length - 1).split('-jobs/')[1] : '';
-  const state = { jobs: data.getJobs(subcategory || category), category, subcategory };
+  const state = {
+    jobs: data.getJobs(subcategory || category),
+    category,
+    subcategory,
+    stats: data.getJobStats(),
+  };
   const root = renderToString(
     <StyleSheetManager sheet={sheet.instance}>
       <>

@@ -6,6 +6,7 @@ export type State = {
   jobs: any[],
   category: string,
   subcategory: string,
+  stats: any,
 };
 
 type Props = {

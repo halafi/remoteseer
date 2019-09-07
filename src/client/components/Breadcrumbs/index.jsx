@@ -45,15 +45,16 @@ const Selected = styled.span`
 `;
 
 type Props = {
-  category: string,
+  category?: ?string,
   subcategory?: ?string,
   className?: ?string,
+  contentPage?: ?{ title: string, link: string },
 };
 
 // TEST: https://search.google.com/structured-data/testing-tool/u/0/
 // GUIDE: https://audisto.com/insights/guides/2/
 // https://schema.org/BreadcrumbList microdata
-const Breadcrumbs = ({ className, category, subcategory }: Props) => (
+const Breadcrumbs = ({ className, category, subcategory, contentPage }: Props) => (
   <Container>
     <StyledList className={className} itemScope itemType="http://schema.org/BreadcrumbList">
       <ListItem
@@ -68,6 +69,19 @@ const Breadcrumbs = ({ className, category, subcategory }: Props) => (
         </Link>
         <meta itemProp="position" content={1} />
       </ListItem>
+      {contentPage && (
+        <ListItem
+          key="home"
+          itemProp="itemListElement"
+          itemScope
+          itemType="http://schema.org/ListItem"
+        >
+          <Selected>
+            <link itemProp="item" href={contentPage.link} />
+            <span itemProp="name">{contentPage.title}</span>
+          </Selected>
+        </ListItem>
+      )}
       {category && (
         <ListItem
           key="home"
@@ -111,8 +125,10 @@ const Breadcrumbs = ({ className, category, subcategory }: Props) => (
 );
 
 Breadcrumbs.defaultProps = {
+  category: null,
   subcategory: null,
   className: null,
+  contentPage: null,
 };
 
 export default Breadcrumbs;

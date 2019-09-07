@@ -58,6 +58,10 @@ const Provider = styled.img`
   height: 32px;
 `;
 
+const Link = styled.a`
+  color: initial;
+`;
+
 type Props = {
   jobsCount: number,
   category: string,
@@ -82,7 +86,11 @@ const Headline = ({ jobsCount, category }: Props) => (
                   DEV_CATEGORIES_META[category].title}`
               : ''}
           </strong>{' '}
-          from <strong>well trusted sites</strong>:
+          from{' '}
+          <Link href="/about/">
+            <strong>well trusted sites</strong>
+          </Link>
+          :
         </Subheader>
         <Providers justifyContent="center" flexWrap="wrap">
           <Provider src="/images/github.svg" alt="Github jobs" />
