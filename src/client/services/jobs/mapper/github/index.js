@@ -16,7 +16,6 @@ function getLocation(input: string): string {
   }
   return finalLocation;
 }
-
 export default function mapperGithubJobs(input: any): Job[] {
   return input.map(x => ({
     company: x.company,

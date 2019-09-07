@@ -74,6 +74,9 @@ export default function mapperStackOverflowJobs(input: any): Job[] {
       finalTitle = finalTitle.replace(`${locationMatch[1]}`, '');
     }
     finalTitle = finalTitle.replace(/(\(.*?\))/g, '').trim();
+    if (finalTitle.includes('US only')) {
+      finalLocation = '🇺🇸 United States';
+    }
     return {
       id: x.guid,
       url: x.link,

@@ -149,7 +149,7 @@ export default function getJobs(
   allJobs = putJobs(allJobs, remotecoJobs);
   allJobs = putJobs(allJobs, nodeskJobs);
   allJobs = putJobs(allJobs, remotiveJobs);
-  allJobs = sortFn(putJobs(allJobs, cryptocurrencyJobs, 'cryptocurrencyjobs.co'));
+  allJobs = sortFn(putJobs(allJobs, cryptocurrencyJobs));
 
   return filterCategoryJobs(allJobs, category).map(x => ({
     id: x.id,

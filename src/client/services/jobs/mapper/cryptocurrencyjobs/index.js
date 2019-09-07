@@ -14,9 +14,14 @@ export default function mapperCryptocurrencyJobs(input: any): Job[] {
     if (!tags.includes('blockchain')) {
       tags.push('blockchain');
     }
+    const companyMatch = x.title.match(/.+ at ([^(]+)/);
+    let finalTitle = x.title;
+    if (companyMatch && companyMatch[1]) {
+      finalTitle = finalTitle.replace(`at ${companyMatch[1]}`, '');
+    }
     return {
       id: x.guid,
-      title: x.title,
+      title: finalTitle,
       url: x.link, // description: x.description,
       company: x.description.split(' is hiring')[0],
       createdAt: createdAt.getTime(),

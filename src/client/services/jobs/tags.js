@@ -14,8 +14,9 @@ const TAGS = {
   LINUX: 'linux',
   // JAVA: 'java',
   SPRING: 'spring',
+  FIGMA: 'figma',
+  SKETCH: 'sketch',
   WINDOWS: 'windows',
-  SCALA: 'scala',
   PYTHON: 'python',
   CLOUD: 'cloud',
   FIREBASE: 'firebase',
@@ -24,7 +25,6 @@ const TAGS = {
   FLASK: 'flask',
   REACT: 'react',
   ANGULAR: 'angular',
-  VUE: 'vue',
   CYPRESS: 'cypress',
   LOCUST: 'locust',
   GHERKIN: 'gherkin',
@@ -103,13 +103,16 @@ export default function getTags(title: string): string[] {
   }
   if (lowerCaseTitle.includes('react') && lowerCaseTitle.includes('react native')) {
     tags.push('mobile');
+    tags.push('multiplatform');
   }
   if (
     lowerCaseTitle.includes('mobile') ||
     lowerCaseTitle.includes('xamarin') ||
+    lowerCaseTitle.includes('cross platform app developer') ||
     lowerCaseTitle.includes('ios') ||
     lowerCaseTitle.includes('android') ||
     lowerCaseTitle.includes('swift') ||
+    lowerCaseTitle.includes('kotlin') ||
     lowerCaseTitle.includes('ionic')
   ) {
     tags.push('mobile');
@@ -125,9 +128,12 @@ export default function getTags(title: string): string[] {
     tags.push('data science');
   }
   if (
-    lowerCaseTitle.includes('fullstack') ||
-    lowerCaseTitle.includes('full stack') ||
-    lowerCaseTitle.includes('full-stack')
+    (lowerCaseTitle.includes('fullstack') ||
+      lowerCaseTitle.includes('full stack') ||
+      lowerCaseTitle.includes('full-stack') ||
+      lowerCaseTitle.includes('django') ||
+      lowerCaseTitle.includes('rails')) &&
+    !tags.includes('full stack')
   ) {
     tags.push('full stack');
   }
@@ -139,9 +145,10 @@ export default function getTags(title: string): string[] {
     tags.push('osx');
   }
   if (
-    lowerCaseTitle.includes('backend') ||
-    lowerCaseTitle.includes('back end') ||
-    lowerCaseTitle.includes('back-end')
+    !tags.includes('backend') &&
+    (lowerCaseTitle.includes('backend') ||
+      lowerCaseTitle.includes('back end') ||
+      lowerCaseTitle.includes('back-end'))
   ) {
     tags.push('backend');
   }
@@ -168,15 +175,16 @@ export default function getTags(title: string): string[] {
     tags.push('human resources');
   }
   if (
-    lowerCaseTitle.includes('javascript') ||
-    lowerCaseTitle.includes(', js') ||
-    lowerCaseTitle.includes('frontend') ||
-    lowerCaseTitle.includes('front-end') ||
-    lowerCaseTitle.includes('web') ||
-    (lowerCaseTitle.includes('react') && !lowerCaseTitle.includes('react native')) ||
-    lowerCaseTitle.includes('angular') ||
-    lowerCaseTitle.includes('vue') ||
-    lowerCaseTitle.includes('php')
+    !lowerCaseTitle.includes('devops') &&
+    (lowerCaseTitle.includes('javascript') ||
+      lowerCaseTitle.includes(', js') ||
+      lowerCaseTitle.includes('frontend') ||
+      lowerCaseTitle.includes('front-end') ||
+      (lowerCaseTitle.includes('web') && !lowerCaseTitle.includes('design')) ||
+      (lowerCaseTitle.includes('react') && !lowerCaseTitle.includes('react native')) ||
+      lowerCaseTitle.includes('angular') ||
+      lowerCaseTitle.includes('vue') ||
+      lowerCaseTitle.includes('php'))
   ) {
     tags.push('javascript');
     tags.push('frontend');
@@ -194,7 +202,7 @@ export default function getTags(title: string): string[] {
   if (
     lowerCaseTitle.includes('blockchain') ||
     lowerCaseTitle.includes('ledger') ||
-    lowerCaseTitle.includes('crypto')
+    (lowerCaseTitle.includes('crypto') && !lowerCaseTitle.includes('cryptography'))
   ) {
     tags.push('blockchain');
   }
@@ -205,6 +213,9 @@ export default function getTags(title: string): string[] {
   });
   if (!lowerCaseTitle.includes('javascript') && lowerCaseTitle.includes('java')) {
     tags.push('java');
+  }
+  if (lowerCaseTitle.includes('vue')) {
+    tags.push('vuejs');
   }
   if (lowerCaseTitle.includes('marketing') || lowerCaseTitle.includes('sales')) {
     tags.push('sales and marketing');
@@ -232,5 +243,26 @@ export default function getTags(title: string): string[] {
   if (lowerCaseTitle.startsWith('r ')) {
     tags.push('r');
   }
+  if (lowerCaseTitle.includes('scala')) {
+    tags.push('scala');
+    if (!tags.includes('backend')) {
+      tags.push('backend');
+    }
+  }
+  if (lowerCaseTitle.includes('cryptography')) {
+    tags.push('cryptography');
+    if (!tags.includes('backend')) {
+      tags.push('backend');
+    }
+  }
+  // if (
+  //   tags.includes('dev') &&
+  //   !tags.includes('full stack') &&
+  //   !tags.includes('mobile') &&
+  //   !tags.includes('frontend') &&
+  //   !tags.includes('backend')
+  // ) {
+  //   tags.push('full stack');
+  // }
   return tags;
 }
