@@ -2,6 +2,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Flex } from '@rebass/grid';
+import mq from '../../services/mediaQuery';
 
 // $FlowFixMe
 const HeaderWrapper = styled.div`
@@ -15,30 +16,28 @@ const Headline = styled.div`
   margin: 0 auto;
 `;
 
-const Title = styled.span`
-  font-size: 28px;
-  font-weight: 700;
+const MobileImg = styled.img`
+  display: inherit;
+  ${mq.TABLET`
+    display:none;
+  `}
 `;
 
-const StyledLink = styled.a`
-  color: ${({ theme }) => theme.secondary};
-  text-decoration: none;
-  :active,
-  :hover,
-  :visited,
-  :link {
-    color: ${({ theme }) => theme.secondary};
-    text-decoration: none;
-  }
+const TabletImg = styled.img`
+  display: none;
+  ${mq.TABLET`
+    display:inherit;
+  `}
 `;
 
 const Navbar = () => (
   <HeaderWrapper>
     <Headline>
       <Flex alignItems="center">
-        <Title>
-          <StyledLink href="/">Remote Seer</StyledLink>
-        </Title>
+        <a href="/">
+          <MobileImg src="/images/logo-mobile.png" alt="Remote Seer" />
+          <TabletImg src="/images/logo.png" alt="Remote Seer" />
+        </a>
       </Flex>
     </Headline>
   </HeaderWrapper>
