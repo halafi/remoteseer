@@ -7,12 +7,13 @@ import mq from '../../services/mediaQuery';
 import type { Job as JobType } from '../../records/Job';
 import PERIODS from '../../consts/Periods';
 import groupJobsByPeriod from '../../services/jobs/groupJobsByPeriod';
+import { TAG_LINKS } from '../../services/jobs/tags';
 
 const Link = styled.a`
   color: initial;
   :hover {
     color: initial;
-    h2 {
+    h3 {
       text-decoration: underline;
     }
   }
@@ -31,7 +32,6 @@ const Job = styled(Flex)`
 
   :hover {
     background-color: #f5f5f5;
-    cursor: pointer;
   }
   ${mq.TABLET`
     padding: 18px;
@@ -125,14 +125,25 @@ const Age = styled(Box)`
 `;
 
 const Tag = styled(Box)`
+  z-index: 1;
   margin-bottom: 4px;
   margin-right: 4px;
   border-radius: 0.3em;
-  border: 1px solid #0f1115;
-  padding: 3px;
-  font-size: 11px;
-  vertical-align: middle;
+  background-color: white;
+  border: ${({ link }) => (link ? '1px solid #0f1115' : '1px solid #8a8b8b')};
+  padding: 4px;
+  font-size: 12px;
   text-align: center;
+  color: ${({ link }) => (link ? 'initial' : '#8a8b8b')};
+
+  :hover {
+    cursor: ${({ link }) => (link ? 'pointer' : 'initial')};
+    filter: ${({ link }) => (link ? 'invert(1)' : 'initial')};
+  }
+  a {
+    white-space: nowrap;
+    color: inherit;
+  }
 `;
 
 type Props = {
@@ -147,36 +158,42 @@ const JobList = ({ jobs, nogroup }: Props) => {
     return (
       <Box>
         {jobs.map((job, i) => (
-          <Link key={job.id} href={job.url} target="_blank" rel="noopener noreferrer">
-            <Job alignItems="center" last={i === 14}>
-              <CompanyLogo provider={job.providerId} justifyContent="center" alignItems="center">
-                {job.company.slice(0, 1).toUpperCase()}
-              </CompanyLogo>
-              <JobInfo alignItems="center" justifyContent="space-between">
-                <JobInfo flexDirection="column">
-                  <Flex
-                    flexDirection={['column', null, null, 'row']}
-                    justifyContent={['flex-start', null, null, 'space-between']}
-                    alignItems="center"
-                  >
-                    <Flex flexDirection="column" width={[1, null, null, 3 / 5]}>
+          <Job key={job.id} alignItems="center" last={i === 14}>
+            <CompanyLogo provider={job.providerId} justifyContent="center" alignItems="center">
+              {job.company.slice(0, 1).toUpperCase()}
+            </CompanyLogo>
+            <JobInfo alignItems="center" justifyContent="space-between">
+              <JobInfo flexDirection="column">
+                <Flex
+                  flexDirection={['column', null, null, 'row']}
+                  justifyContent={['flex-start', null, null, 'space-between']}
+                  alignItems="center"
+                >
+                  <Flex flexDirection="column" width={[1, null, null, 3 / 5]}>
+                    <Link href={job.url} target="_blank" rel="noopener noreferrer">
                       {job.company}
                       <JobTitle>{job.title}</JobTitle>
                       {job.location && <JobLocation>{job.location}</JobLocation>}
-                    </Flex>
-                    <Flex width={[1, null, null, 2 / 5]} alignItems="center" flexWrap="wrap">
-                      {job.tags.map(x => (
-                        <Tag key={x}>{x.toUpperCase()}</Tag>
-                      ))}
-                    </Flex>
+                    </Link>
                   </Flex>
-                </JobInfo>
-                <Age ml={[0, null, null, 3]} px={2}>
-                  {job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}
-                </Age>
+                  <Flex width={[1, null, null, 2 / 5]} alignItems="center" flexWrap="wrap">
+                    {job.tags.map(x => (
+                      <Tag key={x} link={Boolean(TAG_LINKS[x])}>
+                        {TAG_LINKS[x] ? (
+                          <a href={TAG_LINKS[x]}>{x.toUpperCase()}</a>
+                        ) : (
+                          <span>{x.toUpperCase()}</span>
+                        )}
+                      </Tag>
+                    ))}
+                  </Flex>
+                </Flex>
               </JobInfo>
-            </Job>
-          </Link>
+              <Age ml={[0, null, null, 3]} px={2}>
+                {job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}
+              </Age>
+            </JobInfo>
+          </Job>
         ))}
       </Box>
     );
@@ -188,40 +205,42 @@ const JobList = ({ jobs, nogroup }: Props) => {
           <TimeBlock flexDirection="column">
             <PeriodTitle>{PERIODS[period]}</PeriodTitle>
             {groupedJobs[period].map((job, i) => (
-              <Link key={job.id} href={job.url} target="_blank" rel="noopener noreferrer">
-                <Job alignItems="center" last={i === groupedJobs[period].length - 1}>
-                  <CompanyLogo
-                    provider={job.providerId}
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    {job.company.slice(0, 1).toUpperCase()}
-                  </CompanyLogo>
-                  <JobInfo alignItems="center" justifyContent="space-between">
-                    <JobInfo flexDirection="column">
-                      <Flex
-                        flexDirection={['column', null, null, 'row']}
-                        justifyContent={['flex-start', null, null, 'space-between']}
-                        alignItems="center"
-                      >
-                        <Flex flexDirection="column" width={[1, null, null, 3 / 5]}>
+              <Job key={job.id} alignItems="center" last={i === groupedJobs[period].length - 1}>
+                <CompanyLogo provider={job.providerId} justifyContent="center" alignItems="center">
+                  {job.company.slice(0, 1).toUpperCase()}
+                </CompanyLogo>
+                <JobInfo alignItems="center" justifyContent="space-between">
+                  <JobInfo flexDirection="column">
+                    <Flex
+                      flexDirection={['column', null, null, 'row']}
+                      justifyContent={['flex-start', null, null, 'space-between']}
+                      alignItems="center"
+                    >
+                      <Flex flexDirection="column" width={[1, null, null, 3 / 5]}>
+                        <Link href={job.url} target="_blank" rel="noopener noreferrer">
                           {job.company}
                           <JobTitle>{job.title}</JobTitle>
                           {job.location && <JobLocation>{job.location}</JobLocation>}
-                        </Flex>
-                        <Flex width={[1, null, null, 2 / 5]} alignItems="center" flexWrap="wrap">
-                          {job.tags.map(x => (
-                            <Tag key={x}>{x.toUpperCase()}</Tag>
-                          ))}
-                        </Flex>
+                        </Link>
                       </Flex>
-                    </JobInfo>
-                    <Age ml={[0, null, null, 3]} px={2}>
-                      {job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}
-                    </Age>
+                      <Flex width={[1, null, null, 2 / 5]} alignItems="center" flexWrap="wrap">
+                        {job.tags.map(x => (
+                          <Tag key={x} link={Boolean(TAG_LINKS[x])}>
+                            {TAG_LINKS[x] ? (
+                              <a href={TAG_LINKS[x]}>{x.toUpperCase()}</a>
+                            ) : (
+                              x.toUpperCase()
+                            )}
+                          </Tag>
+                        ))}
+                      </Flex>
+                    </Flex>
                   </JobInfo>
-                </Job>
-              </Link>
+                  <Age ml={[0, null, null, 3]} px={2}>
+                    {job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}
+                  </Age>
+                </JobInfo>
+              </Job>
             ))}
           </TimeBlock>
         </Box>

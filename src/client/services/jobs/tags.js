@@ -1,4 +1,20 @@
 // @flow
+import { CATEGORIES_META, DEV_CATEGORIES_META } from '../../../server/consts/categories';
+
+export const TAG_LINKS = {
+  design: CATEGORIES_META.design.link,
+  copywriting: CATEGORIES_META.copywriting.link,
+  'customer support': CATEGORIES_META['customer-support'].link,
+  'sales and marketing': CATEGORIES_META['sales-and-marketing'].link,
+  dev: CATEGORIES_META.development.link,
+  mobile: DEV_CATEGORIES_META.mobile.link,
+  frontend: DEV_CATEGORIES_META.frontend.link,
+  backend: DEV_CATEGORIES_META.backend.link,
+  'full stack': DEV_CATEGORIES_META[`full-stack`].link,
+  devops: DEV_CATEGORIES_META.devops.link,
+  'game dev': DEV_CATEGORIES_META.games.link,
+  blockchain: DEV_CATEGORIES_META.blockchain.link,
+};
 
 // simple
 const TAGS = {

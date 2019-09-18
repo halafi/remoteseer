@@ -34,12 +34,12 @@ const TabletImg = styled.img`
 const DropdownButton = styled.span`
   cursor: pointer;
   color: white;
-  padding: 16px 0;
+  padding: 0 0 16px;
   font-size: 16px;
 `;
 
 const DropdownContent = styled.ul`
-  opacity: 0;
+  display: none;
   padding: 12px;
   position: absolute;
   left: -125px;
@@ -49,7 +49,7 @@ const DropdownContent = styled.ul`
   z-index: 1;
   list-style-type: none;
   padding-inline-start: 12px;
-  transition: all 0.2s;
+  transition: all 0.1s;
   border-radius: 5px;
   overflow: hidden;
 `;
@@ -69,10 +69,9 @@ const Item = styled.li`
 
 const Dropdown = styled.div`
   position: relative;
-  display: inline-block;
 
   :hover .dropdown-content {
-    opacity: 1;
+    display: inherit;
   }
 `;
 

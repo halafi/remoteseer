@@ -61,7 +61,7 @@ const Root = () => {
       <Flex alignItems="center" flexDirection="column">
         <Headline jobsCount={jobs.length} category={category} />
         <JobListWrapper flexDirection="column">
-          <Categories categories={CATEGORIES_META} />
+          {/* <Categories categories={CATEGORIES_META} /> */}
           {Object.keys(CATEGORIES_META).map(cat => (
             <Category key={cat}>
               <Link href={CATEGORIES_META[cat].link}>
