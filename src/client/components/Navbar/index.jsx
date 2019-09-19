@@ -75,6 +75,19 @@ const Dropdown = styled.div`
   }
 `;
 
+// const Link = styled.a`
+//   color: white;
+//   text-decoration: none;
+//   padding: 0 0 16px;
+//   font-size: 16px;
+// `;
+
+// const Menu = styled(Flex)`
+//   div {
+//     margin: 0 12px;
+//   }
+// `;
+
 const Navbar = () => (
   <HeaderWrapper>
     <Headline>
@@ -83,16 +96,21 @@ const Navbar = () => (
           <MobileImg src="/images/logo-mobile.png" alt="Remote Seer" />
           <TabletImg src="/images/logo.png" alt="Remote Seer" />
         </a>
-        <Dropdown>
-          <DropdownButton className="dropbtn">Categories</DropdownButton>
-          <DropdownContent className="dropdown-content">
-            {Object.keys(CATEGORIES_META).map(cat => (
-              <Item key={cat}>
-                <a href={CATEGORIES_META[cat].link}>{CATEGORIES_META[cat].title}</a>
-              </Item>
-            ))}
-          </DropdownContent>
-        </Dropdown>
+        <Flex alignItems="center">
+          <Dropdown>
+            <DropdownButton className="dropbtn">Categories</DropdownButton>
+            <DropdownContent className="dropdown-content">
+              {Object.keys(CATEGORIES_META).map(cat => (
+                <Item key={cat}>
+                  <a href={CATEGORIES_META[cat].link}>{CATEGORIES_META[cat].title}</a>
+                </Item>
+              ))}
+            </DropdownContent>
+          </Dropdown>
+          {/* <div>
+            <Link href="/companies-hiring-remotely/">Companies</Link>
+          </div> */}
+        </Flex>
         {/* <Item>Jobs in Development</Item>
         <Item>All Remote Jobs</Item> */}
       </Flex>

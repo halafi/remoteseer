@@ -38,7 +38,7 @@ function markup(url: string) {
   category = category.split('remote-')[1];
   const subcategory = url !== '/' ? url.slice(1, url.length - 1).split('-jobs/')[1] : '';
   const state = {
-    jobs: data.getJobs(subcategory || category),
+    jobs: data.getJobs(subcategory || category), // TODO: is this needed on stat page? probably does not increase page size anyway
     category,
     subcategory,
     stats: data.getJobStats(),

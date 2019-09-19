@@ -40,6 +40,9 @@ async function generateSitemap() {
 
   xml.push(`<url><loc>${DOMAIN}</loc><lastmod>${lastmod}</lastmod></url>`);
   xml.push(`<url><loc>${DOMAIN}/about/</loc><lastmod>${lastmod}</lastmod></url>`);
+  xml.push(
+    `<url><loc>${DOMAIN}/companies-hiring-remotely/</loc><lastmod>${lastmod}</lastmod></url>`,
+  );
 
   Object.keys(CATEGORIES_META).forEach(category => {
     xml.push(

@@ -50,6 +50,9 @@ async function render() {
   const aboutDir = path.join(rootDir, 'about');
   await fs.ensureDir(aboutDir);
   await renderPage(`/about/`, aboutDir);
+  const companiesDir = path.join(rootDir, 'companies-hiring-remotely');
+  await fs.ensureDir(companiesDir);
+  await renderPage(`/companies-hiring-remotely/`, aboutDir);
   await Promise.all(
     Object.keys(CATEGORIES).map(async category => {
       const filepath = path.join(rootDir, `remote-${category}-jobs`);

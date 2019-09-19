@@ -131,8 +131,8 @@ const Tag = styled(Box)`
   border-radius: 0.3em;
   background-color: white;
   border: ${({ link }) => (link ? '1px solid #0f1115' : '1px solid #8a8b8b')};
-  padding: 4px;
-  font-size: 12px;
+  padding: 3px;
+  font-size: 11px;
   text-align: center;
   color: ${({ link }) => (link ? 'initial' : '#8a8b8b')};
 
@@ -165,18 +165,18 @@ const JobList = ({ jobs, nogroup }: Props) => {
             <JobInfo alignItems="center" justifyContent="space-between">
               <JobInfo flexDirection="column">
                 <Flex
-                  flexDirection={['column', null, null, 'row']}
-                  justifyContent={['flex-start', null, null, 'space-between']}
+                  flexDirection={['column', null, null, null, 'row']}
+                  justifyContent={['flex-start', null, null, null, 'space-between']}
                   alignItems="center"
                 >
-                  <Flex flexDirection="column" width={[1, null, null, 3 / 5]}>
+                  <Flex flexDirection="column" width={[1, null, null, null, 3 / 5]}>
                     <Link href={job.url} target="_blank" rel="noopener noreferrer">
                       {job.company}
                       <JobTitle>{job.title}</JobTitle>
                       {job.location && <JobLocation>{job.location}</JobLocation>}
                     </Link>
                   </Flex>
-                  <Flex width={[1, null, null, 2 / 5]} alignItems="center" flexWrap="wrap">
+                  <Flex width={[1, null, null, null, 2 / 5]} alignItems="center" flexWrap="wrap">
                     {job.tags.map(x => (
                       <Tag key={x} link={Boolean(TAG_LINKS[x])}>
                         {TAG_LINKS[x] ? (
@@ -189,7 +189,7 @@ const JobList = ({ jobs, nogroup }: Props) => {
                   </Flex>
                 </Flex>
               </JobInfo>
-              <Age ml={[0, null, null, 3]} px={2}>
+              <Age ml={[0, null, null, null, 3]} px={2}>
                 {job.ageDays > 0 ? `${job.ageDays}d` : `${job.ageHours}h`}
               </Age>
             </JobInfo>
@@ -212,18 +212,23 @@ const JobList = ({ jobs, nogroup }: Props) => {
                 <JobInfo alignItems="center" justifyContent="space-between">
                   <JobInfo flexDirection="column">
                     <Flex
-                      flexDirection={['column', null, null, 'row']}
-                      justifyContent={['flex-start', null, null, 'space-between']}
+                      flexDirection={['column', null, null, null, 'row']}
+                      justifyContent={['flex-start', null, null, null, 'space-between']}
                       alignItems="center"
                     >
-                      <Flex flexDirection="column" width={[1, null, null, 3 / 5]}>
+                      <Flex flexDirection="column" width={[1, null, null, null, 3 / 5]}>
                         <Link href={job.url} target="_blank" rel="noopener noreferrer">
                           {job.company}
                           <JobTitle>{job.title}</JobTitle>
                           {job.location && <JobLocation>{job.location}</JobLocation>}
                         </Link>
                       </Flex>
-                      <Flex width={[1, null, null, 2 / 5]} alignItems="center" flexWrap="wrap">
+                      <Flex
+                        ml={[0, null, null, null, 2]}
+                        width={[1, null, null, null, 2 / 5]}
+                        alignItems="center"
+                        flexWrap="wrap"
+                      >
                         {job.tags.map(x => (
                           <Tag key={x} link={Boolean(TAG_LINKS[x])}>
                             {TAG_LINKS[x] ? (

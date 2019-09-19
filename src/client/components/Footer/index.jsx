@@ -71,6 +71,7 @@ const Footer = () => (
         </Box>
       </Flex>
       <a href="/about/">About</a>
+      <a href="/companies-hiring-remotely/">Companies Hiring Remotely</a>
       <a href="mailto:hello@remoteseer.net">Contact</a>
       <a type="application/rss+xml" href="https://remoteseer.net/remote-jobs.rss">
         RSS Feed

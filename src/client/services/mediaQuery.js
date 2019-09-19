@@ -1,7 +1,7 @@
 // @flow strict
 import { css } from 'styled-components';
 
-const SIZES = {
+export const SIZES = {
   DESKTOP: 1220,
   BIG_TABLET: 1112,
   TABLET: 768,
