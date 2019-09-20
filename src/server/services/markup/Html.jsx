@@ -18,13 +18,13 @@ type Props = {
 const getTitle = (category: string, subcategory: string) => {
   if (subcategory) {
     return `Remote ${DEV_CATEGORIES_META[subcategory].headline ||
-      DEV_CATEGORIES_META[subcategory].title} Jobs | Remote Seer - largest listing of remote jobs`;
+      DEV_CATEGORIES_META[subcategory].title} Jobs | RemoteSeer`;
   }
   if (category) {
     return `Remote ${CATEGORIES_META[category].headline ||
-      CATEGORIES_META[category].title} Jobs | Remote Seer - largest listing of remote jobs`;
+      CATEGORIES_META[category].title} Jobs | RemoteSeer`;
   }
-  return `Remote Jobs | Remote Seer - largest listing of remote jobs`;
+  return `Find remote jobs from multiple remote work sites | RemoteSeer`;
 };
 
 const getDescription = (category: string, subcategory: string) => {
@@ -35,7 +35,7 @@ const getDescription = (category: string, subcategory: string) => {
     return CATEGORIES_META[category].description;
   }
 
-  return 'Remote Seer is an aggregator of remote job sites. Find remote work in development, design, customer support and more.';
+  return 'Aggregator of multiple remote job sites and remote job boards. Find remote work in software development, design, customer support, copywriting and more.';
 };
 
 const Html = ({ url, root, styleElement, state, category, subcategory }: Props) => {
