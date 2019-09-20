@@ -80,6 +80,7 @@ const Breadcrumbs = ({ className, category, subcategory, contentPage }: Props) =
             <link itemProp="item" href={contentPage.link} />
             <span itemProp="name">{contentPage.title}</span>
           </Selected>
+          <meta itemProp="position" content={2} />
         </ListItem>
       )}
       {category && (
