@@ -17,7 +17,7 @@ type Props = {
 
 const getTitle = (url: string, category: string, subcategory: string) => {
   if (url.includes('about')) {
-    return `About RemoteSeer`;
+    return `About and remote job stats | RemoteSeer`;
   }
   if (url.includes('companies')) {
     return `Top companies hiring remotely | RemoteSeer`;
@@ -38,7 +38,7 @@ const getDescription = (url: string, category: string, subcategory: string) => {
     return `Read more about RemoteSeer and our goal to cover the largest amount of remote jobs on the web. Find statistics about aggregated remote job boards. `;
   }
   if (url.includes('companies')) {
-    return `Find companies with the largest amount of remote jobs listed on our site.`;
+    return `Companies hiring remotely with the largest amount of remote jobs found on our site.`;
   }
   if (subcategory && DEV_CATEGORIES_META[subcategory]) {
     return DEV_CATEGORIES_META[subcategory].description;
