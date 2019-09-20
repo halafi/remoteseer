@@ -15,7 +15,13 @@ type Props = {
   subcategory: string,
 };
 
-const getTitle = (category: string, subcategory: string) => {
+const getTitle = (url: string, category: string, subcategory: string) => {
+  if (url.includes('about')) {
+    return `About RemoteSeer`;
+  }
+  if (url.includes('companies')) {
+    return `Top companies hiring remotely | RemoteSeer`;
+  }
   if (subcategory) {
     return `Remote ${DEV_CATEGORIES_META[subcategory].headline ||
       DEV_CATEGORIES_META[subcategory].title} Jobs | RemoteSeer`;
@@ -27,7 +33,13 @@ const getTitle = (category: string, subcategory: string) => {
   return `Find remote jobs from multiple remote work sites | RemoteSeer`;
 };
 
-const getDescription = (category: string, subcategory: string) => {
+const getDescription = (url: string, category: string, subcategory: string) => {
+  if (url.includes('about')) {
+    return `Read more about RemoteSeer and our goal to cover the largest amount of remote jobs on the web. Find statistics about aggregated remote job boards. `;
+  }
+  if (url.includes('companies')) {
+    return `Find companies with the largest amount of remote jobs listed on our site.`;
+  }
   if (subcategory && DEV_CATEGORIES_META[subcategory]) {
     return DEV_CATEGORIES_META[subcategory].description;
   }
@@ -61,8 +73,8 @@ const Html = ({ url, root, styleElement, state, category, subcategory }: Props) 
           </>
         )}
         <SEO
-          title={getTitle(category, subcategory)}
-          description={getDescription(category, subcategory)}
+          title={getTitle(url, category, subcategory)}
+          description={getDescription(url, category, subcategory)}
           url={url}
         />
         <link
