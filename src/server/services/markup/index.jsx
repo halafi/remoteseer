@@ -40,7 +40,11 @@ function markup(url: string) {
   [subcategory] = subcategory ? subcategory.split('/') : [''];
   const state = {
     jobs:
-      url === '/' || subsubcategory || subcategory || category
+      url === '/' ||
+      url === '/companies-hiring-remotely/' || // this could be pre-computed on the server
+      subsubcategory ||
+      subcategory ||
+      category
         ? data.getJobs(subsubcategory || subcategory || category)
         : [], // TODO: is this needed on stat page? probably does not increase page size anyway
     category,
