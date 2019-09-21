@@ -18,9 +18,15 @@ export const DEV_CATEGORIES = {
   games: ['game dev'],
 };
 
+export const FRONTEND_CATEGORIES = {
+  react: ['react'],
+  angular: ['angular'],
+};
+
 export const ALL_CATEGORIES = {
   ...CATEGORIES,
   ...DEV_CATEGORIES,
+  ...FRONTEND_CATEGORIES,
 };
 
 export const CATEGORIES_META = {
@@ -29,35 +35,35 @@ export const CATEGORIES_META = {
     img: '💻',
     title: 'Software Development',
     description:
-      'Browse through a listing of remote software development job openings from multiple websites at once.',
+      'Find all the latest remote jobs in programming and software development available on multiple websites in one place.',
   },
   design: {
     link: '/remote-design-jobs/',
     img: '🎨',
     title: 'Design',
     description:
-      'Browse through a listing of remote design, user experience and interaction job openings from multiple websites at once.',
+      'Find all the latest remote jobs in design, user experience (UX) and user interaction (UI) available on multiple websites in one place.',
   },
   'customer-support': {
     link: '/remote-customer-support-jobs/',
     img: '🧯🔥',
     title: 'Customer Support',
     description:
-      'Browse through a listing of remote customer support job openings from multiple websites at once.',
+      'Find all the latest remote customer support jobs available on multiple websites in one place.',
   },
   'sales-and-marketing': {
     link: '/remote-sales-and-marketing-jobs/',
     img: '📈',
     title: 'Sales and Marketing',
     description:
-      'Browse through a listing of remote marketing and sales job openings from multiple websites at once.',
+      'Find all the latest remote jobs in marketing and sales available on multiple websites in one place.',
   },
   copywriting: {
     link: '/remote-copywriting-jobs/',
     img: '📝',
     title: 'Copywriting',
     description:
-      'Browse through a listing of remote copywriting job openings from multiple websites at once.',
+      'Find all the latest remote jobs in copywriting, copyediting and content writing available on multiple websites in one place.',
   },
 };
 export const DEV_CATEGORIES_META = {
@@ -67,7 +73,7 @@ export const DEV_CATEGORIES_META = {
     title: 'Mobile',
     headline: 'Mobile App Development',
     description:
-      'Browse through a listing of remote mobile development jobs from multiple websites at once.',
+      'Find all the latest remote jobs in mobile app development (Android, iOS, multi platform) on multiple websites in one place.',
   },
   frontend: {
     link: '/remote-development-jobs/frontend/',
@@ -75,7 +81,7 @@ export const DEV_CATEGORIES_META = {
     title: 'Frontend',
     headline: 'Frontend Development',
     description:
-      'Browse through a listing of remote frontend development jobs from multiple websites at once.',
+      'Find all the latest remote jobs in frontend development on multiple websites in one place. Build web apps remotely.',
   },
   backend: {
     link: '/remote-development-jobs/backend/',
@@ -83,7 +89,7 @@ export const DEV_CATEGORIES_META = {
     title: 'Backend',
     headline: 'Backend Development',
     description:
-      'Browse through a listing of remote backend development jobs from multiple websites at once.',
+      'Find all the latest backend development remote jobs on multiple websites in one place.',
   },
   'full-stack': {
     link: '/remote-development-jobs/full-stack/',
@@ -91,13 +97,13 @@ export const DEV_CATEGORIES_META = {
     title: 'Full Stack',
     headline: 'Full Stack Development',
     description:
-      'Browse through a listing of remote full stack jobs from multiple websites at once.',
+      'Find all the latest full stack development remote jobs on multiple websites in one place. Work on both backend and frontend.',
   },
   devops: {
     link: '/remote-development-jobs/devops/',
     img: '⚰️',
     title: 'DevOps',
-    description: 'Browse through a listing of remote devops jobs from multiple websites at once.',
+    description: 'Find all the latest remote devops jobs on multiple websites in one place.',
   },
   games: {
     link: '/remote-development-jobs/games/',
@@ -105,7 +111,7 @@ export const DEV_CATEGORIES_META = {
     title: 'Games',
     headline: 'Game Development',
     description:
-      'Browse through a listing of remote game development jobs from multiple websites at once.',
+      'Find all the latest remote gamedev jobs on multiple websites in one place. Start programming games remotely.',
   },
   blockchain: {
     link: '/remote-development-jobs/blockchain/',
@@ -113,6 +119,24 @@ export const DEV_CATEGORIES_META = {
     title: 'Blockchain',
     headline: 'Blockchain Development',
     description:
-      'Browse through a listing of remote blockchain development jobs from multiple websites at once.',
+      'Find all the latest remote blockchain development jobs on multiple websites in one place. Work on modern crypto projects.',
   },
 };
+
+export const FRONTEND_CATEGORIES_META = {
+  react: {
+    link: '/remote-development-jobs/frontend/react/',
+    title: 'React',
+    headline: 'React Development',
+    description:
+      'Find all the latest remote React development jobs on multiple websites in one place. Build scalable web apps in React JS.',
+  },
+  angular: {
+    link: '/remote-development-jobs/frontend/angular/',
+    title: 'Angular',
+    headline: 'Angular Development',
+    description:
+      'Find all the latest remote Angular development jobs on multiple websites in one place. Build scalable web apps in Angular JS.',
+  },
+};
+export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...FRONTEND_CATEGORIES_META };

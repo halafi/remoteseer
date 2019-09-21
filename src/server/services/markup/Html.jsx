@@ -3,7 +3,11 @@
 // hreflang x hrefLang jsx issue
 import * as React from 'react';
 import GoogleAnalytics from './components/GoogleAnalytics';
-import { CATEGORIES_META, DEV_CATEGORIES_META } from '../../consts/categories';
+import {
+  CATEGORIES_META,
+  DEV_CATEGORIES_META,
+  FRONTEND_CATEGORIES_META,
+} from '../../consts/categories';
 import SEO from './components/SEO/index';
 
 type Props = {
@@ -13,9 +17,10 @@ type Props = {
   state: any,
   category: string,
   subcategory: string,
+  subsubcategory: string,
 };
 
-const getTitle = (url: string, category: string, subcategory: string) => {
+const getTitle = (url: string, category: string, subcategory: string, subsubcategory: string) => {
   if (url.includes('about')) {
     return `About and remote job stats | RemoteSeer`;
   }
@@ -33,12 +38,20 @@ const getTitle = (url: string, category: string, subcategory: string) => {
   return `Find remote jobs from multiple remote work sites | RemoteSeer`;
 };
 
-const getDescription = (url: string, category: string, subcategory: string) => {
+const getDescription = (
+  url: string,
+  category: string,
+  subcategory: string,
+  subsubcategory: string,
+) => {
   if (url.includes('about')) {
     return `Read more about RemoteSeer and our goal to cover the largest amount of remote jobs on the web. Find statistics about aggregated remote job boards. `;
   }
   if (url.includes('companies')) {
     return `Companies hiring remotely with the largest amount of remote jobs found on our site.`;
+  }
+  if (subsubcategory && FRONTEND_CATEGORIES_META[subsubcategory]) {
+    return FRONTEND_CATEGORIES_META[subsubcategory].description;
   }
   if (subcategory && DEV_CATEGORIES_META[subcategory]) {
     return DEV_CATEGORIES_META[subcategory].description;
@@ -50,7 +63,7 @@ const getDescription = (url: string, category: string, subcategory: string) => {
   return 'Aggregator of multiple remote job sites and remote job boards. Find remote work in software development, design, customer support, copywriting and more.';
 };
 
-const Html = ({ url, root, styleElement, state, category, subcategory }: Props) => {
+const Html = ({ url, root, styleElement, state, category, subcategory, subsubcategory }: Props) => {
   return (
     <html lang="en">
       <head>
@@ -73,8 +86,8 @@ const Html = ({ url, root, styleElement, state, category, subcategory }: Props) 
           </>
         )}
         <SEO
-          title={getTitle(url, category, subcategory)}
-          description={getDescription(url, category, subcategory)}
+          title={getTitle(url, category, subcategory, subsubcategory)}
+          description={getDescription(url, category, subcategory, subsubcategory)}
           url={url}
         />
         <link

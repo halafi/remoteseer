@@ -1,5 +1,9 @@
 // @flow
-import { CATEGORIES_META, DEV_CATEGORIES_META } from '../../../server/consts/categories';
+import {
+  CATEGORIES_META,
+  DEV_CATEGORIES_META,
+  FRONTEND_CATEGORIES_META,
+} from '../../../server/consts/categories';
 
 export const TAG_LINKS = {
   design: CATEGORIES_META.design.link,
@@ -14,6 +18,8 @@ export const TAG_LINKS = {
   devops: DEV_CATEGORIES_META.devops.link,
   'game dev': DEV_CATEGORIES_META.games.link,
   blockchain: DEV_CATEGORIES_META.blockchain.link,
+  react: FRONTEND_CATEGORIES_META.react.link,
+  angular: FRONTEND_CATEGORIES_META.angular.link,
 };
 
 // simple

@@ -101,12 +101,12 @@ const H2 = styled.h2`
 `;
 
 const Stats = () => {
-  const { jobs, category, stats } = useStateValue();
+  const { jobs, stats } = useStateValue();
   return (
     <>
       <Navbar />
       <Flex alignItems="center" flexDirection="column">
-        <Headline jobsCount={jobs.length} category={category} />
+        <Headline jobsCount={jobs.length} />
         <JobListWrapper flexDirection="column">
           <Breadcrumbs contentPage={{ title: 'About', link: '/about/' }} />
           <Box px={12}>

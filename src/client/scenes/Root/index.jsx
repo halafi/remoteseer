@@ -53,12 +53,12 @@ const CatTitle = styled.h2`
 `;
 
 const Root = () => {
-  const { jobs, category } = useStateValue();
+  const { jobs } = useStateValue();
   return (
     <>
       <Navbar />
       <Flex alignItems="center" flexDirection="column">
-        <Headline jobsCount={jobs.length} category={category} />
+        <Headline jobsCount={jobs.length} />
         <JobListWrapper flexDirection="column">
           {/* <Categories categories={CATEGORIES_META} /> */}
           {Object.keys(CATEGORIES_META).map(cat => (

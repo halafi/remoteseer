@@ -34,14 +34,19 @@ const GlobalStyle = createGlobalStyle`
 function markup(url: string) {
   const sheet = new ServerStyleSheet();
   let category = url !== '/' ? url.slice(1, url.length).split('-jobs')[0] : '';
-  // eslint-disable-next-line
-  category = category.split('remote-')[1];
-  const subcategory = url !== '/' ? url.slice(1, url.length - 1).split('-jobs/')[1] : '';
+  [, category] = category.split('remote-');
+  let subcategory = url !== '/' ? url.slice(1, url.length).split('-jobs/')[1] : '';
+  const [, subsubcategory] = subcategory ? subcategory.split('/') : ['', ''];
+  [subcategory] = subcategory ? subcategory.split('/') : [''];
   const state = {
-    jobs: data.getJobs(subcategory || category), // TODO: is this needed on stat page? probably does not increase page size anyway
+    jobs:
+      url === '/' || subsubcategory || subcategory || category
+        ? data.getJobs(subsubcategory || subcategory || category)
+        : [], // TODO: is this needed on stat page? probably does not increase page size anyway
     category,
     subcategory,
-    stats: data.getJobStats(),
+    subsubcategory: subsubcategory || '',
+    stats: url === '/about/' ? data.getJobStats() : {}, // TODO: only needed on about page
   };
   const root = renderToString(
     <StyleSheetManager sheet={sheet.instance}>
@@ -70,6 +75,7 @@ function markup(url: string) {
       state={state}
       category={category}
       subcategory={subcategory}
+      subsubcategory={subsubcategory}
     />,
   );
 

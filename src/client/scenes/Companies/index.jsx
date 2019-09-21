@@ -38,16 +38,17 @@ const JobCount = styled.div`
 const H2 = styled.h2`
   margin-block-start: 0;
   margin-block-end: 0;
-`
+`;
 
 const Stats = () => {
-  const { jobs, category } = useStateValue();
+  const { jobs } = useStateValue();
   const groupedJobs = R.groupWith((a, b) => a.company === b.company)(jobs);
+
   return (
     <>
       <Navbar />
       <Flex alignItems="center" flexDirection="column">
-        <Headline jobsCount={jobs.length} category={category} />
+        <Headline jobsCount={jobs.length} />
         <JobListWrapper flexDirection="column">
           <Breadcrumbs
             contentPage={{

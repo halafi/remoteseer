@@ -10,7 +10,12 @@ import Headline from '../../components/Headline/index';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import mq from '../../services/mediaQuery';
 import Categories from '../../components/Categories';
-import { DEV_CATEGORIES_META, CATEGORIES_META } from '../../../server/consts/categories';
+import {
+  FRONTEND_CATEGORIES_META,
+  DEV_CATEGORIES_META,
+  CATEGORIES_META,
+  ALL_META,
+} from '../../../server/consts/categories';
 
 const JobListWrapper: any = styled(Flex)`
   margin: 0 auto 40px;
@@ -27,20 +32,39 @@ const CatTitle = styled.h2`
 `;
 
 const Root = () => {
-  const { jobs, category, subcategory } = useStateValue();
+  const { jobs, category, subcategory, subsubcategory } = useStateValue();
+
+  let title;
+  if (subsubcategory) {
+    title =
+      FRONTEND_CATEGORIES_META[subsubcategory].headline ||
+      FRONTEND_CATEGORIES_META[subsubcategory].title;
+  } else if (subcategory) {
+    title = DEV_CATEGORIES_META[subcategory].headline || DEV_CATEGORIES_META[subcategory].title;
+  } else {
+    title = CATEGORIES_META[category].title;
+  }
+
+  let headlineText = '';
+  if (subsubcategory && ALL_META[subsubcategory]) {
+    headlineText = ` in ${ALL_META[subsubcategory].headline || ALL_META[subsubcategory].title}`;
+  } else if (subcategory && ALL_META[subcategory]) {
+    headlineText = ` in ${ALL_META[subcategory].headline || ALL_META[subcategory].title}`;
+  } else if (category && ALL_META[category]) {
+    headlineText = ` in ${ALL_META[category].headline || ALL_META[category].title}`;
+  }
   return (
     <>
       <Navbar />
       <Flex alignItems="center" flexDirection="column">
-        <Headline jobsCount={jobs.length} category={subcategory || category} />
+        <Headline jobsCount={jobs.length} headlineText={headlineText} />
         <JobListWrapper flexDirection="column">
-          <Breadcrumbs category={category} subcategory={subcategory} />
-          <CatTitle>
-            {subcategory
-              ? DEV_CATEGORIES_META[subcategory].headline || DEV_CATEGORIES_META[subcategory].title
-              : CATEGORIES_META[category].title}{' '}
-            Jobs
-          </CatTitle>
+          <Breadcrumbs
+            category={category}
+            subcategory={subcategory}
+            subsubcategory={subsubcategory}
+          />
+          <CatTitle>{title} Jobs</CatTitle>
           {category === 'development' && !subcategory && (
             <Categories categories={DEV_CATEGORIES_META} />
           )}

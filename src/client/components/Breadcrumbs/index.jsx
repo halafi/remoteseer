@@ -3,7 +3,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Box } from '@rebass/grid';
-import { CATEGORIES_META, DEV_CATEGORIES_META } from '../../../server/consts/categories';
+import {
+  CATEGORIES_META,
+  DEV_CATEGORIES_META,
+  FRONTEND_CATEGORIES_META,
+} from '../../../server/consts/categories';
 
 const Container: any = styled(Box)`
   margin: 30px 0;
@@ -34,7 +38,7 @@ const ListItem = styled.li`
 `;
 
 const Link = styled.a`
-  color: ${({ selected, theme }) => (!selected ? theme.primary : theme.gray)};
+  color: ${({ theme }) => theme.primary};
   font-weight: ${({ selected }) => (!selected ? 900 : 400)};
   text-decoration: none;
 `;
@@ -47,6 +51,7 @@ const Selected = styled.span`
 type Props = {
   category?: ?string,
   subcategory?: ?string,
+  subsubcategory?: ?string,
   className?: ?string,
   contentPage?: ?{ title: string, link: string },
 };
@@ -54,7 +59,7 @@ type Props = {
 // TEST: https://search.google.com/structured-data/testing-tool/u/0/
 // GUIDE: https://audisto.com/insights/guides/2/
 // https://schema.org/BreadcrumbList microdata
-const Breadcrumbs = ({ className, category, subcategory, contentPage }: Props) => (
+const Breadcrumbs = ({ className, category, subcategory, subsubcategory, contentPage }: Props) => (
   <Container>
     <StyledList className={className} itemScope itemType="http://schema.org/BreadcrumbList">
       <ListItem
@@ -96,11 +101,7 @@ const Breadcrumbs = ({ className, category, subcategory, contentPage }: Props) =
               <span itemProp="name">{CATEGORIES_META[category].title}</span>
             </Selected>
           ) : (
-            <Link
-              selected={Boolean(category && !subcategory)}
-              itemProp="item"
-              href={CATEGORIES_META[category].link}
-            >
+            <Link itemProp="item" href={CATEGORIES_META[category].link}>
               <span itemProp="name">{CATEGORIES_META[category].title}</span>
             </Link>
           )}
@@ -114,11 +115,31 @@ const Breadcrumbs = ({ className, category, subcategory, contentPage }: Props) =
           itemScope
           itemType="http://schema.org/ListItem"
         >
-          <Selected>
-            <link itemProp="item" href={DEV_CATEGORIES_META[subcategory].link} />
-            <span itemProp="name">{DEV_CATEGORIES_META[subcategory].title}</span>
-          </Selected>
+          {!subsubcategory ? (
+            <Selected>
+              <link itemProp="item" href={DEV_CATEGORIES_META[subcategory].link} />
+              <span itemProp="name">{DEV_CATEGORIES_META[subcategory].title}</span>
+            </Selected>
+          ) : (
+            <Link itemProp="item" href={DEV_CATEGORIES_META[subcategory].link}>
+              <span itemProp="name">{DEV_CATEGORIES_META[subcategory].title}</span>
+            </Link>
+          )}
           <meta itemProp="position" content={3} />
+        </ListItem>
+      )}
+      {subsubcategory && (
+        <ListItem
+          key="home"
+          itemProp="itemListElement"
+          itemScope
+          itemType="http://schema.org/ListItem"
+        >
+          <Selected>
+            <link itemProp="item" href={FRONTEND_CATEGORIES_META[subsubcategory].link} />
+            <span itemProp="name">{FRONTEND_CATEGORIES_META[subsubcategory].title}</span>
+          </Selected>
+          <meta itemProp="position" content={4} />
         </ListItem>
       )}
     </StyledList>
@@ -128,6 +149,7 @@ const Breadcrumbs = ({ className, category, subcategory, contentPage }: Props) =
 Breadcrumbs.defaultProps = {
   category: null,
   subcategory: null,
+  subsubcategory: null,
   className: null,
   contentPage: null,
 };
