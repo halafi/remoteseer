@@ -41,6 +41,7 @@ function markup(url: string) {
   const state = {
     jobs:
       url === '/' ||
+      url === '/about/' ||
       url === '/companies-hiring-remotely/' || // this could be pre-computed on the server
       subsubcategory ||
       subcategory ||
