@@ -15,6 +15,9 @@ const Headline = styled.div`
   padding: 16px 12px 18px;
   max-width: 950px;
   margin: 0 auto;
+  ${mq.TABLET`
+    max-width: 1220px;
+  `}
 `;
 
 const MobileImg = styled.img`
@@ -38,26 +41,31 @@ const DropdownButton = styled.span`
   font-size: 16px;
 `;
 
+const Arrow = styled.span`
+  position: absolute;
+  left: calc(50% - 5px);
+  right: 50%;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  display: block;
+  background: #f1f1f1;
+  transform: translateY(-50%) rotate(45deg);
+`;
+
 const DropdownContent = styled.ul`
   display: none;
   padding: 12px;
   position: absolute;
-  left: -125px;
+  left: ${({ shift }) => `-${shift}px`};
   background-color: #f1f1f1;
-  min-width: 180px;
+  min-width: ${({ minWidth }) => `${minWidth}px`};
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   list-style-type: none;
   padding-inline-start: 12px;
   transition: all 0.1s;
   border-radius: 5px;
-  overflow: hidden;
-  .arrow_box:after {
-    border-color: red;
-    border-bottom-color: #88b7d5;
-    border-width: 30px;
-    margin-left: -30px;
-  }
 `;
 
 const Item = styled.li`
@@ -74,6 +82,7 @@ const Item = styled.li`
 `;
 
 const Dropdown = styled.div`
+  margin: 0 10px;
   position: relative;
 
   :hover .dropdown-content {
@@ -105,12 +114,29 @@ const Navbar = () => (
         <Flex alignItems="center">
           <Dropdown>
             <DropdownButton className="dropbtn">Categories</DropdownButton>
-            <DropdownContent className="dropdown-content">
+            <DropdownContent className="dropdown-content" shift={55} minWidth={165}>
+              <Arrow />
               {Object.keys(CATEGORIES_META).map(cat => (
                 <Item key={cat}>
                   <a href={CATEGORIES_META[cat].link}>{CATEGORIES_META[cat].title}</a>
                 </Item>
               ))}
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton className="dropbtn">Community</DropdownButton>
+            <DropdownContent className="dropdown-content" shift={20} minWidth={90}>
+              <Arrow />
+              <Item>
+                <a href="https://twitter.com/remote_seer" target="_blank" rel="noopener noreferrer">
+                  Twitter
+                </a>
+              </Item>
+              <Item>
+                <a type="application/rss+xml" href="https://remoteseer.net/remote-jobs.rss">
+                  RSS Feed
+                </a>
+              </Item>
             </DropdownContent>
           </Dropdown>
           {/* <div>
