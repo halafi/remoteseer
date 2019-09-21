@@ -10,7 +10,7 @@ import Headline from '../../components/Headline/index';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import mq from '../../services/mediaQuery';
 import Categories from '../../components/Categories';
-import { DEV_CATEGORIES_META } from '../../../server/consts/categories';
+import { DEV_CATEGORIES_META, CATEGORIES_META } from '../../../server/consts/categories';
 
 const JobListWrapper: any = styled(Flex)`
   margin: 0 auto 40px;
@@ -18,6 +18,12 @@ const JobListWrapper: any = styled(Flex)`
   ${mq.DESKTOP`
     width: 950px;
   `}
+`;
+
+const CatTitle = styled.h2`
+  padding: 0 12px;
+  margin-block-start: 0;
+  margin-block-end: 10px;
 `;
 
 const Root = () => {
@@ -29,6 +35,12 @@ const Root = () => {
         <Headline jobsCount={jobs.length} category={subcategory || category} />
         <JobListWrapper flexDirection="column">
           <Breadcrumbs category={category} subcategory={subcategory} />
+          <CatTitle>
+            {subcategory
+              ? DEV_CATEGORIES_META[subcategory].headline || DEV_CATEGORIES_META[subcategory].title
+              : CATEGORIES_META[category].title}{' '}
+            Jobs
+          </CatTitle>
           {category === 'development' && !subcategory && (
             <Categories categories={DEV_CATEGORIES_META} />
           )}

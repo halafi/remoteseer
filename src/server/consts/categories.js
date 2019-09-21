@@ -96,7 +96,7 @@ export const DEV_CATEGORIES_META = {
   devops: {
     link: '/remote-development-jobs/devops/',
     img: '⚰️',
-    title: 'Devops',
+    title: 'DevOps',
     description: 'Browse through a listing of remote devops jobs from multiple websites at once.',
   },
   games: {

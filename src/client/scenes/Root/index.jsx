@@ -49,7 +49,6 @@ const Button = styled(Box)`
 const CatTitle = styled.h2`
   display: inline-block;
   padding: 0 12px;
-  font-size: 24px;
   margin-top: 16px;
 `;
 
