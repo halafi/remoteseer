@@ -10,7 +10,7 @@ type Props = {
 const SEO = ({ title, description, url }: Props) => (
   <>
     <title>{title}</title>
-    {description && <meta name="description" property="og:description" content={description} />}
+    {description && <meta name="description" content={description} />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:url" content={`https://remoteseer.net${url !== '/' ? url : ''}`} />
@@ -18,6 +18,7 @@ const SEO = ({ title, description, url }: Props) => (
       property="og:image"
       content="https://remoteseer.net/images/icons/android-chrome-512x512.png"
     />
+    <meta property="og:description" content={description} />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
     <meta property="og:image:alt" content="palm tree - work remotely from a beach" />
