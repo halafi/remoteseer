@@ -10,7 +10,7 @@ import Headline from '../../components/Headline/index';
 import mq from '../../services/mediaQuery';
 import { CATEGORIES_META } from '../../../server/consts/categories';
 import filterCategoryJobs from '../../services/jobs/filterCategoryJobs';
-import Categories from '../../components/Categories';
+// import Categories from '../../components/Categories';
 
 const JobListWrapper: any = styled(Flex)`
   margin: 0 auto 40px;

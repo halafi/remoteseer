@@ -52,6 +52,12 @@ const DropdownContent = styled.ul`
   transition: all 0.1s;
   border-radius: 5px;
   overflow: hidden;
+  .arrow_box:after {
+    border-color: red;
+    border-bottom-color: #88b7d5;
+    border-width: 30px;
+    margin-left: -30px;
+  }
 `;
 
 const Item = styled.li`
