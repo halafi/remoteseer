@@ -20,6 +20,7 @@ const SEO = ({ title, description, url }: Props) => (
     />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="palm tree - work remotely from a beach" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@remote_seer" />
     <meta name="twitter:creator" content="@remote_seer" />
