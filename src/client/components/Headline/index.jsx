@@ -38,7 +38,7 @@ const Header = styled.h1`
 `}
 `;
 
-const Subheader = styled.h2`
+const Subheader = styled.span`
   margin: 0 6px;
   font-size: 16px;
   font-weight: 400;
@@ -60,6 +60,7 @@ const Provider = styled.img`
 
 const Link = styled.a`
   color: initial;
+  text-decoration: underline;
 `;
 
 type Props = {

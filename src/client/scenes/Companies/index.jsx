@@ -35,6 +35,11 @@ const JobCount = styled.div`
   font-size: 12px;
 `;
 
+const H2 = styled.h2`
+  margin-block-start: 0;
+  margin-block-end: 0;
+`
+
 const Stats = () => {
   const { jobs, category } = useStateValue();
   const groupedJobs = R.groupWith((a, b) => a.company === b.company)(jobs);
@@ -51,7 +56,7 @@ const Stats = () => {
             }}
           />
           <Box px={12}>
-            <h3>Top Companies Hiring Remotely</h3>
+            <H2>Top Companies Hiring Remotely</H2>
             <p>
               Here you can find companies listed on our site with at least two remote positions
               available.

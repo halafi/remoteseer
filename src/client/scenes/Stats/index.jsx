@@ -48,13 +48,6 @@ const JobListWrapper: any = styled(Flex)`
 //   `}
 // `;
 
-// const CatTitle = styled.h2`
-//   display: inline-block;
-//   padding: 0 12px;
-//   font-size: 24px;
-//   margin-top: 16px;
-// `;
-
 const FlexWrapper = styled(Flex)``;
 
 const Provider = styled.img`
@@ -102,6 +95,11 @@ const COVERAGE = {
   remotive: 100,
 };
 
+const H2 = styled.h2`
+  margin-block-start: 0;
+  margin-block-end: 0;
+`;
+
 const Stats = () => {
   const { jobs, category, stats } = useStateValue();
   return (
@@ -112,6 +110,7 @@ const Stats = () => {
         <JobListWrapper flexDirection="column">
           <Breadcrumbs contentPage={{ title: 'About', link: '/about/' }} />
           <Box px={12}>
+            <H2>About Remote Seer</H2>
             <h3>What do we do?</h3>
             <p>
               Our aim is to cover the <strong>largest amount of remote jobs</strong> on the web. At
