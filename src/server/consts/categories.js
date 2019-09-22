@@ -20,8 +20,6 @@ export const DEV_CATEGORIES = {
   web: ['web dev'],
   nodejs: ['nodejs'],
   cryptocurrency: ['cryptocurrency'],
-  django: ['django'],
-  'ruby-on-rails': ['rails'],
 };
 
 export const SUBSUBCATEGORIES = {
@@ -36,6 +34,8 @@ export const SUBSUBCATEGORIES = {
   python: ['python'],
   ios: ['ios'],
   android: ['android'],
+  django: ['django'],
+  'ruby-on-rails': ['rails'],
   'cross-platform': ['cross platform'],
   // flutter: ['flutter'],
   // kotlin: ['kotlin'],

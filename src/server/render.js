@@ -58,22 +58,24 @@ async function render() {
   const companiesDir = path.join(rootDir, 'companies-hiring-remotely');
   await fs.ensureDir(companiesDir);
   await renderPage(`/companies-hiring-remotely/`, companiesDir);
-  await Promise.all(
-    Object.keys(CATEGORIES).map(async category => {
+  await Object.keys(CATEGORIES).reduce(async (pacc, category) => {
+    return pacc.then(async () => {
       const filepath = path.join(rootDir, `remote-${category}-jobs`);
       await fs.ensureDir(filepath);
       await renderPage(`/remote-${category}-jobs/`, filepath);
-    }),
-  );
-  await Promise.all(
-    Object.keys(DEV_CATEGORIES).map(async category => {
+    });
+  }, Promise.resolve());
+  await Object.keys(DEV_CATEGORIES).reduce(async (pacc, category) => {
+    return pacc.then(async () => {
+      console.log(`[render] ${category}`);
       const filepath = path.join(rootDir, `remote-development-jobs/${category}`);
       await fs.ensureDir(filepath);
       await renderPage(`/remote-development-jobs/${category}/`, filepath);
-    }),
-  );
-  await Promise.all(
-    Object.keys(SUBSUBCATEGORIES).map(async category => {
+    });
+  }, Promise.resolve());
+  await Object.keys(SUBSUBCATEGORIES).reduce(async (pacc, category) => {
+    return pacc.then(async () => {
+      console.log(`[render] ${category}`);
       const filepath = path.join(
         rootDir,
         SUBSUBCATEGORIES_META[category].link.slice(
@@ -83,8 +85,8 @@ async function render() {
       );
       await fs.ensureDir(filepath);
       await renderPage(SUBSUBCATEGORIES_META[category].link, filepath);
-    }),
-  );
+    });
+  }, Promise.resolve());
   console.log('[render] done');
 }
 
