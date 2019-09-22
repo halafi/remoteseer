@@ -16,11 +16,15 @@ export const DEV_CATEGORIES = {
   devops: ['devops'],
   blockchain: ['blockchain', 'cryptocurrency'],
   games: ['game dev'],
+  javascript: ['javascript'],
+  web: ['web dev'],
+  nodejs: ['nodejs'],
 };
 
 export const FRONTEND_CATEGORIES = {
   react: ['react'],
   angular: ['angular'],
+  vue: ['vuejs'],
 };
 
 export const ALL_CATEGORIES = {
@@ -121,8 +125,28 @@ export const DEV_CATEGORIES_META = {
     description:
       'Find all the latest remote blockchain development jobs on multiple websites in one place. Work on modern crypto projects.',
   },
+  javascript: {
+    link: '/remote-development-jobs/javascript/',
+    title: 'JavaScript',
+    headline: 'JavaScript Development',
+    description:
+      'Find all the latest remote JavaScript jobs on multiple websites in one place. Build scalable web sites and apps in JavaScript.',
+  },
+  web: {
+    link: '/remote-development-jobs/web/',
+    title: 'Web',
+    headline: 'Web Development',
+    description:
+      'Find all the latest remote web development jobs on multiple websites in one place.',
+  },
+  nodejs: {
+    link: '/remote-development-jobs/nodejs/',
+    title: 'Node JS',
+    headline: 'Node JS Development',
+    description:
+      'Find all the latest remote Node JS development jobs on multiple websites in one place. Build backend in JavaScript.',
+  },
 };
-
 export const FRONTEND_CATEGORIES_META = {
   react: {
     link: '/remote-development-jobs/frontend/react/',
@@ -137,6 +161,13 @@ export const FRONTEND_CATEGORIES_META = {
     headline: 'Angular Development',
     description:
       'Find all the latest remote Angular development jobs on multiple websites in one place. Build scalable web apps in Angular JS.',
+  },
+  vue: {
+    link: '/remote-development-jobs/frontend/vue/',
+    title: 'Vue JS',
+    headline: 'Vue Development',
+    description:
+      'Find all the latest remote Vue development jobs on multiple websites in one place. Build scalable web apps in Vue JS.',
   },
 };
 export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...FRONTEND_CATEGORIES_META };

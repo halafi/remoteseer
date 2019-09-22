@@ -3,6 +3,7 @@ import { differenceInDays, subHours, subDays, differenceInHours } from 'date-fns
 import type { Job } from '../../../../records/Job';
 import { PROVIDERS } from '../../../../records/Job';
 import getTags from '../../tags';
+import normalizeTitle from '../../normalizeTitle';
 
 export default function mapperRemoteCo(input: any): Job[] {
   const today = new Date();
@@ -93,10 +94,12 @@ export default function mapperRemoteCo(input: any): Job[] {
       ageHours: hours || differenceInHours(today, createdAt),
       id: x.id,
       location: '',
-      title: x.title
-        .replace('&amp;', '&')
-        .replace('&apos;', "'")
-        .replace('&#x2013;', '-'),
+      title: normalizeTitle(
+        x.title
+          .replace('&amp;', '&')
+          .replace('&apos;', "'")
+          .replace('&#x2013;', '-'),
+      ),
       url: x.link,
       tags,
       providerId: PROVIDERS.REMOTECO,

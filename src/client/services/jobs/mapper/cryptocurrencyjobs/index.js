@@ -3,6 +3,7 @@ import { differenceInDays, differenceInHours, parse } from 'date-fns';
 import type { Job } from '../../../../records/Job';
 import { PROVIDERS } from '../../../../records/Job';
 import getTags from '../../tags';
+import normalizeTitle from '../../normalizeTitle';
 
 export default function mapperCryptocurrencyJobs(input: any): Job[] {
   return input.map(x => {
@@ -17,7 +18,7 @@ export default function mapperCryptocurrencyJobs(input: any): Job[] {
     const companyMatch = x.title.match(/.+ at ([^(]+)/);
     let finalTitle = x.title;
     if (companyMatch && companyMatch[1]) {
-      finalTitle = finalTitle.replace(`at ${companyMatch[1]}`, '');
+      finalTitle = normalizeTitle(finalTitle.replace(`at ${companyMatch[1]}`, ''));
     }
     return {
       id: x.guid,

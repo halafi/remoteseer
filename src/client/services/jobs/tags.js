@@ -18,8 +18,12 @@ export const TAG_LINKS = {
   devops: DEV_CATEGORIES_META.devops.link,
   'game dev': DEV_CATEGORIES_META.games.link,
   blockchain: DEV_CATEGORIES_META.blockchain.link,
+  javascript: DEV_CATEGORIES_META.javascript.link,
+  'web dev': DEV_CATEGORIES_META.web.link,
+  nodejs: DEV_CATEGORIES_META.nodejs.link,
   react: FRONTEND_CATEGORIES_META.react.link,
   angular: FRONTEND_CATEGORIES_META.angular.link,
+  vuejs: FRONTEND_CATEGORIES_META.vue.link,
 };
 
 // simple

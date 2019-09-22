@@ -35,14 +35,16 @@ type Props = {
 
 const Categories = ({ categories }: Props) => (
   <JobCategoriesWrapper justifyContent="center" flexWrap="wrap">
-    {Object.keys(categories).map(cat => (
-      <JobCategory href={categories[cat].link} key={cat}>
-        <span role="img" aria-label={categories[cat].title}>
-          {categories[cat].img}
-        </span>
-        {categories[cat].title}
-      </JobCategory>
-    ))}
+    {Object.keys(categories)
+      .slice(0, 7)
+      .map(cat => (
+        <JobCategory href={categories[cat].link} key={cat}>
+          <span role="img" aria-label={categories[cat].title}>
+            {categories[cat].img}
+          </span>
+          {categories[cat].title}
+        </JobCategory>
+      ))}
   </JobCategoriesWrapper>
 );
 export default Categories;
