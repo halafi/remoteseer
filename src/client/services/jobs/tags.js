@@ -18,6 +18,7 @@ export const TAG_LINKS = {
   devops: DEV_CATEGORIES_META.devops.link,
   'game dev': DEV_CATEGORIES_META.games.link,
   blockchain: DEV_CATEGORIES_META.blockchain.link,
+  cryptocurrency: DEV_CATEGORIES_META.cryptocurrency.link,
   javascript: DEV_CATEGORIES_META.javascript.link,
   'web dev': DEV_CATEGORIES_META.web.link,
   nodejs: DEV_CATEGORIES_META.nodejs.link,
@@ -33,6 +34,11 @@ export const TAG_LINKS = {
   ios: SUBSUBCATEGORIES_META.ios.link,
   android: SUBSUBCATEGORIES_META.android.link,
   'cross platform': SUBSUBCATEGORIES_META['cross-platform'].link,
+  django: SUBSUBCATEGORIES_META.django.link,
+  rails: SUBSUBCATEGORIES_META['ruby-on-rails'].link,
+  // kotlin: SUBSUBCATEGORIES_META.kotlin.link,
+  // flutter: SUBSUBCATEGORIES_META.flutter.link,
+  // ionic: SUBSUBCATEGORIES_META.ionic.link,
 };
 
 // simple
@@ -46,6 +52,7 @@ const TAGS = {
   DRUPAL: 'drupal',
   MAGENTO: 'magento',
   ELIXIR: 'elixir',
+  FLUTTER: 'flutter',
   LINUX: 'linux',
   // JAVA: 'java',
   SPRING: 'spring',
@@ -155,6 +162,10 @@ export default function getTags(title: string): string[] {
     lowerCaseTitle.includes('ionic')
   ) {
     tags.push('mobile');
+  }
+
+  if (lowerCaseTitle.includes('kotlin') && !lowerCaseTitle.includes('android')) {
+    tags.push('android');
   }
   if (
     lowerCaseTitle.includes('game') ||

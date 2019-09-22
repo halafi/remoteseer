@@ -44,7 +44,6 @@ const Root = () => {
     title = CATEGORIES_META[category].title;
   }
 
-  console.log(SUBSUBCATEGORIES_META[subsubcategory]);
   let headlineText = '';
   if (subsubcategory && ALL_META[subsubcategory]) {
     headlineText = ` in ${ALL_META[subsubcategory].headline || ALL_META[subsubcategory].title}`;

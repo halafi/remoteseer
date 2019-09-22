@@ -19,6 +19,9 @@ export const DEV_CATEGORIES = {
   javascript: ['javascript'],
   web: ['web dev'],
   nodejs: ['nodejs'],
+  cryptocurrency: ['cryptocurrency'],
+  django: ['django'],
+  'ruby-on-rails': ['rails'],
 };
 
 export const SUBSUBCATEGORIES = {
@@ -34,6 +37,8 @@ export const SUBSUBCATEGORIES = {
   ios: ['ios'],
   android: ['android'],
   'cross-platform': ['cross platform'],
+  // flutter: ['flutter'],
+  // kotlin: ['kotlin'],
 };
 
 export const ALL_CATEGORIES = {
@@ -133,6 +138,13 @@ export const DEV_CATEGORIES_META = {
     headline: 'Blockchain Development',
     description:
       'Find all the latest remote blockchain development jobs on multiple websites in one place. Work on modern crypto projects.',
+  },
+  cryptocurrency: {
+    link: '/remote-development-jobs/cryptocurrency/',
+    title: 'Cryptocurrency',
+    headline: 'Cryptocurrency Development',
+    description:
+      'Find all the latest remote cryptocurrency development jobs on multiple websites in one place. Work on modern crypto projects.',
   },
   javascript: {
     link: '/remote-development-jobs/javascript/',
@@ -241,5 +253,19 @@ export const SUBSUBCATEGORIES_META = {
     description:
       'Find the latest remote mobile cross platform (multiplatform) jobs on multiple websites. Build mobile apps with React Native, Flutter, Ionic, Xamarin.',
   },
+  django: {
+    link: '/remote-development-jobs/full-stack/django/',
+    title: 'Django',
+    headline: 'Django Development',
+    description:
+      'Find the latest remote Django developer jobs on multiple websites. Build full stack applications remotely with Django and Python.',
+  },
+  'ruby-on-rails': {
+    link: '/remote-development-jobs/full-stack/ruby-on-rails/',
+    title: 'Rails',
+    headline: 'Ruby on Rails Development',
+    description:
+      'Find the latest remote Ruby on Rails developer jobs on multiple websites. Build full stack applications remotely with Ruby.',
+  }, // kotlin: { //   link: '/remote-development-jobs/mobile/kotlin/', //   title: 'Kotlin', //   headline: 'Kotlin Development', //   description: //     'Find all the latest remote Android Kotlin developer jobs on multiple websites in one place. Start coding in Kotlin remotely.', // }, // flutter: { //   link: '/remote-development-jobs/mobile/flutter/', //   title: 'Flutter', //   headline: 'Flutter Development', //   description: //     'Find the latest remote Flutter developer jobs on multiple websites. Build mobile cross platform applications remotely with Flutter.', // },
 };
 export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...SUBSUBCATEGORIES_META };

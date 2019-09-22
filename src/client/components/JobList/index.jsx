@@ -34,7 +34,7 @@ const Job = styled(Flex)`
     background-color: #f5f5f5;
   }
   ${mq.TABLET`
-    padding: 18px;
+    padding: 16px;
   `}
 `;
 
@@ -99,8 +99,8 @@ const CompanyLogo = styled(Flex)`
 `;
 
 const JobTitle = styled.h3`
-  margin-block-start: 8px;
-  margin-block-end: 8px;
+  margin-block-start: 6px;
+  margin-block-end: ${({ location }) => (location ? '6px' : '0')};
   font-size: 16px;
   ${mq.TABLET`
     font-size: 19px;
@@ -172,7 +172,7 @@ const JobList = ({ jobs, nogroup }: Props) => {
                   <Flex flexDirection="column" width={[1, null, null, null, 3 / 5]}>
                     <Link href={job.url} target="_blank" rel="noopener noreferrer">
                       {job.company}
-                      <JobTitle>{job.title}</JobTitle>
+                      <JobTitle location={Boolean(job.location)}>{job.title}</JobTitle>
                       {job.location && <JobLocation>{job.location}</JobLocation>}
                     </Link>
                   </Flex>
@@ -219,7 +219,7 @@ const JobList = ({ jobs, nogroup }: Props) => {
                       <Flex flexDirection="column" width={[1, null, null, null, 3 / 5]}>
                         <Link href={job.url} target="_blank" rel="noopener noreferrer">
                           {job.company}
-                          <JobTitle>{job.title}</JobTitle>
+                          <JobTitle location={Boolean(job.location)}>{job.title}</JobTitle>{' '}
                           {job.location && <JobLocation>{job.location}</JobLocation>}
                         </Link>
                       </Flex>
