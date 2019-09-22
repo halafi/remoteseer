@@ -29,6 +29,10 @@ export const TAG_LINKS = {
   java: SUBSUBCATEGORIES_META.java.link,
   'c++': SUBSUBCATEGORIES_META['c++'].link,
   golang: SUBSUBCATEGORIES_META.go.link,
+  python: SUBSUBCATEGORIES_META.python.link,
+  ios: SUBSUBCATEGORIES_META.ios.link,
+  android: SUBSUBCATEGORIES_META.android.link,
+  'cross platform': SUBSUBCATEGORIES_META['cross-platform'].link,
 };
 
 // simple
@@ -138,7 +142,7 @@ export default function getTags(title: string): string[] {
   }
   if (lowerCaseTitle.includes('react') && lowerCaseTitle.includes('react native')) {
     tags.push('mobile');
-    tags.push('multiplatform');
+    tags.push('cross platform');
   }
   if (
     lowerCaseTitle.includes('mobile') ||

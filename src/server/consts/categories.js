@@ -30,6 +30,10 @@ export const SUBSUBCATEGORIES = {
   java: ['java'],
   'c++': ['c++'],
   go: ['golang'],
+  python: ['python'],
+  ios: ['ios'],
+  android: ['android'],
+  'cross-platform': ['cross platform'],
 };
 
 export const ALL_CATEGORIES = {
@@ -208,6 +212,34 @@ export const SUBSUBCATEGORIES_META = {
     headline: 'Go Development',
     description:
       'Find all the latest remote Go development jobs on multiple websites in one place. Start coding in Golang remotely.',
+  },
+  python: {
+    link: '/remote-development-jobs/backend/python/',
+    title: 'Python',
+    headline: 'Python Development',
+    description:
+      'Find all the latest remote Python development jobs on multiple websites in one place. Start coding in Python remotely.',
+  },
+  ios: {
+    link: '/remote-development-jobs/mobile/ios/',
+    title: 'iOS',
+    headline: 'iOS Development',
+    description:
+      'Find all the latest remote iOS app development jobs on multiple websites in one place. Start coding in iOS (Swift) remotely.',
+  },
+  android: {
+    link: '/remote-development-jobs/mobile/android/',
+    title: 'Android',
+    headline: 'Android Development',
+    description:
+      'Find all the latest remote Android app development jobs on multiple websites in one place. Start coding in Android (Java, Kotlin) remotely.',
+  },
+  'cross-platform': {
+    link: '/remote-development-jobs/mobile/cross-platform/',
+    title: 'Cross Platform',
+    headline: 'Cross Platform Mobile App Development',
+    description:
+      'Find the latest remote mobile cross platform (multiplatform) jobs on multiple websites. Build mobile apps with React Native, Flutter, Ionic, Xamarin.',
   },
 };
 export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...SUBSUBCATEGORIES_META };
