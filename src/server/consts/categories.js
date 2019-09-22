@@ -27,6 +27,9 @@ export const SUBSUBCATEGORIES = {
   vue: ['vuejs'],
   php: ['php'],
   scala: ['scala'],
+  java: ['java'],
+  'c++': ['c++'],
+  go: ['golang'],
 };
 
 export const ALL_CATEGORIES = {
@@ -184,6 +187,27 @@ export const SUBSUBCATEGORIES_META = {
     headline: 'Scala Development',
     description:
       'Find all the latest remote Scala development jobs on multiple websites in one place.',
+  },
+  java: {
+    link: '/remote-development-jobs/backend/java/',
+    title: 'Java',
+    headline: 'Java Development',
+    description:
+      'Find all the latest remote Java development jobs on multiple websites in one place.',
+  },
+  'c++': {
+    link: '/remote-development-jobs/backend/c++/',
+    title: 'C++',
+    headline: 'C++ Development',
+    description:
+      'Find all the latest remote C++ development jobs on multiple websites in one place. Start coding in C plus plus remotely.',
+  },
+  go: {
+    link: '/remote-development-jobs/backend/go/',
+    title: 'Go',
+    headline: 'Go Development',
+    description:
+      'Find all the latest remote Go development jobs on multiple websites in one place. Start coding in Golang remotely.',
   },
 };
 export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...SUBSUBCATEGORIES_META };

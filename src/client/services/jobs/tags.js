@@ -26,6 +26,9 @@ export const TAG_LINKS = {
   vuejs: SUBSUBCATEGORIES_META.vue.link,
   php: SUBSUBCATEGORIES_META.php.link,
   scala: SUBSUBCATEGORIES_META.scala.link,
+  java: SUBSUBCATEGORIES_META.java.link,
+  'c++': SUBSUBCATEGORIES_META['c++'].link,
+  golang: SUBSUBCATEGORIES_META.go.link,
 };
 
 // simple
