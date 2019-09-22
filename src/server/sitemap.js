@@ -5,11 +5,7 @@ import 'regenerator-runtime/runtime';
 import path from 'path';
 import fs from 'fs';
 import getFilesizeInMegaBytes from './services/fileSize';
-import {
-  CATEGORIES_META,
-  DEV_CATEGORIES_META,
-  FRONTEND_CATEGORIES_META,
-} from './consts/categories';
+import { CATEGORIES_META, DEV_CATEGORIES_META, SUBSUBCATEGORIES } from './consts/categories';
 
 const PATH = path.join(__dirname, '../static/sitemap.xml');
 const DOMAIN = 'https://remoteseer.net';
@@ -60,9 +56,9 @@ async function generateSitemap() {
     );
   });
 
-  Object.keys(FRONTEND_CATEGORIES_META).forEach(category => {
+  Object.keys(SUBSUBCATEGORIES).forEach(category => {
     xml.push(
-      `<url><loc>${DOMAIN}${FRONTEND_CATEGORIES_META[category].link}</loc><lastmod>${lastmod}</lastmod><changefreq>daily</changefreq></url>`,
+      `<url><loc>${DOMAIN}${SUBSUBCATEGORIES[category].link}</loc><lastmod>${lastmod}</lastmod><changefreq>daily</changefreq></url>`,
     );
   });
 

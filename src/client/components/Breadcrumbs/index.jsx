@@ -6,7 +6,7 @@ import { Box } from '@rebass/grid';
 import {
   CATEGORIES_META,
   DEV_CATEGORIES_META,
-  FRONTEND_CATEGORIES_META,
+  SUBSUBCATEGORIES_META,
 } from '../../../server/consts/categories';
 
 const Container: any = styled(Box)`
@@ -136,8 +136,8 @@ const Breadcrumbs = ({ className, category, subcategory, subsubcategory, content
           itemType="http://schema.org/ListItem"
         >
           <Selected>
-            <link itemProp="item" href={FRONTEND_CATEGORIES_META[subsubcategory].link} />
-            <span itemProp="name">{FRONTEND_CATEGORIES_META[subsubcategory].title}</span>
+            <link itemProp="item" href={SUBSUBCATEGORIES_META[subsubcategory].link} />
+            <span itemProp="name">{SUBSUBCATEGORIES_META[subsubcategory].title}</span>
           </Selected>
           <meta itemProp="position" content={4} />
         </ListItem>

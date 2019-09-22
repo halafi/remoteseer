@@ -21,16 +21,18 @@ export const DEV_CATEGORIES = {
   nodejs: ['nodejs'],
 };
 
-export const FRONTEND_CATEGORIES = {
+export const SUBSUBCATEGORIES = {
   react: ['react'],
   angular: ['angular'],
   vue: ['vuejs'],
+  php: ['php'],
+  scala: ['scala'],
 };
 
 export const ALL_CATEGORIES = {
   ...CATEGORIES,
   ...DEV_CATEGORIES,
-  ...FRONTEND_CATEGORIES,
+  ...SUBSUBCATEGORIES,
 };
 
 export const CATEGORIES_META = {
@@ -147,7 +149,7 @@ export const DEV_CATEGORIES_META = {
       'Find all the latest remote Node JS development jobs on multiple websites in one place. Build backend in JavaScript.',
   },
 };
-export const FRONTEND_CATEGORIES_META = {
+export const SUBSUBCATEGORIES_META = {
   react: {
     link: '/remote-development-jobs/frontend/react/',
     title: 'React',
@@ -169,5 +171,19 @@ export const FRONTEND_CATEGORIES_META = {
     description:
       'Find all the latest remote Vue development jobs on multiple websites in one place. Build scalable web apps in Vue JS.',
   },
+  php: {
+    link: '/remote-development-jobs/backend/php/',
+    title: 'PHP',
+    headline: 'PHP Development',
+    description:
+      'Find all the latest remote PHP development jobs on multiple websites in one place.',
+  },
+  scala: {
+    link: '/remote-development-jobs/backend/scala/',
+    title: 'Scala',
+    headline: 'Scala Development',
+    description:
+      'Find all the latest remote Scala development jobs on multiple websites in one place.',
+  },
 };
-export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...FRONTEND_CATEGORIES_META };
+export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...SUBSUBCATEGORIES_META };

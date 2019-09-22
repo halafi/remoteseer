@@ -6,7 +6,7 @@ import GoogleAnalytics from './components/GoogleAnalytics';
 import {
   CATEGORIES_META,
   DEV_CATEGORIES_META,
-  FRONTEND_CATEGORIES_META,
+  SUBSUBCATEGORIES_META,
 } from '../../consts/categories';
 import SEO from './components/SEO/index';
 
@@ -27,9 +27,9 @@ const getTitle = (url: string, category: string, subcategory: string, subsubcate
   if (url.includes('companies')) {
     return `Top companies hiring remotely | RemoteSeer`;
   }
-  if (subsubcategory && FRONTEND_CATEGORIES_META[subsubcategory]) {
-    return `Remote ${FRONTEND_CATEGORIES_META[subsubcategory].headline ||
-      FRONTEND_CATEGORIES_META[subsubcategory].title} Jobs | RemoteSeer`;
+  if (subsubcategory && SUBSUBCATEGORIES_META[subsubcategory]) {
+    return `Remote ${SUBSUBCATEGORIES_META[subsubcategory].headline ||
+      SUBSUBCATEGORIES_META[subsubcategory].title} Jobs | RemoteSeer`;
   }
   if (subcategory) {
     return `Remote ${DEV_CATEGORIES_META[subcategory].headline ||
@@ -54,8 +54,8 @@ const getDescription = (
   if (url.includes('companies')) {
     return `Companies hiring remotely with the largest amount of remote jobs found on our site.`;
   }
-  if (subsubcategory && FRONTEND_CATEGORIES_META[subsubcategory]) {
-    return FRONTEND_CATEGORIES_META[subsubcategory].description;
+  if (subsubcategory && SUBSUBCATEGORIES_META[subsubcategory]) {
+    return SUBSUBCATEGORIES_META[subsubcategory].description;
   }
   if (subcategory && DEV_CATEGORIES_META[subcategory]) {
     return DEV_CATEGORIES_META[subcategory].description;

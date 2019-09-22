@@ -11,7 +11,7 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 import mq from '../../services/mediaQuery';
 import Categories from '../../components/Categories';
 import {
-  FRONTEND_CATEGORIES_META,
+  SUBSUBCATEGORIES_META,
   DEV_CATEGORIES_META,
   CATEGORIES_META,
   ALL_META,
@@ -37,14 +37,14 @@ const Root = () => {
   let title;
   if (subsubcategory) {
     title =
-      FRONTEND_CATEGORIES_META[subsubcategory].headline ||
-      FRONTEND_CATEGORIES_META[subsubcategory].title;
+      SUBSUBCATEGORIES_META[subsubcategory].headline || SUBSUBCATEGORIES_META[subsubcategory].title;
   } else if (subcategory) {
     title = DEV_CATEGORIES_META[subcategory].headline || DEV_CATEGORIES_META[subcategory].title;
   } else {
     title = CATEGORIES_META[category].title;
   }
 
+  console.log(SUBSUBCATEGORIES_META[subsubcategory]);
   let headlineText = '';
   if (subsubcategory && ALL_META[subsubcategory]) {
     headlineText = ` in ${ALL_META[subsubcategory].headline || ALL_META[subsubcategory].title}`;

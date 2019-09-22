@@ -14,6 +14,7 @@ const Routes = () => (
       exact
       path="/remote-development-jobs/frontend/(react|angular|vue)/"
     />
+    <Route component={Category} exact path="/remote-development-jobs/backend/(php|scala)/" />
     <Route
       component={Category}
       exact

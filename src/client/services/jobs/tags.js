@@ -2,7 +2,7 @@
 import {
   CATEGORIES_META,
   DEV_CATEGORIES_META,
-  FRONTEND_CATEGORIES_META,
+  SUBSUBCATEGORIES_META,
 } from '../../../server/consts/categories';
 
 export const TAG_LINKS = {
@@ -21,9 +21,11 @@ export const TAG_LINKS = {
   javascript: DEV_CATEGORIES_META.javascript.link,
   'web dev': DEV_CATEGORIES_META.web.link,
   nodejs: DEV_CATEGORIES_META.nodejs.link,
-  react: FRONTEND_CATEGORIES_META.react.link,
-  angular: FRONTEND_CATEGORIES_META.angular.link,
-  vuejs: FRONTEND_CATEGORIES_META.vue.link,
+  react: SUBSUBCATEGORIES_META.react.link,
+  angular: SUBSUBCATEGORIES_META.angular.link,
+  vuejs: SUBSUBCATEGORIES_META.vue.link,
+  php: SUBSUBCATEGORIES_META.php.link,
+  scala: SUBSUBCATEGORIES_META.scala.link,
 };
 
 // simple

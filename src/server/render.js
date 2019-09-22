@@ -6,7 +6,12 @@ import fs from 'fs-extra';
 import path from 'path';
 import colors from 'colors';
 import markup from './services/markup/index';
-import { CATEGORIES, DEV_CATEGORIES, FRONTEND_CATEGORIES_META } from './consts/categories';
+import {
+  CATEGORIES,
+  DEV_CATEGORIES,
+  SUBSUBCATEGORIES,
+  SUBSUBCATEGORIES_META,
+} from './consts/categories';
 import getFilesizeInMegaBytes from './services/fileSize/index';
 
 function renderPage(url: string, pagePath: string): Promise<boolean | Error> {
@@ -68,10 +73,16 @@ async function render() {
     }),
   );
   await Promise.all(
-    Object.keys(FRONTEND_CATEGORIES_META).map(async category => {
-      const filepath = path.join(rootDir, `remote-development-jobs/frontend/${category}`);
+    Object.keys(SUBSUBCATEGORIES).map(async category => {
+      const filepath = path.join(
+        rootDir,
+        SUBSUBCATEGORIES_META[category].link.slice(
+          1,
+          SUBSUBCATEGORIES_META[category].link.length - 1,
+        ),
+      );
       await fs.ensureDir(filepath);
-      await renderPage(`/remote-development-jobs/frontend/${category}/`, filepath);
+      await renderPage(SUBSUBCATEGORIES_META[category].link, filepath);
     }),
   );
   console.log('[render] done');
