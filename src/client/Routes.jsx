@@ -9,7 +9,12 @@ import Companies from './scenes/Companies';
 
 const Routes = () => (
   <Switch>
-    <Route component={Category} path="/remote-development-jobs" />
+    <Route
+      component={Category}
+      exact
+      path="/remote-(development|design|customer-support|sales-and-marketing|copywriting)-jobs/"
+    />
+    <Route component={Category} path="/remote-development-jobs/" />
     {/* <Route
       component={Category}
       exact
@@ -21,11 +26,7 @@ const Routes = () => (
       exact
       path="/remote-development-jobs/(mobile|frontend|backend|full-stack|devops|games|blockchain|javascript|web|nodejs)/"
     />
-    <Route
-      component={Category}
-      exact
-      path="/remote-(development|design|customer-support|sales-and-marketing|copywriting)-jobs/"
-    /> */}
+    */}
     <Route component={Stats} exact path="/about/" />
     <Route component={Companies} exact path="/companies-hiring-remotely/" />
     <Route component={Root} exact path="/" />
