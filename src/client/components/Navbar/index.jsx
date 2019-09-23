@@ -20,20 +20,6 @@ const Headline = styled.div`
   `}
 `;
 
-const MobileImg = styled.img`
-  display: inherit;
-  ${mq.TABLET`
-    display:none;
-  `}
-`;
-
-const TabletImg = styled.img`
-  display: none;
-  ${mq.TABLET`
-    display:inherit;
-  `}
-`;
-
 const DropdownButton = styled.span`
   cursor: pointer;
   color: white;
@@ -103,15 +89,44 @@ const Dropdown = styled.div`
 //   }
 // `;
 
+const Logo = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+const CaptionWrapper = styled(Flex)`
+  display: none;
+  color: #fff;
+  margin-left: 14px;
+  ${mq.MIDDLE_MOBILE`
+    display: inherit;
+  `}
+`;
+
+const Caption = styled.span`
+  font-size: 22px;
+`;
+
+// const SubTitle = styled.span`
+//   top: 18px;
+//   font-size: 11px;
+//   letter-spacing: 0.7px;
+// `;
+
 const Navbar = () => (
   <HeaderWrapper>
     <Headline>
       <Flex alignItems="center" justifyContent="space-between">
         <a href="/">
-          <MobileImg src="/images/logo-mobile.png" alt="Remote Seer" />
-          <TabletImg src="/images/logo.png" alt="Remote Seer" />
+          <Flex alignItems="center">
+            <Logo src="/images/icons/android-chrome-192x192.png" alt="RemoteSeer" />
+            <CaptionWrapper flexDirection="column">
+              <Caption>Remote Seer</Caption>
+              {/* <SubTitle>find work from anywhere</SubTitle> */}
+            </CaptionWrapper>
+          </Flex>
         </a>
-        <Flex alignItems="center">
+        <Flex>
           <Dropdown>
             <DropdownButton className="dropbtn">Categories</DropdownButton>
             <DropdownContent className="dropdown-content" shift={55} minWidth={165}>

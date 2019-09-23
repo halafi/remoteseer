@@ -100,9 +100,10 @@ const CompanyLogo = styled(Flex)`
 
 const JobTitle = styled.h3`
   margin-block-start: 6px;
-  margin-block-end: ${({ location }) => (location ? '6px' : '0')};
+  margin-block-end: 6px;
   font-size: 16px;
   ${mq.TABLET`
+    margin-block-end: ${({ location }) => (location ? '6px' : '0')};
     font-size: 19px;
   `}
 `;

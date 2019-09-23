@@ -147,7 +147,12 @@ export default function getTags(title: string): string[] {
   if (lowerCaseTitle.includes('exec')) {
     tags.push('exec');
   }
-  if (lowerCaseTitle.includes('react') && lowerCaseTitle.includes('react native')) {
+  if (
+    lowerCaseTitle.includes('react native') ||
+    lowerCaseTitle.includes('flutter') ||
+    lowerCaseTitle.includes('ionic') ||
+    lowerCaseTitle.includes('xamarin')
+  ) {
     tags.push('mobile');
     tags.push('cross platform');
   }
