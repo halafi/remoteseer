@@ -9,6 +9,7 @@ import markup from './services/markup/index';
 import {
   CATEGORIES,
   DEV_CATEGORIES,
+  DEV_CATEGORIES_META,
   SUBSUBCATEGORIES,
   SUBSUBCATEGORIES_META,
 } from './consts/categories';
@@ -68,9 +69,12 @@ async function render() {
   await Object.keys(DEV_CATEGORIES).reduce(async (pacc, category) => {
     return pacc.then(async () => {
       console.log(`[render] ${category}`);
-      const filepath = path.join(rootDir, `remote-development-jobs/${category}`);
+      const filepath = path.join(
+        rootDir,
+        DEV_CATEGORIES_META[category].link.slice(1, DEV_CATEGORIES_META[category].link.length - 1),
+      );
       await fs.ensureDir(filepath);
-      await renderPage(`/remote-development-jobs/${category}/`, filepath);
+      await renderPage(DEV_CATEGORIES_META[category].link, filepath);
     });
   }, Promise.resolve());
   await Object.keys(SUBSUBCATEGORIES).reduce(async (pacc, category) => {

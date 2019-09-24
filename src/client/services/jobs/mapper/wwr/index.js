@@ -23,7 +23,7 @@ export default function mapperWwrJobs(input: any): Job[] {
     const createdAt = parse(x.pubDate.split(', ')[1], 'dd LLL yyyy HH:mm:ss xx', new Date());
     const split = x.title.split(': ');
     const tags = getTags(split[1]);
-    if (WWR_TAGS[x.category] && !tags.includes(WWR_TAGS[x.category])) {
+    if (WWR_TAGS[x.category] && x.category !== 'product' && !tags.includes(WWR_TAGS[x.category])) {
       tags.push(WWR_TAGS[x.category]);
     }
     return {

@@ -11,6 +11,7 @@ export const TAG_LINKS = {
   'customer support': CATEGORIES_META['customer-support'].link,
   'sales and marketing': CATEGORIES_META['sales-and-marketing'].link,
   dev: CATEGORIES_META.development.link,
+  'human resources': CATEGORIES_META['human-resources'].link,
   mobile: DEV_CATEGORIES_META.mobile.link,
   frontend: DEV_CATEGORIES_META.frontend.link,
   backend: DEV_CATEGORIES_META.backend.link,
@@ -21,12 +22,18 @@ export const TAG_LINKS = {
   cryptocurrency: DEV_CATEGORIES_META.cryptocurrency.link,
   javascript: DEV_CATEGORIES_META.javascript.link,
   'web dev': DEV_CATEGORIES_META.web.link,
-  nodejs: DEV_CATEGORIES_META.nodejs.link,
+  testing: DEV_CATEGORIES_META.testing.link,
+  qa: DEV_CATEGORIES_META['quality-assurance'].link,
+  'project management': DEV_CATEGORIES_META['project-management'].link,
+  'product management': DEV_CATEGORIES_META['product-management'].link,
+  nodejs: SUBSUBCATEGORIES_META.nodejs.link,
+  seo: DEV_CATEGORIES_META.seo.link,
   react: SUBSUBCATEGORIES_META.react.link,
   angular: SUBSUBCATEGORIES_META.angular.link,
   vuejs: SUBSUBCATEGORIES_META.vue.link,
   php: SUBSUBCATEGORIES_META.php.link,
   scala: SUBSUBCATEGORIES_META.scala.link,
+  ruby: SUBSUBCATEGORIES_META.ruby.link,
   java: SUBSUBCATEGORIES_META.java.link,
   'c++': SUBSUBCATEGORIES_META['c++'].link,
   golang: SUBSUBCATEGORIES_META.go.link,
@@ -80,7 +87,6 @@ const TAGS = {
   IONIC: 'ionic',
   XAMARIN: 'xamarin',
   SWIFT: 'swift',
-  SEO: 'seo',
   ACCOUNTING: 'accounting',
   // MANAGER: 'manager',
   CPP: 'c++',
@@ -95,7 +101,7 @@ const TAGS = {
   KUBERNETES: 'kubernetes',
   RANCHER: 'rancher',
   HADOOP: 'hadoop',
-  PRODUCT: 'product',
+  // PRODUCT: 'product',
   SPARK: 'spark',
   FLINK: 'flink',
   ERLANG: 'erlang',
@@ -113,10 +119,10 @@ export default function getTags(title: string): string[] {
   ) {
     tags.push('dev');
   }
-  if (lowerCaseTitle.includes('product manager')) {
+  if (lowerCaseTitle.includes('product manag')) {
     tags.push('product management');
   }
-  if (lowerCaseTitle.includes('project manager')) {
+  if (lowerCaseTitle.includes('project manag')) {
     tags.push('project management');
   }
   if (
@@ -219,6 +225,11 @@ export default function getTags(title: string): string[] {
     lowerCaseTitle.includes('qa ')
   ) {
     tags.push('testing');
+    tags.push('qa');
+  } else if (lowerCaseTitle.includes('assurance')) {
+    tags.push('qa');
+  } else if (lowerCaseTitle.includes('automation')) {
+    tags.push('testing');
   }
   if (lowerCaseTitle.includes('support') || lowerCaseTitle.includes('customer')) {
     tags.push('customer support');
@@ -266,6 +277,9 @@ export default function getTags(title: string): string[] {
       tags.push(TAGS[tag]);
     }
   });
+  if (lowerCaseTitle.includes('seo') && !lowerCaseTitle.includes('seoul')) {
+    tags.push('seo');
+  }
   if (!lowerCaseTitle.includes('javascript') && lowerCaseTitle.includes('java')) {
     tags.push('java');
   }

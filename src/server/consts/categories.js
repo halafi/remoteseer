@@ -6,6 +6,7 @@ export const CATEGORIES = {
   'customer-support': ['customer support'],
   'sales-and-marketing': ['marketing', 'sales and marketing', 'sales'],
   copywriting: ['copywriting'],
+  'human-resources': ['human resources', 'hr'],
 };
 
 export const DEV_CATEGORIES = {
@@ -20,6 +21,11 @@ export const DEV_CATEGORIES = {
   web: ['web dev'],
   nodejs: ['nodejs'],
   cryptocurrency: ['cryptocurrency'],
+  testing: ['testing'],
+  'quality-assurance': ['qa'],
+  'project-management': ['project management'],
+  'product-management': ['product management'],
+  seo: ['seo'],
 };
 
 export const SUBSUBCATEGORIES = {
@@ -28,6 +34,7 @@ export const SUBSUBCATEGORIES = {
   vue: ['vuejs'],
   php: ['php'],
   scala: ['scala'],
+  ruby: ['ruby'],
   java: ['java'],
   'c++': ['c++'],
   go: ['golang'],
@@ -82,6 +89,13 @@ export const CATEGORIES_META = {
     title: 'Copywriting',
     description:
       'Find all the latest remote jobs in copywriting, copyediting and content writing available on multiple websites in one place.',
+  },
+  'human-resources': {
+    link: '/remote-human-resources-jobs/',
+    img: '💁',
+    title: 'Human Resources',
+    description:
+      'Find all the latest remote HR jobs and remote recruiter jobs available on multiple websites in one place.',
   },
 };
 export const DEV_CATEGORIES_META = {
@@ -160,12 +174,40 @@ export const DEV_CATEGORIES_META = {
     description:
       'Find all the latest remote web development jobs on multiple websites in one place.',
   },
-  nodejs: {
-    link: '/remote-development-jobs/nodejs/',
-    title: 'Node JS',
-    headline: 'Node JS Development',
+  testing: {
+    link: '/remote-development-jobs/testing/',
+    title: 'Testing',
+    headline: 'Testing',
     description:
-      'Find all the latest remote Node JS development jobs on multiple websites in one place. Build backend in JavaScript.',
+      'Find all the latest remote testing jobs on multiple websites in one place. Browse remote tester and automation engineer jobs.',
+  },
+  'quality-assurance': {
+    link: '/remote-development-jobs/quality-assurance/',
+    title: 'Quality Assurance',
+    headline: 'Quality Assurance',
+    description:
+      'Find all the latest remote QA jobs on multiple websites in one place. Browse remote quality assurance, QA engineering and testing jobs.',
+  },
+  'project-management': {
+    link: '/remote-development-jobs/project-management/',
+    title: 'Project Management',
+    headline: 'Project Management',
+    description:
+      'Find all the latest remote project manager jobs on multiple websites in one place. Work in project management remotely.',
+  },
+  'product-management': {
+    link: '/remote-development-jobs/product-management/',
+    title: 'Product Management',
+    headline: 'Product Management',
+    description:
+      'Find all the latest remote product manager jobs on multiple websites in one place. Work in product management remotely.',
+  },
+  seo: {
+    link: '/remote-sales-and-marketing-jobs/seo/',
+    title: 'Search Engine Optimization',
+    headline: 'SEO',
+    description:
+      'Find all the latest remote SEO jobs on multiple websites in one place. Work remotely in content marketing as SEO manager.',
   },
 };
 export const SUBSUBCATEGORIES_META = {
@@ -203,6 +245,20 @@ export const SUBSUBCATEGORIES_META = {
     headline: 'Scala Development',
     description:
       'Find all the latest remote Scala development jobs on multiple websites in one place.',
+  },
+  nodejs: {
+    link: '/remote-development-jobs/backend/nodejs/',
+    title: 'Node JS',
+    headline: 'Node JS Development',
+    description:
+      'Find all the latest remote Node JS development jobs on multiple websites in one place. Build backend in JavaScript.',
+  },
+  ruby: {
+    link: '/remote-development-jobs/backend/ruby/',
+    title: 'Ruby',
+    headline: 'Ruby Development',
+    description:
+      'Find all the latest remote Ruby development jobs on multiple websites in one place. Full stack Ruby on Rails and backend focused remote jobs.',
   },
   java: {
     link: '/remote-development-jobs/backend/java/',

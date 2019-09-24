@@ -6,3 +6,4 @@ https://remoteseer.netlify.com/*  https://remoteseer.net/:splat 301!
 /customer-support-jobs/  https://remoteseer.net/remote-customer-support-jobs/
 /sales-and-marketing-jobs/  https://remoteseer.net/remote-sales-and-marketing-jobs/
 /copywriting-jobs/  https://remoteseer.net/remote-copywriting-jobs/
+/remote-development-jobs/nodejs/  https://remoteseer.net/remote-development-jobs/backend/nodejs/

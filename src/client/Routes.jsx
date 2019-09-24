@@ -12,9 +12,10 @@ const Routes = () => (
     <Route
       component={Category}
       exact
-      path="/remote-(development|design|customer-support|sales-and-marketing|copywriting)-jobs/"
+      path="/remote-(development|design|customer-support|sales-and-marketing|copywriting|human-resources)-jobs/"
     />
     <Route component={Category} path="/remote-development-jobs/" />
+    <Route component={Category} path="/remote-sales-and-marketing-jobs/seo/" />
     {/* <Route
       component={Category}
       exact

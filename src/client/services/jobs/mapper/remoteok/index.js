@@ -61,6 +61,8 @@ export default function mapperRemoteOkJobs(input: any): Job[] {
               'airflow',
               'snowflake',
               'unix',
+              'bootstrapped',
+              'phoenix',
               'git',
               'mysql',
               'buddypress',
@@ -120,6 +122,7 @@ export default function mapperRemoteOkJobs(input: any): Job[] {
         .map(tag => (tag === 'macos' ? 'osx' : tag))
         .map(tag => (tag === 'c plus plus' ? 'c++' : tag))
         .map(tag => (tag === 'ruby on rails' ? 'rails' : tag))
+        .map(tag => (tag === 'product manager' ? 'product management' : tag))
         .map(tag => (tag === 'node js' || tag === 'node.js' ? 'nodejs' : tag))
         .map(tag => (tag === 'meteor js' ? 'meteorjs' : tag));
       const finalTags = tags.concat(remoteOkTags.filter(tag => !tags.includes(tag)));
