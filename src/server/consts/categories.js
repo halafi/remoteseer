@@ -46,6 +46,9 @@ export const SUBSUBCATEGORIES = {
   'ruby-on-rails': ['rails'],
   'cross-platform': ['cross platform'],
   nodejs: ['nodejs'],
+  'c-sharp': ['c#'],
+  dotnet: ['.net'],
+  cms: ['cms'],
   // flutter: ['flutter'],
   // kotlin: ['kotlin'],
 };
@@ -304,6 +307,20 @@ export const SUBSUBCATEGORIES_META = {
     description:
       'Find all the latest remote Python development jobs on multiple websites in one place. Start coding in Python remotely.',
   },
+  'c-sharp': {
+    link: '/remote-development-jobs/backend/c-sharp/',
+    title: 'C#',
+    headline: 'C# Development',
+    description:
+      'Find all the latest remote C# development jobs on multiple websites in one place. Start coding in C# remotely.',
+  },
+  dotnet: {
+    link: '/remote-development-jobs/full-stack/dotnet/',
+    title: '.NET',
+    headline: '.NET Development',
+    description:
+      'Find all the latest remote .NET development jobs on multiple websites in one place. Start programming in C# and .NET remotely.',
+  },
   ios: {
     link: '/remote-development-jobs/mobile/ios/',
     title: 'iOS',
@@ -331,6 +348,13 @@ export const SUBSUBCATEGORIES_META = {
     headline: 'Django Development',
     description:
       'Find the latest remote Django developer jobs on multiple websites. Build full stack applications remotely with Django and Python.',
+  },
+  cms: {
+    link: '/remote-development-jobs/web/cms/',
+    title: 'CMS',
+    headline: 'Content Management System',
+    description:
+      'Find the latest remote CMS developer jobs on multiple websites. Work as remote content management system developer.',
   },
   'ruby-on-rails': {
     link: '/remote-development-jobs/full-stack/ruby-on-rails/',
