@@ -49,6 +49,11 @@ export const SUBSUBCATEGORIES = {
   'c-sharp': ['c#'],
   dotnet: ['.net'],
   cms: ['cms'],
+  graphql: ['graphql'],
+  docker: ['docker'],
+  kubernetes: ['kubernetes'],
+  jenkins: ['jenkins'],
+  aws: ['aws'],
   // flutter: ['flutter'],
   // kotlin: ['kotlin'],
 };
@@ -321,6 +326,13 @@ export const SUBSUBCATEGORIES_META = {
     description:
       'Find all the latest remote .NET development jobs on multiple websites in one place. Start programming in C# and .NET remotely.',
   },
+  graphql: {
+    link: '/remote-development-jobs/full-stack/graphql/',
+    title: 'GraphQL',
+    headline: 'GraphQL',
+    description:
+      'Find all the latest remote developer jobs using GraphQL on multiple websites in one place. Work with companies using GraphQL remotely.',
+  },
   ios: {
     link: '/remote-development-jobs/mobile/ios/',
     title: 'iOS',
@@ -363,5 +375,33 @@ export const SUBSUBCATEGORIES_META = {
     description:
       'Find the latest remote Ruby on Rails developer jobs on multiple websites. Build full stack applications remotely with Ruby.',
   }, // kotlin: { //   link: '/remote-development-jobs/mobile/kotlin/', //   title: 'Kotlin', //   headline: 'Kotlin Development', //   description: //     'Find all the latest remote Android Kotlin developer jobs on multiple websites in one place. Start coding in Kotlin remotely.', // }, // flutter: { //   link: '/remote-development-jobs/mobile/flutter/', //   title: 'Flutter', //   headline: 'Flutter Development', //   description: //     'Find the latest remote Flutter developer jobs on multiple websites. Build mobile cross platform applications remotely with Flutter.', // },
+  docker: {
+    link: '/remote-development-jobs/devops/docker/',
+    title: 'Docker',
+    headline: 'Docker',
+    description:
+      'Find the latest remote docker jobs on multiple websites. Work as devops engineer with Docker remotely.',
+  },
+  kubernetes: {
+    link: '/remote-development-jobs/devops/kubernetes/',
+    title: 'Kubernetes',
+    headline: 'Kubernetes',
+    description:
+      'Find the latest remote Kubernetes jobs on multiple websites. Work as devops engineeer with Kubernetes remotely.',
+  },
+  jenkins: {
+    link: '/remote-development-jobs/devops/jenkins/',
+    title: 'Jenkins',
+    headline: 'Jenkins',
+    description:
+      'Find the latest remote Jenkins jobs on multiple websites. Work as devops engineeer with Jenkins remotely.',
+  },
+  aws: {
+    link: '/remote-development-jobs/devops/aws/',
+    title: 'AWS',
+    headline: 'Amazon Web Services',
+    description:
+      'Find the latest remote AWS jobs on multiple websites. Work as devops engineeer at companies using AWS remotely.',
+  },
 };
 export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...SUBSUBCATEGORIES_META };
