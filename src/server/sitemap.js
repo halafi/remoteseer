@@ -35,6 +35,7 @@ async function storeXml(filepath: string, xml: string[]) {
 async function generateSitemap() {
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
+    '<?xml-stylesheet type="text/xsl" href="https://remoteseer.net/sitemap.xsl"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
   ];
 

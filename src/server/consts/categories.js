@@ -25,6 +25,8 @@ export const DEV_CATEGORIES = {
   'project-management': ['project management'],
   'product-management': ['product management'],
   seo: ['seo'],
+  sales: ['sales'],
+  marketing: ['marketing'],
 };
 
 export const SUBSUBCATEGORIES = {
@@ -208,6 +210,20 @@ export const DEV_CATEGORIES_META = {
     headline: 'SEO',
     description:
       'Find all the latest remote SEO jobs on multiple websites in one place. Work remotely in content marketing as SEO manager.',
+  },
+  sales: {
+    link: '/remote-sales-and-marketing-jobs/sales/',
+    title: 'Sales',
+    headline: 'Sales',
+    description:
+      'Find all the latest remote jobs in sales on multiple websites in one place. Start doing professional sales remotely.',
+  },
+  marketing: {
+    link: '/remote-sales-and-marketing-jobs/marketing/',
+    title: 'Marketing',
+    headline: 'Marketing',
+    description:
+      'Find all the latest remote jobs in marketing on multiple websites in one place. Work remotely in marketing.',
   },
 };
 export const SUBSUBCATEGORIES_META = {

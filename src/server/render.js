@@ -52,6 +52,7 @@ async function render() {
   // const outputDir = path.join(rootDir, 'pages');
   await fs.ensureDir(rootDir);
   // await fs.ensureDir(outputDir);
+  // TODO: try catch
   await renderPage(`/`, rootDir); // put main index.html to static
   const aboutDir = path.join(rootDir, 'about');
   await fs.ensureDir(aboutDir);

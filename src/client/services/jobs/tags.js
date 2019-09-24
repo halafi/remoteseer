@@ -28,6 +28,8 @@ export const TAG_LINKS = {
   'product management': DEV_CATEGORIES_META['product-management'].link,
   nodejs: SUBSUBCATEGORIES_META.nodejs.link,
   seo: DEV_CATEGORIES_META.seo.link,
+  sales: DEV_CATEGORIES_META.sales.link,
+  marketing: DEV_CATEGORIES_META.marketing.link,
   react: SUBSUBCATEGORIES_META.react.link,
   angular: SUBSUBCATEGORIES_META.angular.link,
   vuejs: SUBSUBCATEGORIES_META.vue.link,

@@ -32,6 +32,7 @@ export default function mapperRemoteOkJobs(input: any): Job[] {
               'machine images',
               'infrastructure',
               'cd',
+              'support',
               'ci',
               'vm',
               'virtualization',
