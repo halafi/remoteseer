@@ -18,12 +18,17 @@ export const TAG_LINKS = {
   healthcare: CATEGORIES_META.healthcare.link,
   accounting: CATEGORIES_META.accounting.link,
   'data science': CATEGORIES_META['data-science'].link,
+  'online teaching': CATEGORIES_META['online-teaching'].link,
+  'virtual assistant': CATEGORIES_META['virtual-assistant'].link,
   mobile: DEV_CATEGORIES_META.mobile.link,
   frontend: DEV_CATEGORIES_META.frontend.link,
   backend: DEV_CATEGORIES_META.backend.link,
   'full stack': DEV_CATEGORIES_META[`full-stack`].link,
   devops: DEV_CATEGORIES_META.devops.link,
   'game dev': DEV_CATEGORIES_META.games.link,
+  windows: DEV_CATEGORIES_META.windows.link,
+  linux: DEV_CATEGORIES_META.linux.link,
+  osx: DEV_CATEGORIES_META.macosx.link,
   blockchain: DEV_CATEGORIES_META.blockchain.link,
   cryptocurrency: DEV_CATEGORIES_META.cryptocurrency.link,
   javascript: DEV_CATEGORIES_META.javascript.link,
@@ -33,6 +38,8 @@ export const TAG_LINKS = {
   'project management': DEV_CATEGORIES_META['project-management'].link,
   'product management': DEV_CATEGORIES_META['product-management'].link,
   cloud: DEV_CATEGORIES_META.cloud.link,
+  'big data': DEV_CATEGORIES_META['big-data'].link,
+  sap: DEV_CATEGORIES_META.sap.link,
   security: DEV_CATEGORIES_META.security.link,
   nodejs: SUBSUBCATEGORIES_META.nodejs.link,
   cms: SUBSUBCATEGORIES_META.cms.link,
@@ -64,6 +71,9 @@ export const TAG_LINKS = {
   compilers: SUBSUBCATEGORIES_META.compilers.link,
   rails: SUBSUBCATEGORIES_META['ruby-on-rails'].link,
   cypress: SUBSUBCATEGORIES_META.cypress.link,
+  spark: SUBSUBCATEGORIES_META.spark.link,
+  flink: SUBSUBCATEGORIES_META.flink.link,
+  r: SUBSUBCATEGORIES_META.r.link,
   // kotlin: SUBSUBCATEGORIES_META.kotlin.link,
   // flutter: SUBSUBCATEGORIES_META.flutter.link,
   // ionic: SUBSUBCATEGORIES_META.ionic.link,
@@ -125,8 +135,6 @@ export const TAGS = {
   RANCHER: 'rancher',
   HADOOP: 'hadoop',
   // PRODUCT: 'product',
-  SPARK: 'spark',
-  FLINK: 'flink',
   ERLANG: 'erlang',
 };
 
@@ -170,6 +178,8 @@ export const ALLOWED_TAGS = {
   R: 'r',
   SCALA: 'scala',
   CRYPTOGRAPHY: 'cryptography',
+  FLINK: 'flink',
+  SPARK: 'spark',
 };
 
 export default function getTags(title: string): string[] {
@@ -204,7 +214,8 @@ export default function getTags(title: string): string[] {
   if (
     lowerCaseTitle.includes('ops') ||
     lowerCaseTitle.includes('system admin') ||
-    lowerCaseTitle.includes('infrastructure')
+    lowerCaseTitle.includes('infrastructure') ||
+    lowerCaseTitle.includes('server admin')
   ) {
     tags.push(ALLOWED_TAGS.DEVOPS);
   }
@@ -342,6 +353,14 @@ export default function getTags(title: string): string[] {
       tags.push(TAGS[tag]);
     }
   });
+  if (lowerCaseTitle.includes('spark') && !tags.includes('big data')) {
+    tags.push(ALLOWED_TAGS.BIG_DATA);
+    tags.push(ALLOWED_TAGS.SPARK);
+  }
+  if (lowerCaseTitle.includes('flink') && !tags.includes('big data')) {
+    tags.push(ALLOWED_TAGS.BIG_DATA);
+    tags.push(ALLOWED_TAGS.FLINK);
+  }
   if (lowerCaseTitle.includes('seo') && !lowerCaseTitle.includes('seoul')) {
     tags.push(ALLOWED_TAGS.SEO);
   }
@@ -388,6 +407,9 @@ export default function getTags(title: string): string[] {
     if (!tags.includes(ALLOWED_TAGS.BACKEND)) {
       tags.push(ALLOWED_TAGS.BACKEND);
     }
+  }
+  if (tags.includes(ALLOWED_TAGS.R) && !tags.includes(ALLOWED_TAGS.BACKEND)) {
+    tags.push(ALLOWED_TAGS.BACKEND);
   }
   // if (
   //   tags.includes('dev') &&

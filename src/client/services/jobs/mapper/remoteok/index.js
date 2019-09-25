@@ -25,6 +25,12 @@ export default function mapperRemoteOkJobs(input: any): Job[] {
         );
 
       const finalTags = tags.concat(remoteOkTags.filter(tag => !tags.includes(tag)));
+      if (finalTags.includes('spark') && !finalTags.includes('big data')) {
+        finalTags.push('big data');
+      }
+      if (finalTags.includes('flink') && !finalTags.includes('big data')) {
+        finalTags.push('big data');
+      }
       return {
         id: x.id,
         title: normalizeTitle(x.position),

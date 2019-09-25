@@ -12,7 +12,7 @@ const Routes = () => (
     <Route
       component={Category}
       exact
-      path="/remote-(development|design|customer-support|sales-and-marketing|copywriting|human-resources|lead|exec|manager|healthcare|accounting|data-science)-jobs/"
+      path="/remote-(development|design|customer-support|sales-and-marketing|copywriting|human-resources|lead|exec|manager|healthcare|accounting|data-science|online-teaching|virtual-assistant)-jobs/"
     />
     <Route component={Category} path="/remote-development-jobs/" />
     <Route component={Category} path="/remote-sales-and-marketing-jobs/(sales|marketing|seo)/" />

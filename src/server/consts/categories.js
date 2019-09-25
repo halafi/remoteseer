@@ -13,6 +13,8 @@ export const CATEGORIES = {
   healthcare: ['healthcare'],
   accounting: ['accounting'],
   'data-science': ['data science'],
+  'online-teaching': ['online teaching'],
+  'virtual-assistant': ['virtual assistant'],
 };
 
 export const DEV_CATEGORIES = {
@@ -36,6 +38,11 @@ export const DEV_CATEGORIES = {
   sales: ['sales'],
   marketing: ['marketing'],
   'online-editing': ['online editing'],
+  windows: ['windows'],
+  linux: ['linux'],
+  macosx: ['osx'],
+  'big-data': ['big data'],
+  sap: ['sap'],
 };
 
 export const SUBSUBCATEGORIES = {
@@ -65,6 +72,9 @@ export const SUBSUBCATEGORIES = {
   jenkins: ['jenkins'],
   aws: ['aws'],
   compilers: ['compilers'],
+  spark: ['spark'],
+  flink: ['flink'],
+  r: ['r'],
 
   // flutter: ['flutter'],
   // kotlin: ['kotlin'],
@@ -160,6 +170,20 @@ export const CATEGORIES_META = {
     headline: 'Data Science',
     description:
       'Find the latest remote Data Science jobs on multiple websites. Work as a data scientist remotely.',
+  },
+  'online-teaching': {
+    link: '/remote-online-teaching-jobs/',
+    title: 'Online Teaching',
+    headline: 'Online Teaching',
+    description:
+      'Find the latest remote online teaching jobs on multiple websites. Work as an online teacher and teach remotely.',
+  },
+  'virtual-assistant': {
+    link: '/remote-virtual-assistant-jobs/',
+    title: 'Virtual Assistant',
+    headline: 'Virtual Assistant',
+    description:
+      'Find the latest remote virtual assistant jobs on multiple websites. Work in administration remotely.',
   },
 };
 export const DEV_CATEGORIES_META = {
@@ -273,6 +297,40 @@ export const DEV_CATEGORIES_META = {
     description:
       'Find all the latest remote SEO jobs on multiple websites in one place. Work remotely in content marketing as SEO manager.',
   },
+  linux: {
+    link: '/remote-development-jobs/linux/',
+    title: 'Linux',
+    headline: 'Linux Administration & Development',
+    description:
+      'Find all the latest remote Linux admin and dev jobs on multiple websites in one place.',
+  },
+  macosx: {
+    link: '/remote-development-jobs/macosx/',
+    title: 'OSX',
+    headline: 'Mac OSX Development',
+    description:
+      'Find all the latest remote MAC OSX developer jobs on multiple websites in one place.',
+  },
+  windows: {
+    link: '/remote-development-jobs/windows/',
+    title: 'Windows',
+    headline: 'Windows Administration & Development',
+    description:
+      'Find all the latest remote Windows admin and dev jobs on multiple websites in one place.',
+  },
+  'big-data': {
+    link: '/remote-development-jobs/big-data/',
+    title: 'Big Data',
+    headline: 'Big Data',
+    description: 'Find all the latest remote Big Data jobs on multiple websites in one place.',
+  },
+  sap: {
+    link: '/remote-development-jobs/sap/',
+    title: 'SAP',
+    headline: 'SAP',
+    description:
+      'Find all the latest remote SAP jobs on multiple websites in one place. SAP ERP jobs with remote.',
+  },
   sales: {
     link: '/remote-sales-and-marketing-jobs/sales/',
     title: 'Sales',
@@ -344,6 +402,12 @@ export const SUBSUBCATEGORIES_META = {
     headline: 'Scala Development',
     description:
       'Find all the latest remote Scala development jobs on multiple websites in one place.',
+  },
+  r: {
+    link: '/remote-development-jobs/backend/r/',
+    title: 'R',
+    headline: 'R Development',
+    description: 'Find all the latest remote R development jobs on multiple websites in one place.',
   },
   nodejs: {
     link: '/remote-development-jobs/backend/nodejs/',
@@ -491,6 +555,20 @@ export const SUBSUBCATEGORIES_META = {
     headline: 'Cypress',
     description:
       'Find all the latest remote testing jobs using Cypress on multiple websites in one place. Remote end to end testing with Cypress.',
+  },
+  spark: {
+    link: '/remote-development-jobs/big-data/spark/',
+    title: 'Apache Spark',
+    headline: 'Apache Spark',
+    description:
+      'Find all the latest remote Big Data jobs with Apache Spark on multiple websites in one place.',
+  },
+  flink: {
+    link: '/remote-development-jobs/big-data/flink/',
+    title: 'Apache Flink',
+    headline: 'Apache Flink',
+    description:
+      'Find all the latest remote Big Data jobs with Apache Flink on multiple websites in one place.',
   },
 };
 export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...SUBSUBCATEGORIES_META };
