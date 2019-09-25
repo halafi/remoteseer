@@ -45,6 +45,8 @@ export const TAG_LINKS = {
   cms: SUBSUBCATEGORIES_META.cms.link,
   graphql: SUBSUBCATEGORIES_META.graphql.link,
   docker: SUBSUBCATEGORIES_META.docker.link,
+  rancher: SUBSUBCATEGORIES_META.rancher.link,
+  erlang: SUBSUBCATEGORIES_META.erlang.link,
   kubernetes: SUBSUBCATEGORIES_META.kubernetes.link,
   jenkins: SUBSUBCATEGORIES_META.jenkins.link,
   aws: SUBSUBCATEGORIES_META.aws.link,
@@ -180,6 +182,8 @@ export const ALLOWED_TAGS = {
   CRYPTOGRAPHY: 'cryptography',
   FLINK: 'flink',
   SPARK: 'spark',
+  ERLANG: 'erlang',
+  ELIXIR: 'elixir',
 };
 
 export default function getTags(title: string): string[] {
@@ -409,6 +413,12 @@ export default function getTags(title: string): string[] {
     }
   }
   if (tags.includes(ALLOWED_TAGS.R) && !tags.includes(ALLOWED_TAGS.BACKEND)) {
+    tags.push(ALLOWED_TAGS.BACKEND);
+  }
+  if (tags.includes(ALLOWED_TAGS.ELIXIR) && !tags.includes(ALLOWED_TAGS.ERLANG)) {
+    tags.push(ALLOWED_TAGS.ERLANG);
+  }
+  if (tags.includes(ALLOWED_TAGS.ERLANG) && !tags.includes(ALLOWED_TAGS.BACKEND)) {
     tags.push(ALLOWED_TAGS.BACKEND);
   }
   // if (

@@ -70,6 +70,8 @@ export const SUBSUBCATEGORIES = {
   docker: ['docker'],
   kubernetes: ['kubernetes'],
   jenkins: ['jenkins'],
+  rancher: ['rancher'],
+  erlang: ['erlang'],
   aws: ['aws'],
   compilers: ['compilers'],
   spark: ['spark'],
@@ -423,6 +425,13 @@ export const SUBSUBCATEGORIES_META = {
     description:
       'Find all the latest remote Ruby development jobs on multiple websites in one place. Full stack Ruby on Rails and backend focused remote jobs.',
   },
+  erlang: {
+    link: '/remote-development-jobs/backend/erlang/',
+    title: 'Erlang',
+    headline: 'Erlang Development',
+    description:
+      'Find all the latest remote Erlang development jobs on multiple websites in one place.',
+  },
   java: {
     link: '/remote-development-jobs/backend/java/',
     title: 'Java',
@@ -520,6 +529,13 @@ export const SUBSUBCATEGORIES_META = {
     headline: 'Docker',
     description:
       'Find the latest remote docker jobs on multiple websites. Work as devops engineer with Docker remotely.',
+  },
+  rancher: {
+    link: '/remote-development-jobs/devops/rancher/',
+    title: 'Rancher',
+    headline: 'Rancher',
+    description:
+      'Find the latest remote rancher jobs on multiple websites. Work as devops engineer with Rancher remotely.',
   },
   kubernetes: {
     link: '/remote-development-jobs/devops/kubernetes/',
