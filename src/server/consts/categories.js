@@ -10,6 +10,8 @@ export const CATEGORIES = {
   lead: ['lead'],
   exec: ['exec'],
   manager: ['manager'],
+  healthcare: ['healthcare'],
+  accounting: ['accounting'],
 };
 
 export const DEV_CATEGORIES = {
@@ -59,6 +61,7 @@ export const SUBSUBCATEGORIES = {
   aws: ['aws'],
   cloud: ['cloud'],
   security: ['security'],
+  compilers: ['compilers'],
 
   // flutter: ['flutter'],
   // kotlin: ['kotlin'],
@@ -132,7 +135,21 @@ export const CATEGORIES_META = {
     title: 'Manager',
     headline: 'Manager',
     description:
-      'Find the latest remote manager jobs on multiple websites. Browse remote positoins in management.',
+      'Find the latest remote manager jobs on multiple websites. Browse remote positions in management.',
+  },
+  healthcare: {
+    link: '/remote-healthcare-jobs/',
+    title: 'Healthcare',
+    headline: 'Healthcare',
+    description:
+      'Find the latest remote jobs in healthcare on multiple websites. Browse remote positions in health care.',
+  },
+  accounting: {
+    link: '/remote-accounting-jobs/',
+    title: 'Accounting',
+    headline: 'Accounting',
+    description:
+      'Find the latest remote jobs in accounting on multiple websites. Browse remote accounting and finance jobs.',
   },
 };
 export const DEV_CATEGORIES_META = {
@@ -443,6 +460,13 @@ export const SUBSUBCATEGORIES_META = {
     headline: 'Amazon Web Services',
     description:
       'Find the latest remote AWS jobs on multiple websites. Work as devops engineeer at companies using AWS remotely.',
+  },
+  compilers: {
+    link: '/remote-development-jobs/backend/compilers/',
+    title: 'Compilers',
+    headline: 'Compiler Development',
+    description:
+      'Find the latest remote compiler jobs on multiple websites. Work as a compiler engineer remotely.',
   },
 };
 export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...SUBSUBCATEGORIES_META };

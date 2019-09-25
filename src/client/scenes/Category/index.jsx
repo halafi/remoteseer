@@ -31,6 +31,16 @@ const CatTitle = styled.h2`
   margin-block-end: 10px;
 `;
 
+const Promo = styled.div`
+  padding: 0 12px;
+  font-weight: 900;
+`;
+
+const Link = styled.a`
+  color: #89050a;
+  text-decoration: underline;
+`;
+
 const Root = () => {
   const { jobs, category, subcategory, subsubcategory } = useStateValue();
 
@@ -64,8 +74,28 @@ const Root = () => {
             subsubcategory={subsubcategory}
           />
           <CatTitle>{title} Jobs</CatTitle>
+
           {category === 'development' && !subcategory && (
             <Categories categories={DEV_CATEGORIES_META} />
+          )}
+          {subsubcategory && subsubcategory === 'compilers' && (
+            <Promo>
+              <span role="img" aria-label="screaming cats">
+                🙀🙀🙀
+              </span>
+              <Link
+                href="https://www.linkedin.com/in/ondrej-glasn%C3%A1k-0764b2140/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Hire the best remote compiler engineer
+              </Link>
+              &nbsp;
+              <span role="img" aria-label="screaming cats">
+                ✅
+              </span>
+              Verified by our team of seers
+            </Promo>
           )}
           <JobList jobs={jobs} />
         </JobListWrapper>
