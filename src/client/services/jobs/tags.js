@@ -41,6 +41,8 @@ export const TAG_LINKS = {
   'big data': DEV_CATEGORIES_META['big-data'].link,
   sap: DEV_CATEGORIES_META.sap.link,
   security: DEV_CATEGORIES_META.security.link,
+  cryptography: DEV_CATEGORIES_META.cryptography.link,
+  'desktop apps': DEV_CATEGORIES_META['desktop-apps'].link,
   nodejs: SUBSUBCATEGORIES_META.nodejs.link,
   cms: SUBSUBCATEGORIES_META.cms.link,
   graphql: SUBSUBCATEGORIES_META.graphql.link,
@@ -63,6 +65,7 @@ export const TAG_LINKS = {
   scala: SUBSUBCATEGORIES_META.scala.link,
   ruby: SUBSUBCATEGORIES_META.ruby.link,
   java: SUBSUBCATEGORIES_META.java.link,
+  // firebase: SUBSUBCATEGORIES_META.firebase.link,
   'c++': SUBSUBCATEGORIES_META['c++'].link,
   golang: SUBSUBCATEGORIES_META.go.link,
   python: SUBSUBCATEGORIES_META.python.link,
@@ -102,7 +105,7 @@ export const TAGS = {
   WINDOWS: 'windows',
   PYTHON: 'python',
   CLOUD: 'cloud',
-  FIREBASE: 'firebase',
+  // FIREBASE: 'firebase',
   DESIGN: 'design',
   DJANGO: 'django',
   FLASK: 'flask',
@@ -157,7 +160,7 @@ export const ALLOWED_TAGS = {
   FULL_STACK: 'full stack',
   OSX: 'osx',
   BACKEND: 'backend',
-  DESKTOP_APPS: 'desktop_apps',
+  DESKTOP_APPS: 'desktop apps',
   HEALTHCARE: 'healthcare',
   TESTING: 'testing',
   QA: 'qa',
@@ -184,6 +187,7 @@ export const ALLOWED_TAGS = {
   SPARK: 'spark',
   ERLANG: 'erlang',
   ELIXIR: 'elixir',
+  RANCHER: 'rancher',
 };
 
 export default function getTags(title: string): string[] {
@@ -420,6 +424,9 @@ export default function getTags(title: string): string[] {
   }
   if (tags.includes(ALLOWED_TAGS.ERLANG) && !tags.includes(ALLOWED_TAGS.BACKEND)) {
     tags.push(ALLOWED_TAGS.BACKEND);
+  }
+  if (tags.includes(ALLOWED_TAGS.RANCHER) && !tags.includes(ALLOWED_TAGS.DEVOPS)) {
+    tags.push(ALLOWED_TAGS.DEVOPS);
   }
   // if (
   //   tags.includes('dev') &&

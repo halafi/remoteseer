@@ -28,6 +28,8 @@ export const DEV_CATEGORIES = {
   javascript: ['javascript'],
   web: ['web dev'],
   cryptocurrency: ['cryptocurrency'],
+  cryptography: ['cryptography'],
+  'desktop-apps': ['desktop apps'],
   testing: ['testing'],
   'quality-assurance': ['qa'],
   'project-management': ['project management'],
@@ -76,6 +78,7 @@ export const SUBSUBCATEGORIES = {
   compilers: ['compilers'],
   spark: ['spark'],
   flink: ['flink'],
+  // firebase: ['firebase'],
   r: ['r'],
 
   // flutter: ['flutter'],
@@ -249,6 +252,20 @@ export const DEV_CATEGORIES_META = {
     headline: 'Cryptocurrency Development',
     description:
       'Find all the latest remote cryptocurrency development jobs on multiple websites in one place. Work on modern crypto projects.',
+  },
+  cryptography: {
+    link: '/remote-development-jobs/cryptography/',
+    title: 'Cryptography',
+    headline: 'Cryptography',
+    description:
+      'Find all the latest remote Cryptography jobs on multiple websites in one place. Remote cryptography engineering positions.',
+  },
+  'desktop-apps': {
+    link: '/remote-development-jobs/desktop-apps/',
+    title: 'Desktop',
+    headline: 'Desktop Apps',
+    description:
+      'Find all the latest remote Desktop App developer jobs on multiple websites in one place.',
   },
   javascript: {
     link: '/remote-development-jobs/javascript/',
@@ -515,7 +532,7 @@ export const SUBSUBCATEGORIES_META = {
     headline: 'Content Management System',
     description:
       'Find the latest remote CMS developer jobs on multiple websites. Work as remote content management system developer.',
-  },
+  }, // firebase: { //   link: '/remote-development-jobs/web/firebase/', //   title: 'Firebase', //   headline: 'Firebase', //   description: //     'Find the latest remote Firebase web developer jobs on multiple websites. Develop web applications with Firebase.', // },
   'ruby-on-rails': {
     link: '/remote-development-jobs/full-stack/ruby-on-rails/',
     title: 'Rails',
