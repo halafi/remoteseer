@@ -58,13 +58,15 @@ const Footer = () => (
         <Flex flexDirection="column">
           <a href="/">Remote Jobs</a>
 
-          {Object.keys(CATEGORIES_META).map(cat => {
-            return (
-              <a key={cat} href={CATEGORIES_META[cat].link}>
-                Remote {CATEGORIES_META[cat].title} Jobs
-              </a>
-            );
-          })}
+          {Object.keys(CATEGORIES_META)
+            .splice(0, 6)
+            .map(cat => {
+              return (
+                <a key={cat} href={CATEGORIES_META[cat].link}>
+                  Remote {CATEGORIES_META[cat].title} Jobs
+                </a>
+              );
+            })}
         </Flex>
         <Box mt={[4, null, 0]}>
           <a href="#">Back to top ↑</a>

@@ -61,23 +61,25 @@ const Root = () => {
         <Headline jobsCount={jobs.length} />
         <JobListWrapper flexDirection="column">
           {/* <Categories categories={CATEGORIES_META} /> */}
-          {Object.keys(CATEGORIES_META).map(cat => (
-            <Category key={cat}>
-              <Link href={CATEGORIES_META[cat].link}>
-                <CatTitle>{CATEGORIES_META[cat].title}</CatTitle>
-              </Link>
+          {Object.keys(CATEGORIES_META)
+            .splice(0, 6)
+            .map(cat => (
+              <Category key={cat}>
+                <Link href={CATEGORIES_META[cat].link}>
+                  <CatTitle>{CATEGORIES_META[cat].title}</CatTitle>
+                </Link>
 
-              <JobList jobs={filterCategoryJobs(jobs, cat).splice(0, 15)} nogroup />
-              <Flex justifyContent="center">
-                <Button>
-                  <Link href={CATEGORIES_META[cat].link}>
-                    View all {filterCategoryJobs(jobs, cat).length} {CATEGORIES_META[cat].title}{' '}
-                    jobs
-                  </Link>
-                </Button>
-              </Flex>
-            </Category>
-          ))}
+                <JobList jobs={filterCategoryJobs(jobs, cat).splice(0, 15)} nogroup />
+                <Flex justifyContent="center">
+                  <Button>
+                    <Link href={CATEGORIES_META[cat].link}>
+                      View all {filterCategoryJobs(jobs, cat).length} {CATEGORIES_META[cat].title}{' '}
+                      jobs
+                    </Link>
+                  </Button>
+                </Flex>
+              </Category>
+            ))}
         </JobListWrapper>
         <Footer />
       </Flex>

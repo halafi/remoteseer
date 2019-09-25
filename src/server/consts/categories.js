@@ -7,6 +7,9 @@ export const CATEGORIES = {
   'sales-and-marketing': ['marketing', 'sales and marketing', 'sales'],
   copywriting: ['copywriting'],
   'human-resources': ['human resources', 'hr'],
+  lead: ['lead'],
+  exec: ['exec'],
+  manager: ['manager'],
 };
 
 export const DEV_CATEGORIES = {
@@ -54,6 +57,9 @@ export const SUBSUBCATEGORIES = {
   kubernetes: ['kubernetes'],
   jenkins: ['jenkins'],
   aws: ['aws'],
+  cloud: ['cloud'],
+  security: ['security'],
+
   // flutter: ['flutter'],
   // kotlin: ['kotlin'],
 };
@@ -106,6 +112,27 @@ export const CATEGORIES_META = {
     title: 'Human Resources',
     description:
       'Find all the latest remote HR jobs and remote recruiter jobs available on multiple websites in one place.',
+  },
+  lead: {
+    link: '/remote-lead-jobs/',
+    title: 'Lead',
+    headline: 'Leadership',
+    description:
+      'Find the latest remote team lead jobs on multiple websites. Work as a team lead remotely.',
+  },
+  exec: {
+    link: '/remote-exec-jobs/',
+    title: 'Executive',
+    headline: 'Executive',
+    description:
+      'Find the latest remote executive jobs on multiple websites. Browse remote executive or director jobs.',
+  },
+  manager: {
+    link: '/remote-manager-jobs/',
+    title: 'Manager',
+    headline: 'Manager',
+    description:
+      'Find the latest remote manager jobs on multiple websites. Browse remote positoins in management.',
   },
 };
 export const DEV_CATEGORIES_META = {
@@ -232,6 +259,20 @@ export const DEV_CATEGORIES_META = {
     headline: 'Marketing',
     description:
       'Find all the latest remote jobs in marketing on multiple websites in one place. Work remotely in marketing.',
+  },
+  cloud: {
+    link: '/remote-development-jobs/cloud/',
+    title: 'Cloud',
+    headline: 'Cloud',
+    description:
+      'Find the latest remote Cloud jobs on multiple websites. Work as cloud software engineer remotely.',
+  },
+  security: {
+    link: '/remote-development-jobs/security/',
+    title: 'Security',
+    headline: 'Security',
+    description:
+      'Find the latest remote Security jobs on multiple websites. Work as security engineer remotely.',
   },
 };
 export const SUBSUBCATEGORIES_META = {
