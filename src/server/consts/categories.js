@@ -30,6 +30,7 @@ export const DEV_CATEGORIES = {
   'project-management': ['project management'],
   'product-management': ['product management'],
   cloud: ['cloud'],
+  security: ['security'],
   seo: ['seo'],
   sales: ['sales'],
   marketing: ['marketing'],
@@ -60,7 +61,6 @@ export const SUBSUBCATEGORIES = {
   kubernetes: ['kubernetes'],
   jenkins: ['jenkins'],
   aws: ['aws'],
-  security: ['security'],
   compilers: ['compilers'],
 
   // flutter: ['flutter'],
