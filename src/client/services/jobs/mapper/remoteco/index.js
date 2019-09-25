@@ -79,6 +79,9 @@ export default function mapperRemoteCo(input: any): Job[] {
     }
     if (x.category.includes('online-editing') && !tags.includes('online editing')) {
       tags.push('online editing');
+      if (!tags.includes('copywriting')) {
+        tags.push('copywriting');
+      }
     }
 
     return {
@@ -98,7 +101,9 @@ export default function mapperRemoteCo(input: any): Job[] {
         .replace('&amp;', '&')
         .replace('&apos;', "'")
         .replace('&#x2013;', '-')
-        .replace('&#x2013;', '-'),
+        .replace('&#x2013;', '-')
+        .replace('&#x201C;', '“')
+        .replace('&#x201D;', '”'),
       url: x.link,
       tags,
       providerId: PROVIDERS.REMOTECO,

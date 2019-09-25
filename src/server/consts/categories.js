@@ -34,6 +34,8 @@ export const DEV_CATEGORIES = {
   seo: ['seo'],
   sales: ['sales'],
   marketing: ['marketing'],
+  'online-editing': ['online editing'],
+  'data-science': ['data science'],
 };
 
 export const SUBSUBCATEGORIES = {
@@ -53,6 +55,7 @@ export const SUBSUBCATEGORIES = {
   'ruby-on-rails': ['rails'],
   'cross-platform': ['cross platform'],
   nodejs: ['nodejs'],
+  cypress: ['cypress'],
   'c-sharp': ['c#'],
   dotnet: ['.net'],
   cms: ['cms'],
@@ -150,6 +153,13 @@ export const CATEGORIES_META = {
     headline: 'Accounting',
     description:
       'Find the latest remote jobs in accounting on multiple websites. Browse remote accounting and finance jobs.',
+  },
+  'data-science': {
+    link: '/remote-data-science-jobs/',
+    title: 'Data Science',
+    headline: 'Data Science',
+    description:
+      'Find the latest remote Data Science jobs on multiple websites. Work as a data scientist remotely.',
   },
 };
 export const DEV_CATEGORIES_META = {
@@ -290,6 +300,13 @@ export const DEV_CATEGORIES_META = {
     headline: 'Security',
     description:
       'Find the latest remote Security jobs on multiple websites. Work as security engineer remotely.',
+  },
+  'online-editing': {
+    link: '/remote-copywriting-jobs/online-editing/',
+    title: 'Online Editing',
+    headline: 'Online Editing',
+    description:
+      'Find all the latest remote jobs in online editing (copyediting) available on multiple websites in one place.',
   },
 };
 export const SUBSUBCATEGORIES_META = {
@@ -467,6 +484,13 @@ export const SUBSUBCATEGORIES_META = {
     headline: 'Compiler Development',
     description:
       'Find the latest remote compiler jobs on multiple websites. Work as a compiler engineer remotely.',
+  },
+  cypress: {
+    link: '/remote-development-jobs/testing/cypress/',
+    title: 'Cypress',
+    headline: 'Cypress',
+    description:
+      'Find all the latest remote testing jobs using Cypress on multiple websites in one place. Remote end to end testing with Cypress.',
   },
 };
 export const ALL_META = { ...CATEGORIES_META, ...DEV_CATEGORIES_META, ...SUBSUBCATEGORIES_META };

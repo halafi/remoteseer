@@ -161,7 +161,7 @@ async function downloadRemotive(url, file, category) {
   $('.job-list-item').each((i, e) => {
     // console.log($(e).html());
     const id = `jr-${category}-${i}`;
-    const link = `https://remotive.io/${$(e)
+    const link = `https://remotive.io${$(e)
       .find('.position a')
       .attr('href')
       .trim()}`;
