@@ -12,6 +12,7 @@ export const CATEGORIES = {
   manager: ['manager'],
   healthcare: ['healthcare'],
   accounting: ['accounting'],
+  'data-science': ['data science'],
 };
 
 export const DEV_CATEGORIES = {
@@ -35,7 +36,6 @@ export const DEV_CATEGORIES = {
   sales: ['sales'],
   marketing: ['marketing'],
   'online-editing': ['online editing'],
-  'data-science': ['data science'],
 };
 
 export const SUBSUBCATEGORIES = {
