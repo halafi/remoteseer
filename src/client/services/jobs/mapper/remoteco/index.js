@@ -94,12 +94,11 @@ export default function mapperRemoteCo(input: any): Job[] {
       ageHours: hours || differenceInHours(today, createdAt),
       id: x.id,
       location: '',
-      title: normalizeTitle(
-        x.title
-          .replace('&amp;', '&')
-          .replace('&apos;', "'")
-          .replace('&#x2013;', '-'),
-      ),
+      title: normalizeTitle(x.title)
+        .replace('&amp;', '&')
+        .replace('&apos;', "'")
+        .replace('&#x2013;', '-')
+        .replace('&#x2013;', '-'),
       url: x.link,
       tags,
       providerId: PROVIDERS.REMOTECO,

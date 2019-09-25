@@ -131,11 +131,13 @@ const Navbar = () => (
             <DropdownButton className="dropbtn">Categories</DropdownButton>
             <DropdownContent className="dropdown-content" shift={55} minWidth={165}>
               <Arrow />
-              {Object.keys(CATEGORIES_META).map(cat => (
-                <Item key={cat}>
-                  <a href={CATEGORIES_META[cat].link}>{CATEGORIES_META[cat].title}</a>
-                </Item>
-              ))}
+              {Object.keys(CATEGORIES_META)
+                .slice(0, 6)
+                .map(cat => (
+                  <Item key={cat}>
+                    <a href={CATEGORIES_META[cat].link}>{CATEGORIES_META[cat].title}</a>
+                  </Item>
+                ))}
             </DropdownContent>
           </Dropdown>
           <Dropdown>
