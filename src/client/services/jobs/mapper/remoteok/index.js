@@ -3,7 +3,7 @@ import { differenceInDays, differenceInHours } from 'date-fns';
 import type { Job } from '../../../../records/Job';
 import { PROVIDERS } from '../../../../records/Job';
 import normalizeTitle from '../../normalizeTitle';
-import getTags from '../../tags';
+import getTags, { ALLOWED_TAGS, TAGS } from '../../tags';
 
 export default function mapperRemoteOkJobs(input: any): Job[] {
   return input
@@ -11,121 +11,19 @@ export default function mapperRemoteOkJobs(input: any): Job[] {
     .map(x => {
       const tags = getTags(x.position);
       const remoteOkTags = Array.from(new Set(x.tags))
-        .filter(
-          tag =>
-            ![
-              'analyst',
-              'angularjs',
-              'mobile apps',
-              'c',
-              'software engineer',
-              'gis',
-              'saas',
-              'rest apis',
-              'google cloud platform',
-              'salesforce',
-              'lamp',
-              'mob',
-              'sr.',
-              'remote',
-              'vm',
-              'machine images',
-              'infrastructure',
-              'cd',
-              'support',
-              'ci',
-              'vm',
-              'virtualization',
-              'packer',
-              'go',
-              'healthcare',
-              'development',
-              'css',
-              'web dev',
-              'engineer',
-              'architecture',
-              'web design',
-              'senior',
-              'graphic design',
-              'bizdev',
-              'growth',
-              'eng',
-              'pm',
-              'digital nomad',
-              'wordpress development',
-              'account executive',
-              'customer success',
-              'inbound sales',
-              'non tech',
-              'startup',
-              'sales development',
-              'airflow',
-              'snowflake',
-              'unix',
-              'bootstrapped',
-              'phoenix',
-              'git',
-              'mysql',
-              'buddypress',
-              'buddyboss',
-              'appboss',
-              'vfx',
-              'consulting',
-              'api',
-              'microservices',
-              'fintech',
-              'finance',
-              'gcp',
-              'stenciljs',
-              'nestjs',
-              'storybook',
-              'application',
-              'infosec',
-              'admin',
-              'sys admin',
-              'chef',
-              'rest',
-              'healthcare tech',
-              'node',
-              'rxjava',
-              'junit',
-              'mockito',
-              'reswift',
-              'good vibes',
-              '😹',
-              'clojurescript',
-              'vagrant',
-              'dev tools',
-              'hyperv',
-              'virtual box',
-              'vmware',
-              'web apps',
-              'quality assurance',
-              'html',
-              'travel',
-              'deep learning',
-              'coordinator',
-              'client services',
-              'business',
-              'executive',
-              'director',
-              'vp',
-              'engineering',
-              'performance',
-              'virtualbox',
-              'data engineering',
-              'stats',
-              'part time',
-              'statistical models',
-            ].includes(tag),
-        )
-        .map(tag => (tag === 'front end' ? 'frontend' : tag))
-        .map(tag => (tag === 'macos' ? 'osx' : tag))
-        .map(tag => (tag === 'c plus plus' ? 'c++' : tag))
-        .map(tag => (tag === 'ruby on rails' ? 'rails' : tag))
-        .map(tag => (tag === 'product manager' ? 'product management' : tag))
-        .map(tag => (tag === 'node js' || tag === 'node.js' ? 'nodejs' : tag))
-        .map(tag => (tag === 'meteor js' ? 'meteorjs' : tag));
+        .map(tag => (tag === 'front end' ? ALLOWED_TAGS.FRONTEND : tag))
+        .map(tag => (tag === 'macos' ? ALLOWED_TAGS.OSX : tag))
+        .map(tag => (tag === 'c plus plus' ? TAGS.CPP : tag))
+        .map(tag => (tag === 'ruby on rails' ? TAGS.RAILS : tag))
+        .map(tag => (tag === 'product manager' ? ALLOWED_TAGS.PRODUCT_MANAGEMENT : tag))
+        .map(tag => (tag === 'node js' || tag === 'node.js' ? ALLOWED_TAGS.NODEJS : tag))
+        .map(tag => (tag === 'meteor js' ? 'meteorjs' : tag))
+        .filter(tag =>
+          Object.values(ALLOWED_TAGS)
+            .concat(Object.values(TAGS))
+            .includes(tag),
+        );
+
       const finalTags = tags.concat(remoteOkTags.filter(tag => !tags.includes(tag)));
       return {
         id: x.id,

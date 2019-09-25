@@ -64,7 +64,7 @@ export const TAG_LINKS = {
 };
 
 // simple
-const TAGS = {
+export const TAGS = {
   PHP: 'php',
   KOTLIN: 'kotlin',
   SAP: 'sap',
@@ -124,6 +124,48 @@ const TAGS = {
   ERLANG: 'erlang',
 };
 
+export const ALLOWED_TAGS = {
+  DEV: 'dev',
+  PRODUCT_MANAGEMENT: 'product management',
+  PROJECT_MANAGEMENT: 'project management',
+  LEAD: 'lead',
+  BIG_DATA: 'big data',
+  DEVOPS: 'devops',
+  COMPILERS: 'compilers',
+  EXEC: 'exec',
+  MOBILE: 'mobile',
+  CROSS_PLATFORM: 'cross platform',
+  ANDROID: 'android',
+  GAME_DEV: 'game dev',
+  DATA_SCIENCE: 'data science',
+  FULL_STACK: 'full stack',
+  OSX: 'osx',
+  BACKEND: 'backend',
+  DESKTOP_APPS: 'desktop_apps',
+  HEALTHCARE: 'healthcare',
+  TESTING: 'testing',
+  QA: 'qa',
+  CUSTOMER_SUPPORT: 'customer support',
+  HUMAN_RESOURCES: 'human resources',
+  JAVASCRIPT: 'javascript',
+  FRONTEND: 'frontend',
+  WEB_DEV: 'web dev',
+  CMS: 'cms',
+  BLOCKCHAIN: 'blockchain',
+  SEO: 'seo',
+  JAVA: 'java',
+  VUEJS: 'vuejs',
+  SALES_AND_MARKETING: 'sales and marketing',
+  DOTNET: '.net',
+  CSHARP: 'c#',
+  GOLANG: 'golang',
+  COPYWRITING: 'copywriting',
+  NODEJS: 'nodejs',
+  R: 'r',
+  SCALA: 'scala',
+  CRYPTOGRAPHY: 'cryptography',
+};
+
 export default function getTags(title: string): string[] {
   const tags = [];
   const lowerCaseTitle = title.toLowerCase();
@@ -134,13 +176,13 @@ export default function getTags(title: string): string[] {
     lowerCaseTitle.includes('development') ||
     lowerCaseTitle.includes('architect')
   ) {
-    tags.push('dev');
+    tags.push(ALLOWED_TAGS.DEV);
   }
   if (lowerCaseTitle.includes('product manag')) {
-    tags.push('product management');
+    tags.push(ALLOWED_TAGS.PRODUCT_MANAGEMENT);
   }
   if (lowerCaseTitle.includes('project manag')) {
-    tags.push('project management');
+    tags.push(ALLOWED_TAGS.PROJECT_MANAGEMENT);
   }
   if (
     lowerCaseTitle.includes('director') ||
@@ -148,27 +190,27 @@ export default function getTags(title: string): string[] {
     lowerCaseTitle.includes('vp ') ||
     lowerCaseTitle.includes('vice president')
   ) {
-    tags.push('lead');
+    tags.push(ALLOWED_TAGS.LEAD);
   }
   if (lowerCaseTitle.includes('big data')) {
-    tags.push('big data');
+    tags.push(ALLOWED_TAGS.BIG_DATA);
   }
   if (
     lowerCaseTitle.includes('ops') ||
     lowerCaseTitle.includes('system admin') ||
     lowerCaseTitle.includes('infrastructure')
   ) {
-    tags.push('devops');
+    tags.push(ALLOWED_TAGS.DEVOPS);
   }
   if (
     lowerCaseTitle.includes('compiler') ||
     lowerCaseTitle.includes('interpreter') ||
     lowerCaseTitle.includes('type-system')
   ) {
-    tags.push('compilers');
+    tags.push(ALLOWED_TAGS.COMPILERS);
   }
   if (lowerCaseTitle.includes('exec')) {
-    tags.push('exec');
+    tags.push(ALLOWED_TAGS.EXEC);
   }
   if (
     lowerCaseTitle.includes('react native') ||
@@ -176,8 +218,8 @@ export default function getTags(title: string): string[] {
     lowerCaseTitle.includes('ionic') ||
     lowerCaseTitle.includes('xamarin')
   ) {
-    tags.push('mobile');
-    tags.push('cross platform');
+    tags.push(ALLOWED_TAGS.MOBILE);
+    tags.push(ALLOWED_TAGS.CROSS_PLATFORM);
   }
   if (
     lowerCaseTitle.includes('mobile') ||
@@ -189,21 +231,21 @@ export default function getTags(title: string): string[] {
     lowerCaseTitle.includes('kotlin') ||
     lowerCaseTitle.includes('ionic')
   ) {
-    tags.push('mobile');
+    tags.push(ALLOWED_TAGS.MOBILE);
   }
 
   if (lowerCaseTitle.includes('kotlin') && !lowerCaseTitle.includes('android')) {
-    tags.push('android');
+    tags.push(ALLOWED_TAGS.ANDROID);
   }
   if (
     lowerCaseTitle.includes('game') ||
     lowerCaseTitle.includes('gaming') ||
     lowerCaseTitle.includes('games')
   ) {
-    tags.push('game dev');
+    tags.push(ALLOWED_TAGS.GAME_DEV);
   }
   if (lowerCaseTitle.includes('data scientist') || lowerCaseTitle.includes('data science')) {
-    tags.push('data science');
+    tags.push(ALLOWED_TAGS.DATA_SCIENCE);
   }
   if (
     (lowerCaseTitle.includes('fullstack') ||
@@ -211,51 +253,51 @@ export default function getTags(title: string): string[] {
       lowerCaseTitle.includes('full-stack') ||
       lowerCaseTitle.includes('django') ||
       lowerCaseTitle.includes('rails')) &&
-    !tags.includes('full stack')
+    !tags.includes(ALLOWED_TAGS.FULL_STACK)
   ) {
-    tags.push('full stack');
+    tags.push(ALLOWED_TAGS.FULL_STACK);
   }
   if (
     lowerCaseTitle.includes('macos') ||
     lowerCaseTitle.includes('mac os') ||
     lowerCaseTitle.includes('osx')
   ) {
-    tags.push('osx');
+    tags.push(ALLOWED_TAGS.OSX);
   }
   if (
-    !tags.includes('backend') &&
+    !tags.includes(ALLOWED_TAGS.BACKEND) &&
     (lowerCaseTitle.includes('backend') ||
       lowerCaseTitle.includes('back end') ||
       lowerCaseTitle.includes('back-end'))
   ) {
-    tags.push('backend');
+    tags.push(ALLOWED_TAGS.BACKEND);
   }
   if (lowerCaseTitle.includes('desktop')) {
-    tags.push('desktop apps');
+    tags.push(ALLOWED_TAGS.DESKTOP_APPS);
   }
   if (lowerCaseTitle.includes('health')) {
-    tags.push('healthcare');
+    tags.push(ALLOWED_TAGS.HEALTHCARE);
   }
   if (
     lowerCaseTitle.includes('test') ||
     lowerCaseTitle.includes('quality') ||
     lowerCaseTitle.includes('qa ')
   ) {
-    tags.push('testing');
-    tags.push('qa');
+    tags.push(ALLOWED_TAGS.TESTING);
+    tags.push(ALLOWED_TAGS.QA);
   } else if (lowerCaseTitle.includes('assurance')) {
-    tags.push('qa');
+    tags.push(ALLOWED_TAGS.QA);
   } else if (lowerCaseTitle.includes('automation')) {
-    tags.push('testing');
+    tags.push(ALLOWED_TAGS.TESTING);
   }
   if (lowerCaseTitle.includes('support') || lowerCaseTitle.includes('customer')) {
-    tags.push('customer support');
+    tags.push(ALLOWED_TAGS.CUSTOMER_SUPPORT);
   }
   if (
     lowerCaseTitle.includes('hr ') ||
     (lowerCaseTitle.includes('human') && lowerCaseTitle.includes('resources'))
   ) {
-    tags.push('human resources');
+    tags.push(ALLOWED_TAGS.HUMAN_RESOURCES);
   }
   if (
     !lowerCaseTitle.includes('devops') &&
@@ -269,9 +311,9 @@ export default function getTags(title: string): string[] {
       lowerCaseTitle.includes('vue') ||
       lowerCaseTitle.includes('php'))
   ) {
-    tags.push('javascript');
-    tags.push('frontend');
-    tags.push('web dev');
+    tags.push(ALLOWED_TAGS.JAVASCRIPT);
+    tags.push(ALLOWED_TAGS.FRONTEND);
+    tags.push(ALLOWED_TAGS.WEB_DEV);
   }
   if (
     lowerCaseTitle.includes('wordpress') ||
@@ -280,14 +322,14 @@ export default function getTags(title: string): string[] {
     lowerCaseTitle.includes('magento') ||
     lowerCaseTitle.includes('magnolia')
   ) {
-    tags.push('cms');
+    tags.push(ALLOWED_TAGS.CMS);
   }
   if (
     lowerCaseTitle.includes('blockchain') ||
     lowerCaseTitle.includes('ledger') ||
     (lowerCaseTitle.includes('crypto') && !lowerCaseTitle.includes('cryptography'))
   ) {
-    tags.push('blockchain');
+    tags.push(ALLOWED_TAGS.BLOCKCHAIN);
   }
   Object.keys(TAGS).forEach(tag => {
     if (lowerCaseTitle.includes(TAGS[tag])) {
@@ -295,22 +337,22 @@ export default function getTags(title: string): string[] {
     }
   });
   if (lowerCaseTitle.includes('seo') && !lowerCaseTitle.includes('seoul')) {
-    tags.push('seo');
+    tags.push(ALLOWED_TAGS.SEO);
   }
   if (!lowerCaseTitle.includes('javascript') && lowerCaseTitle.includes('java')) {
-    tags.push('java');
+    tags.push(ALLOWED_TAGS.JAVA);
   }
   if (lowerCaseTitle.includes('vue')) {
-    tags.push('vuejs');
+    tags.push(ALLOWED_TAGS.VUEJS);
   }
   if (lowerCaseTitle.includes('marketing') || lowerCaseTitle.includes('sales')) {
-    tags.push('sales and marketing');
+    tags.push(ALLOWED_TAGS.SALES_AND_MARKETING);
   }
   if (lowerCaseTitle.includes('.net')) {
-    tags.push('.net');
-    tags.push('c#');
+    tags.push(ALLOWED_TAGS.DOTNET);
+    tags.push(ALLOWED_TAGS.CSHARP);
   } else if (lowerCaseTitle.includes('c#')) {
-    tags.push('c#');
+    tags.push(ALLOWED_TAGS.CSHARP);
   }
   if (
     lowerCaseTitle.startsWith('go ') ||
@@ -318,27 +360,27 @@ export default function getTags(title: string): string[] {
     lowerCaseTitle.includes(' go ') ||
     lowerCaseTitle.includes('(go)')
   ) {
-    tags.push('golang');
+    tags.push(ALLOWED_TAGS.GOLANG);
   }
   if (lowerCaseTitle.includes('copywrit') || lowerCaseTitle.includes('writer')) {
-    tags.push('copywriting');
+    tags.push(ALLOWED_TAGS.COPYWRITING);
   }
   if (lowerCaseTitle.includes('node')) {
-    tags.push('nodejs');
+    tags.push(ALLOWED_TAGS.NODEJS);
   }
   if (lowerCaseTitle.startsWith('r ')) {
-    tags.push('r');
+    tags.push(ALLOWED_TAGS.R);
   }
   if (lowerCaseTitle.includes('scala')) {
-    tags.push('scala');
-    if (!tags.includes('backend')) {
-      tags.push('backend');
+    tags.push(ALLOWED_TAGS.SCALA);
+    if (!tags.includes(ALLOWED_TAGS.BACKEND)) {
+      tags.push(ALLOWED_TAGS.BACKEND);
     }
   }
   if (lowerCaseTitle.includes('cryptography')) {
-    tags.push('cryptography');
-    if (!tags.includes('backend')) {
-      tags.push('backend');
+    tags.push(ALLOWED_TAGS.CRYPTOGRAPHY);
+    if (!tags.includes(ALLOWED_TAGS.BACKEND)) {
+      tags.push(ALLOWED_TAGS.BACKEND);
     }
   }
   // if (
