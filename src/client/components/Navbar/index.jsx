@@ -132,7 +132,7 @@ const Navbar = () => (
             <DropdownContent className="dropdown-content" shift={55} minWidth={165}>
               <Arrow />
               {Object.keys(CATEGORIES_META)
-                .slice(0, 6)
+                .slice(0, 5)
                 .map(cat => (
                   <Item key={cat}>
                     <a href={CATEGORIES_META[cat].link}>{CATEGORIES_META[cat].title}</a>

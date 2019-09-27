@@ -62,7 +62,7 @@ const Root = () => {
         <JobListWrapper flexDirection="column">
           {/* <Categories categories={CATEGORIES_META} /> */}
           {Object.keys(CATEGORIES_META)
-            .splice(0, 6)
+            .slice(0, 5)
             .map(cat => (
               <Category key={cat}>
                 <Link href={CATEGORIES_META[cat].link}>

@@ -59,7 +59,7 @@ const Footer = () => (
           <a href="/">Remote Jobs</a>
 
           {Object.keys(CATEGORIES_META)
-            .splice(0, 6)
+            .slice(0, 5)
             .map(cat => {
               return (
                 <a key={cat} href={CATEGORIES_META[cat].link}>

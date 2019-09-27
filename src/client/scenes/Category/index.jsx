@@ -56,11 +56,11 @@ const Root = () => {
 
   let headlineText = '';
   if (subsubcategory && ALL_META[subsubcategory]) {
-    headlineText = ` in ${ALL_META[subsubcategory].headline || ALL_META[subsubcategory].title}`;
+    headlineText = `${ALL_META[subsubcategory].headline || ALL_META[subsubcategory].title}`;
   } else if (subcategory && ALL_META[subcategory]) {
-    headlineText = ` in ${ALL_META[subcategory].headline || ALL_META[subcategory].title}`;
+    headlineText = `${ALL_META[subcategory].headline || ALL_META[subcategory].title}`;
   } else if (category && ALL_META[category]) {
-    headlineText = ` in ${ALL_META[category].headline || ALL_META[category].title}`;
+    headlineText = `${ALL_META[category].headline || ALL_META[category].title}`;
   }
   return (
     <>

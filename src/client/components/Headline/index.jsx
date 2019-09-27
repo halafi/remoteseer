@@ -26,14 +26,17 @@ const Description = styled(Box)`
 `;
 
 const Header = styled.h1`
+  padding: 0 4px;
   margin-block-start: 0;
-  margin-block-end: 0;
-  font-size: 36px;
-  line-height: 2.25;
+  margin-block-end: 8px;
+  font-size: 24px;
+  text-align: center;
   font-weight: 900;
   text-transform: uppercase;
+  line-height: 1.4;
   ${mq.TABLET`
-    font-size: 54px;
+    line-height: 2.25;
+    font-size: 36px;
 `}
 `;
 
@@ -70,7 +73,7 @@ type Props = {
 const Headline = ({ jobsCount, headlineText }: Props) => (
   <Main>
     <MainContent alignItems="center" flexDirection="column">
-      <Header>Remote Seer</Header>
+      <Header>Remote {headlineText} Jobs</Header>
       {/* <Image alt="work remotely" src="/images/digital_nomad.svg" /> */}
       <Description>
         <Subheader>
@@ -79,7 +82,7 @@ const Headline = ({ jobsCount, headlineText }: Props) => (
           <br />
           <br />
           <strong>
-            {jobsCount} remote jobs{headlineText}
+            {jobsCount} remote jobs{headlineText ? ` in ${headlineText}` : ''}
           </strong>{' '}
           from{' '}
           <Link href="/about/">
