@@ -22,7 +22,7 @@ import * as data from '../dataFiles';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: ${Theme.primary};
     background-color: ${Theme.secondary};
     a {

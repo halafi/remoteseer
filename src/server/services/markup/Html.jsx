@@ -39,7 +39,7 @@ const getTitle = (url: string, category: string, subcategory: string, subsubcate
     return `Remote ${CATEGORIES_META[category].headline ||
       CATEGORIES_META[category].title} Jobs | RemoteSeer`;
   }
-  return `Find remote jobs from multiple remote work sites | RemoteSeer`;
+  return `RemoteSeer | Find remote jobs from multiple web sites`;
 };
 
 const getDescription = (
@@ -75,7 +75,7 @@ const Html = ({ url, root, styleElement, state, category, subcategory, subsubcat
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           rel="preload"
-          href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+          href="https://fonts.googleapis.com/css?family=Nunito:400,700|Poppins:500&display=swap"
           as="fetch"
           crossOrigin="anonymous"
         />
@@ -95,7 +95,7 @@ const Html = ({ url, root, styleElement, state, category, subcategory, subsubcat
           url={url}
         />
         <link
-          href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+          href="https://fonts.googleapis.com/css?family=Nunito:400,700|Poppins:500&display=swap"
           rel="stylesheet"
         />
         <link rel="manifest" href="/manifest.json" />

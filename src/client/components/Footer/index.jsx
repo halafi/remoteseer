@@ -7,12 +7,15 @@ import mq from '../../services/mediaQuery';
 import { CATEGORIES_META } from '../../../server/consts/categories';
 
 const FooterWrapper: any = styled(Box)`
-  color: #ffffff;
-  background-color: #212429;
+  color: rgba(255, 255, 255, 0.61);
+  background-color: #33344f;
   width: 100%;
   font-size: 14px;
   a {
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.61);
+    :hover {
+      color: white;
+    }
   }
 `;
 
@@ -90,7 +93,7 @@ const Footer = () => (
         <span>
           © 2019 Made with{' '}
           <span role="img" aria-label="love">
-            ❤️
+            💜
           </span>{' '}
           working remotely
         </span>
@@ -98,5 +101,4 @@ const Footer = () => (
     </FooterContent>
   </FooterWrapper>
 );
-
 export default Footer;

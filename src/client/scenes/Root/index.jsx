@@ -29,16 +29,21 @@ const Category = styled(Box)`
 `;
 
 const Button = styled(Box)`
+  background: #884ffa;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 12px 28px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin-top: 12px;
-  border: 1px solid rgba(144, 146, 148, 0.2);
-  box-shadow: 0 4px 4px -2px rgba(144, 146, 148, 0.2);
-  border-radius: 2px;
-  font-size: 17px;
-  font-weight: 900;
-  color: #212529;
-  padding: 12px 18px;
+  color: #ffffff;
   width: 250px;
+  :hover {
+    box-shadow: 0px 20px 24px 0px rgba(0, 11, 40, 0.1);
+  }
 
   ${mq.MIDDLE_MOBILE`
     width: initial;

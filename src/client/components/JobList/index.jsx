@@ -24,6 +24,7 @@ const TimeBlock = styled(Flex)`
 `;
 
 const Job = styled(Flex)`
+  transition: ease all 0.3s;
   padding: 8px 14px;
   border-top: 1px solid #efefef;
   border-left: 1px solid #efefef;
