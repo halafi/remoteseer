@@ -529,7 +529,7 @@ export const SUBSUBCATEGORIES_META = {
   cms: {
     link: '/remote-development-jobs/web/cms/',
     title: 'CMS',
-    headline: 'Content Management System',
+    headline: 'CMS',
     description:
       'Find the latest remote CMS developer jobs on multiple websites. Work as remote content management system developer.',
   }, // firebase: { //   link: '/remote-development-jobs/web/firebase/', //   title: 'Firebase', //   headline: 'Firebase', //   description: //     'Find the latest remote Firebase web developer jobs on multiple websites. Develop web applications with Firebase.', // },

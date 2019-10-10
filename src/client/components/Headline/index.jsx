@@ -3,6 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Flex, Box } from '@rebass/grid';
 import mq from '../../services/mediaQuery';
+import Search from '../Search/index';
 
 const Main: any = styled(Box)`
   background-color: #fcfdfe;
@@ -21,7 +22,10 @@ const MainContent = styled(Flex)`
 
 const Description = styled(Box)`
   text-align: center;
-  max-width: 790px;
+  max-width: 500px;
+  ${mq.TABLET`
+    max-width: 790px;
+  `};
 `;
 
 const Header = styled.h1`
@@ -31,7 +35,6 @@ const Header = styled.h1`
   margin-block-end: 8px;
   font-size: 24px;
   text-align: center;
-  font-weight: 900;
   text-transform: uppercase;
   line-height: 1.4;
   ${mq.TABLET`
@@ -41,8 +44,8 @@ const Header = styled.h1`
 `;
 
 const Subheader = styled.div`
-  margin: 0 6px;
-  font-size: 16px;
+  margin: 0 12px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.6;
   ${mq.TABLET`
@@ -50,24 +53,20 @@ const Subheader = styled.div`
   `}
 `;
 
-const Providers = styled(Flex)`
-  margin-top: 12px;
-`;
+// const Providers = styled(Flex)`
+//   margin-top: 12px;
+// `;
 
-const Provider = styled.img`
-  padding: 12px;
-  width: 32px;
-  height: 32px;
-`;
+// const Provider = styled.img`
+//   padding: 12px;
+//   width: 32px;
+//   height: 32px;
+// `;
 
-const Link = styled.a`
-  color: initial;
-  text-decoration: underline;
-`;
-
-const Purple = styled.span`
-  color: #8756f6;
-`;
+// const Link = styled.a`
+//   color: initial;
+//   text-decoration: underline;
+// `;
 
 const Par = styled.p`
   margin-block-start: 0;
@@ -82,9 +81,7 @@ type Props = {
 const Headline = ({ jobsCount, headlineText }: Props) => (
   <Main>
     <MainContent alignItems="center" flexDirection="column">
-      <Header>
-        Remote <Purple>{headlineText}</Purple> Jobs
-      </Header>
+      <Header>Remote {headlineText} Jobs</Header>
       {/* <Image alt="work remotely" src="/images/digital_nomad.svg" /> */}
       <Description>
         <Subheader>
@@ -96,13 +93,11 @@ const Headline = ({ jobsCount, headlineText }: Props) => (
             <strong>
               {jobsCount} remote jobs{headlineText ? ` in ${headlineText}` : ''}
             </strong>{' '}
-            from{' '}
-            <Link href="/about/">
-              <strong>well trusted sites</strong>
-            </Link>
+            from <strong>well trusted sites</strong>
           </Par>
         </Subheader>
-        <Providers justifyContent="center" flexWrap="wrap">
+        <Search />
+        {/* <Providers justifyContent="center" flexWrap="wrap">
           <Provider src="/images/github.svg" alt="Github jobs" />
           <Provider src="/images/stackoverflow.svg" alt="StackOverflow jobs" />
           <Provider src="/images/remoteok.ico" alt="RemoteOk jobs" />
@@ -113,7 +108,7 @@ const Headline = ({ jobsCount, headlineText }: Props) => (
           <Provider src="/images/nodesk.png" alt="Nodesk jobs" />
           <Provider src="/images/cryptocurrencyjobs.png" alt="Cryptocurrency jobs" />
           <Provider src="/images/remotive.png" alt="Remotive jobs" />
-        </Providers>
+        </Providers> */}
       </Description>
     </MainContent>
   </Main>
