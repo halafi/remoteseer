@@ -19,6 +19,8 @@ import Routes from '../../../client/Routes';
 import { StateProvider } from '../../../client/State';
 import Html from './Html';
 import * as data from '../dataFiles';
+import Navbar from '../../../client/components/Navbar/index';
+import Footer from '../../../client/components/Footer/index';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -60,9 +62,11 @@ function markup(url: string) {
         <GlobalStyle />
         <ThemeProvider theme={Theme}>
           <StateProvider initialState={state}>
+            <Navbar />
             <StaticRouter location={url} context={{}}>
               <Routes />
             </StaticRouter>
+            <Footer />
           </StateProvider>
         </ThemeProvider>
       </>

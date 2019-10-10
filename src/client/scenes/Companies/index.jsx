@@ -3,9 +3,7 @@ import React from 'react';
 import * as R from 'ramda';
 import styled from 'styled-components';
 import { Box, Flex } from '@rebass/grid';
-import Navbar from '../../components/Navbar';
 import { useStateValue } from '../../State';
-import Footer from '../../components/Footer/index';
 import Headline from '../../components/Headline/index';
 import mq from '../../services/mediaQuery';
 import Breadcrumbs from '../../components/Breadcrumbs/index';
@@ -46,7 +44,6 @@ const Stats = () => {
 
   return (
     <>
-      <Navbar />
       <Flex alignItems="center" flexDirection="column">
         <Headline jobsCount={jobs.length} />
         <JobListWrapper flexDirection="column">
@@ -86,7 +83,6 @@ const Stats = () => {
             </CompaniesList>
           </Box>
         </JobListWrapper>
-        <Footer />
       </Flex>
     </>
   );

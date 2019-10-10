@@ -2,9 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex } from '@rebass/grid';
-import Navbar from '../../components/Navbar';
 import { useStateValue } from '../../State';
-import Footer from '../../components/Footer/index';
 import JobList from '../../components/JobList/index';
 import Headline from '../../components/Headline/index';
 import Breadcrumbs from '../../components/Breadcrumbs';
@@ -54,7 +52,6 @@ const Root = () => {
   }
   return (
     <>
-      <Navbar />
       <Flex alignItems="center" flexDirection="column">
         <Headline jobsCount={jobs.length} headlineText={headlineText} />
         <JobListWrapper flexDirection="column">
@@ -70,7 +67,6 @@ const Root = () => {
           )}
           <JobList jobs={jobs} />
         </JobListWrapper>
-        <Footer />
       </Flex>
     </>
   );
