@@ -8,7 +8,6 @@ const HeaderWrapper = styled.header`
   font-family: 'Poppins', sans-serif;
   background-color: white;
   width: 100%;
-  box-shadow: 0 8px 50px -6px rgba(84, 84, 120, 0.26);
 `;
 
 const Headline = styled.div`

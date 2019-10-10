@@ -36,7 +36,6 @@ const Button = styled(Box)`
   border: none;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-top: 12px;
   color: #ffffff;
   width: 250px;
   :hover {
@@ -72,13 +71,13 @@ const Root = () => {
                 </Link>
 
                 <JobList jobs={filterCategoryJobs(jobs, cat).splice(0, 15)} nogroup />
-                <Flex justifyContent="center">
-                  <Button>
-                    <Link href={CATEGORIES_META[cat].link}>
+                <Flex justifyContent="center" mt={12}>
+                  <Link href={CATEGORIES_META[cat].link}>
+                    <Button>
                       View all {filterCategoryJobs(jobs, cat).length} {CATEGORIES_META[cat].title}{' '}
                       jobs
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
                 </Flex>
               </Category>
             ))}

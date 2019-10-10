@@ -6,7 +6,7 @@ import mq from '../../services/mediaQuery';
 import type { Job as JobType } from '../../records/Job';
 import { TAG_LINKS } from '../../services/jobs/tags';
 
-const Link = styled.a`
+const Link = styled.div`
   color: initial;
   :hover {
     color: initial;
@@ -17,6 +17,7 @@ const Link = styled.a`
 `;
 
 const Container = styled(Flex)`
+  cursor: pointer;
   transition: ease all 0.3s;
   padding: 8px 14px;
   border-top: 1px solid #efefef;
@@ -138,7 +139,22 @@ type Props = {
 };
 
 const Job = ({ job, last }: Props) => (
-  <Container key={job.id} alignItems="center" last={last}>
+  <Container
+    key={job.id}
+    tabIndex={0}
+    alignItems="center"
+    last={last}
+    onClick={ev => {
+      if (!ev.target.className.includes('taglink')) {
+        window.open(job.url, '_blank');
+      }
+    }}
+    onKeyPress={ev => {
+      if (ev.key === 'Enter' && !ev.target.className.includes('taglink')) {
+        window.open(job.url, '_blank');
+      }
+    }}
+  >
     <CompanyLogo provider={job.providerId} justifyContent="center" alignItems="center">
       {job.company.slice(0, 1).toUpperCase()}
     </CompanyLogo>
@@ -150,7 +166,7 @@ const Job = ({ job, last }: Props) => (
           alignItems="center"
         >
           <Flex flexDirection="column" width={[1, null, null, null, 3 / 5]}>
-            <Link href={job.url} target="_blank" rel="noopener noreferrer">
+            <Link>
               {job.company}
               <JobTitle location={Boolean(job.location)}>{job.title}</JobTitle>
               {job.location && <JobLocation>{job.location}</JobLocation>}
@@ -160,9 +176,11 @@ const Job = ({ job, last }: Props) => (
             {job.tags.map(x => (
               <Tag key={x} link={Boolean(TAG_LINKS[x])}>
                 {TAG_LINKS[x] ? (
-                  <a href={TAG_LINKS[x]}>{x.toUpperCase()}</a>
+                  <a className="taglink" href={TAG_LINKS[x]}>
+                    {x.toUpperCase()}
+                  </a>
                 ) : (
-                  <span>{x.toUpperCase()}</span>
+                  <span className="taglink">{x.toUpperCase()}</span>
                 )}
               </Tag>
             ))}

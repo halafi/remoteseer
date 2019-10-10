@@ -9,6 +9,7 @@ import {
   SUBSUBCATEGORIES_META,
 } from '../../consts/categories';
 import SEO from './components/SEO/index';
+// import Crisp from './components/Crisp/index';
 
 type Props = {
   url: string,
@@ -107,18 +108,18 @@ const Html = ({ url, root, styleElement, state, category, subcategory, subsubcat
         />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" />
-        {process.env.NODE_ENV !== 'production' && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.__STATE__ = ${JSON.stringify(state)};`,
-            }}
-          />
-        )}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__STATE__ = ${JSON.stringify(state)};`,
+          }}
+        />
+        <link rel="preload" as="script" href="/bundle.js" />
         {styleElement}
+        {/* <Crisp /> */}
       </head>
       <body>
         <div id="root" dangerouslySetInnerHTML={{ __html: root }} />
-        {process.env.NODE_ENV !== 'production' && <script src="/bundle.js" />}
+        <script src="/bundle.js" />
       </body>
     </html>
   );

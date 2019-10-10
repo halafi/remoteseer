@@ -7,20 +7,20 @@ import { ThemeProvider } from 'styled-components';
 import Theme from './records/Theme';
 import Routes from './Routes';
 import { StateProvider } from './State';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer/index';
+// import Navbar from './components/Navbar';
+// import Footer from './components/Footer/index';
 
-const container = document.getElementById('root');
+const container = document.getElementById('body');
 
 if (container) {
   hydrate(
     <ThemeProvider theme={Theme}>
       <StateProvider initialState={window.__STATE__}>
-        <Navbar />
+        {/* <Navbar /> */}
         <BrowserRouter>
           <Routes />
         </BrowserRouter>
-        <Footer />
+        {/* <Footer /> */}
       </StateProvider>
     </ThemeProvider>,
     container,

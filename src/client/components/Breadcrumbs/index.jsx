@@ -62,12 +62,7 @@ type Props = {
 const Breadcrumbs = ({ className, category, subcategory, subsubcategory, contentPage }: Props) => (
   <Container>
     <StyledList className={className} itemScope itemType="http://schema.org/BreadcrumbList">
-      <ListItem
-        key="home"
-        itemProp="itemListElement"
-        itemScope
-        itemType="http://schema.org/ListItem"
-      >
+      <ListItem itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
         {/* $FlowFixMe */}
         <Link itemProp="item" href="/">
           <span itemProp="name">Remote Jobs</span>
@@ -75,12 +70,7 @@ const Breadcrumbs = ({ className, category, subcategory, subsubcategory, content
         <meta itemProp="position" content={1} />
       </ListItem>
       {contentPage && (
-        <ListItem
-          key="home"
-          itemProp="itemListElement"
-          itemScope
-          itemType="http://schema.org/ListItem"
-        >
+        <ListItem itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
           <Selected>
             <link itemProp="item" href={contentPage.link} />
             <span itemProp="name">{contentPage.title}</span>
@@ -89,12 +79,7 @@ const Breadcrumbs = ({ className, category, subcategory, subsubcategory, content
         </ListItem>
       )}
       {category && (
-        <ListItem
-          key="home"
-          itemProp="itemListElement"
-          itemScope
-          itemType="http://schema.org/ListItem"
-        >
+        <ListItem itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
           {!subcategory ? (
             <Selected>
               <link itemProp="item" href={CATEGORIES_META[category].link} />
@@ -109,12 +94,7 @@ const Breadcrumbs = ({ className, category, subcategory, subsubcategory, content
         </ListItem>
       )}
       {subcategory && (
-        <ListItem
-          key="home"
-          itemProp="itemListElement"
-          itemScope
-          itemType="http://schema.org/ListItem"
-        >
+        <ListItem itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
           {!subsubcategory ? (
             <Selected>
               <link itemProp="item" href={DEV_CATEGORIES_META[subcategory].link} />
@@ -129,12 +109,7 @@ const Breadcrumbs = ({ className, category, subcategory, subsubcategory, content
         </ListItem>
       )}
       {subsubcategory && (
-        <ListItem
-          key="home"
-          itemProp="itemListElement"
-          itemScope
-          itemType="http://schema.org/ListItem"
-        >
+        <ListItem itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
           <Selected>
             <link itemProp="item" href={SUBSUBCATEGORIES_META[subsubcategory].link} />
             <span itemProp="name">{SUBSUBCATEGORIES_META[subsubcategory].title}</span>
