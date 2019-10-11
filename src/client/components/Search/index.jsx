@@ -12,7 +12,6 @@ const SearchOverlay = styled(Flex)`
   bottom: 0;
   left: 0;
   z-index: 2;
-  background-color: rgba(0, 0, 0, 0.1);
 `;
 
 const Input = styled.input`
@@ -57,24 +56,25 @@ const Suggestions = styled(Flex)`
   box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 100%;
-  min-height: 211px;
+  min-height: 179px;
+  max-height: 358px;
+  overflow-y: auto;
   ${mq.TABLET`
     left: 247px;
     width: 297px;
   `};
 `;
 
-const Suggestion = styled.a`
+const Suggestion = styled.div`
   color: initial;
+  cursor: pointer;
   text-align: left;
   font-size: 18px;
-  padding: 16px;
+  padding: 12px 16px;
+  background-color: ${({ selected }) => (selected ? '#f5f5f5' : '')};
   transition: background-color 0.2s ease;
   :not(:last-child) {
     border-bottom: 1px solid rgb(239, 239, 239);
-  }
-  :hover {
-    background-color: #f5f5f5;
   }
 `;
 
@@ -90,19 +90,76 @@ class Search extends React.PureComponent<> {
       value: '',
       suggestions: [],
       focused: false,
+      cursor: 0,
+      disabled: false,
     };
   }
 
   handleClickOut = () => {
+    const { value, suggestions } = this.state;
     this.setState({
       focused: false,
+      suggestions: value === '' ? [] : suggestions,
+      cursor: 0,
     });
   };
 
   handleClickIn = () => {
     this.setState({
       focused: true,
+      cursor: 0,
     });
+  };
+
+  handleSelect = () => {
+    const { cursor, suggestions } = this.state;
+    this.setState({
+      value: suggestions[cursor - 1],
+      focused: false,
+      cursor: 0,
+      disabled: true,
+    });
+    window.open(TAG_LINKS[suggestions[cursor - 1]], '_self');
+  };
+
+  handleKeyDown = ev => {
+    const { cursor, suggestions, value } = this.state;
+
+    if (ev.keyCode === 13) {
+      // enter
+      this.setState({
+        value: suggestions[cursor - 1],
+        focused: false,
+        cursor: 0,
+        disabled: true,
+      });
+      ev.preventDefault();
+      window.open(TAG_LINKS[suggestions[cursor - 1]], '_self');
+    } else if (ev.keyCode === 38 && cursor > 1) {
+      ev.preventDefault();
+      this.setState({
+        cursor: cursor - 1,
+      });
+    } else if (ev.keyCode === 40 && cursor < suggestions.length) {
+      ev.preventDefault();
+      // keydown
+      this.setState({
+        cursor: cursor + 1,
+      });
+    } else if (ev.keyCode === 40 && value === '') {
+      ev.preventDefault();
+      this.setState({
+        suggestions: Object.keys(TAG_LINKS),
+      });
+    } else if (ev.keyCode === 38 && value === '') {
+      this.setState({
+        suggestions: [],
+      });
+    }
+  };
+
+  handleCursorChange = cur => {
+    this.setState({ cursor: cur });
   };
 
   handleChange = ev => {
@@ -111,14 +168,17 @@ class Search extends React.PureComponent<> {
     this.setState({
       focused: true,
       value: ev.target.value,
-      suggestions: Object.keys(TAG_LINKS).filter(
-        tag => tag.toLowerCase().slice(0, inputValue.length) === inputValue,
-      ),
+      suggestions: inputValue
+        ? Object.keys(TAG_LINKS).filter(
+            tag => tag.toLowerCase().slice(0, inputValue.length) === inputValue,
+          )
+        : [],
+      cursor: 0,
     });
   };
 
   render() {
-    const { value, suggestions, focused } = this.state;
+    const { value, suggestions, focused, cursor, disabled } = this.state;
     return (
       <>
         {focused && <SearchOverlay onClick={this.handleClickOut} />}
@@ -130,12 +190,19 @@ class Search extends React.PureComponent<> {
             onFocus={this.handleClickIn}
             onChange={this.handleChange}
             placeholder="search jobs"
+            onKeyDown={this.handleKeyDown}
+            disabled={disabled}
           />
-          {Boolean(value.length) && focused && (
+          {Boolean(value.length || suggestions.length) && focused && (
             <Suggestions flexDirection="column">
               {suggestions.length ? (
-                suggestions.map(x => (
-                  <Suggestion key={x} href={TAG_LINKS[x]}>
+                suggestions.sort().map((x, i) => (
+                  <Suggestion
+                    key={x}
+                    onMouseEnter={() => this.handleCursorChange(i + 1)}
+                    selected={i + 1 === cursor}
+                    onClick={this.handleSelect}
+                  >
                     {x}
                   </Suggestion>
                 ))

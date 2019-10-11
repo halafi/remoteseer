@@ -227,11 +227,7 @@ export default function getTags(title: string): string[] {
   ) {
     tags.push(ALLOWED_TAGS.DEVOPS);
   }
-  if (
-    lowerCaseTitle.includes('compiler') ||
-    lowerCaseTitle.includes('interpreter') ||
-    lowerCaseTitle.includes('type-system')
-  ) {
+  if (lowerCaseTitle.includes('compiler') || lowerCaseTitle.includes('type-system')) {
     tags.push(ALLOWED_TAGS.COMPILERS);
   }
   if (lowerCaseTitle.includes('exec')) {
@@ -243,18 +239,21 @@ export default function getTags(title: string): string[] {
     lowerCaseTitle.includes('ionic') ||
     lowerCaseTitle.includes('xamarin')
   ) {
-    tags.push(ALLOWED_TAGS.MOBILE);
+    if (!tags.includes(ALLOWED_TAGS.MOBILE)) {
+      tags.push(ALLOWED_TAGS.MOBILE);
+    }
     tags.push(ALLOWED_TAGS.CROSS_PLATFORM);
   }
   if (
-    lowerCaseTitle.includes('mobile') ||
-    lowerCaseTitle.includes('xamarin') ||
-    lowerCaseTitle.includes('cross platform app developer') ||
-    lowerCaseTitle.includes('ios') ||
-    lowerCaseTitle.includes('android') ||
-    lowerCaseTitle.includes('swift') ||
-    lowerCaseTitle.includes('kotlin') ||
-    lowerCaseTitle.includes('ionic')
+    !tags.includes(ALLOWED_TAGS.MOBILE) &&
+    (lowerCaseTitle.includes('mobile') ||
+      lowerCaseTitle.includes('xamarin') ||
+      lowerCaseTitle.includes('cross platform app developer') ||
+      lowerCaseTitle.includes('ios') ||
+      lowerCaseTitle.includes('android') ||
+      lowerCaseTitle.includes('swift') ||
+      lowerCaseTitle.includes('kotlin') ||
+      lowerCaseTitle.includes('ionic'))
   ) {
     tags.push(ALLOWED_TAGS.MOBILE);
   }
