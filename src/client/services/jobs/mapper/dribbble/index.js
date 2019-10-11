@@ -1,5 +1,5 @@
 // @flow
-import { differenceInDays, differenceInHours, parse } from 'date-fns';
+import { differenceInDays, differenceInHours, parse, subDays } from 'date-fns';
 import type { Job } from '../../../../records/Job';
 import { PROVIDERS } from '../../../../records/Job';
 import getTags from '../../tags';
@@ -8,8 +8,8 @@ import normalizeTitle from '../../normalizeTitle';
 export default function mapperDribbbleJobs(input: any): Job[] {
   return input.map(x => {
     const createdAt =
-      x.date === 'Now Hiring'
-        ? new Date().getTime()
+      x.date === 'Today'
+        ? subDays(new Date().getTime(), 1)
         : parse(x.date, 'MMMM d', new Date()).getTime();
     let location =
       x.location.includes('Anywhere') || x.location.includes('Remote') ? '' : x.location;

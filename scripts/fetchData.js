@@ -196,50 +196,37 @@ async function downloadDribbble(url, file) {
   const outputFile = path.join(DATA_DIR, file).replace('.html', '.json');
   const $ = cheerio.load(data);
   const jobs = [];
-  let date = 'Today';
-  $('.all-of-the-jobs')
+  const date = 'Today'; // fuckers removed it
+  $('#job-board-groups')
     .children()
     .each((i, e) => {
-      const className = $(e)
-        .attr('class')
-        .split(' ')
-        .join('.');
-      if (className === 'jobs-date') {
-        date = $(e)
-          .html()
-          .trim(); // August 1 or August 11
-      } else if (className === 'jobs-list') {
-        $(e)
-          .find('a.item-link')
-          .each((j, job) => {
-            // for each job in day period
-            const link = `https://dribbble.com${$(job).attr('href')}`;
-            const location = $(job)
-              .find('.item-meta')
-              .html()
-              .trim();
-            const company = $(job)
-              .find('.item-title')
-              .html()
-              .trim();
-            const title = $(job)
-              .find('.item-desc')
-              .html()
-              .trim();
-            // const companyLogo = $(job)
-            //   .find('.item-team img')
-            //   .attr('src')
-            //   .trim();
-            jobs.push({
-              id: `drb-${j}`,
-              date,
-              link,
-              title,
-              location,
-              company,
-            });
+      $(e)
+        .find('a.job-board-job-link')
+        .each((j, job) => {
+          // for each job in day period
+          const link = `https://dribbble.com${$(job).attr('href')}`;
+          const location = $(e)
+            .find('.job-board-job-meta > li')
+            .html()
+            .split('</svg>')[1]
+            .trim();
+          const company = $(job)
+            .find('.job-board-job-company')
+            .html()
+            .trim();
+          const title = $(job)
+            .find('.job-board-job-title')
+            .html()
+            .trim();
+          jobs.push({
+            id: `drb-${j}`,
+            date,
+            link,
+            title,
+            location: location === 'Anywhere' ? '' : location,
+            company,
           });
-      }
+        });
     });
   await fs.outputJson(outputFile, jobs);
   console.log(`[fetchData] downloaded ${url} -> ${outputFile}`);
