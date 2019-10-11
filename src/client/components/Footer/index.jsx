@@ -1,4 +1,3 @@
-// @flow
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import styled from 'styled-components';
@@ -6,7 +5,7 @@ import { Flex, Box } from '@rebass/grid';
 import mq from '../../services/mediaQuery';
 import { CATEGORIES_META } from '../../../server/consts/categories';
 
-const FooterWrapper: any = styled(Box)`
+const Container = styled.footer`
   color: rgba(255, 255, 255, 0.61);
   background-color: #33344f;
   width: 100%;
@@ -19,7 +18,7 @@ const FooterWrapper: any = styled(Box)`
   }
 `;
 
-const FooterContent = styled(Flex)`
+const FooterContent = styled(Box)`
   margin: 0px auto;
   padding: 0 16px;
   width: 100%;
@@ -28,7 +27,7 @@ const FooterContent = styled(Flex)`
   `}
 `;
 
-const FooterHtml = styled.footer`
+const FooterHtml = styled.div`
   padding: 20px 0;
   display: flex;
   justify-content: space-between;
@@ -55,32 +54,41 @@ const Icon = styled.img`
 // `;
 
 const Footer = () => (
-  <FooterWrapper>
-    <FooterContent flexDirection="column">
-      <Flex flexDirection={['column', null, 'row']} justifyContent="space-between" py={4} mt={2}>
+  <Container>
+    <FooterContent>
+      <nav>
         <Flex flexDirection="column">
-          <a href="/">Remote Jobs</a>
+          <Flex
+            flexDirection={['column', null, 'row']}
+            justifyContent="space-between"
+            py={4}
+            mt={2}
+          >
+            <Flex flexDirection="column">
+              <a href="/">Remote Jobs</a>
 
-          {Object.keys(CATEGORIES_META)
-            .slice(0, 5)
-            .map(cat => {
-              return (
-                <a key={cat} href={CATEGORIES_META[cat].link}>
-                  Remote {CATEGORIES_META[cat].title} Jobs
-                </a>
-              );
-            })}
+              {Object.keys(CATEGORIES_META)
+                .slice(0, 5)
+                .map(cat => {
+                  return (
+                    <a key={cat} href={CATEGORIES_META[cat].link}>
+                      Remote {CATEGORIES_META[cat].title} Jobs
+                    </a>
+                  );
+                })}
+            </Flex>
+            <Box mt={[4, null, 0]}>
+              <a href="#">Back to top ↑</a>
+            </Box>
+          </Flex>
+          <a href="/about/">About</a>
+          <a href="/companies-hiring-remotely/">Companies Hiring Remotely</a>
+          <a href="mailto:hello@remoteseer.net">Contact</a>
+          <a type="application/rss+xml" href="https://remoteseer.net/remote-jobs.rss">
+            RSS Feed
+          </a>
         </Flex>
-        <Box mt={[4, null, 0]}>
-          <a href="#">Back to top ↑</a>
-        </Box>
-      </Flex>
-      <a href="/about/">About</a>
-      <a href="/companies-hiring-remotely/">Companies Hiring Remotely</a>
-      <a href="mailto:hello@remoteseer.net">Contact</a>
-      <a type="application/rss+xml" href="https://remoteseer.net/remote-jobs.rss">
-        RSS Feed
-      </a>
+      </nav>
       <Flex justifyContent="space-between" alignItems="center" py={2}>
         <Disclaimer>
           By using the site you agree that we use cookies for analysis of visitor behaviour.
@@ -99,6 +107,6 @@ const Footer = () => (
         </span>
       </FooterHtml>
     </FooterContent>
-  </FooterWrapper>
+  </Container>
 );
 export default Footer;

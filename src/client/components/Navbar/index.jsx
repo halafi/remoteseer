@@ -4,7 +4,7 @@ import { Flex } from '@rebass/grid';
 import mq from '../../services/mediaQuery';
 import { CATEGORIES_META } from '../../../server/consts/categories';
 
-const HeaderWrapper = styled.header`
+const Header = styled.header`
   font-family: 'Poppins', sans-serif;
   background-color: white;
   width: 100%;
@@ -138,47 +138,49 @@ const Caption = styled.span`
 `;
 
 const Navbar = () => (
-  <HeaderWrapper>
+  <Header>
     <Headline>
-      <Flex alignItems="center">
-        <a href="/">
-          <Flex alignItems="center" pr={20}>
-            <Caption>
-              <Purple>Remote</Purple>Seer
-            </Caption>
-            {/* <SubTitle>find work from anywhere</SubTitle> */}
-          </Flex>
-        </a>
-        <Dropdown>
-          <DropdownButton className="dropbtn">Categories</DropdownButton>
-          <DropdownContent className="dropdown-content" shift={70} minWidth={195}>
-            {Object.keys(CATEGORIES_META)
-              .slice(0, 5)
-              .map(cat => (
-                <Item key={cat}>
-                  <a href={CATEGORIES_META[cat].link}>{CATEGORIES_META[cat].title}</a>
-                </Item>
-              ))}
-          </DropdownContent>
-        </Dropdown>
-        <Dropdown>
-          <DropdownButton className="dropbtn">Community</DropdownButton>
-          <DropdownContent className="dropdown-content" shift={20} minWidth={95}>
-            <Item>
-              <a href="https://twitter.com/remote_seer" target="_blank" rel="noopener noreferrer">
-                Twitter
-              </a>
-            </Item>
-            <Item>
-              <a type="application/rss+xml" href="https://remoteseer.net/remote-jobs.rss">
-                RSS Feed
-              </a>
-            </Item>
-          </DropdownContent>
-        </Dropdown>
-      </Flex>
+      <nav>
+        <Flex alignItems="center">
+          <a href="/">
+            <Flex alignItems="center" pr={20}>
+              <Caption>
+                <Purple>Remote</Purple>Seer
+              </Caption>
+              {/* <SubTitle>find work from anywhere</SubTitle> */}
+            </Flex>
+          </a>
+          <Dropdown>
+            <DropdownButton className="dropbtn">Categories</DropdownButton>
+            <DropdownContent className="dropdown-content" shift={70} minWidth={195}>
+              {Object.keys(CATEGORIES_META)
+                .slice(0, 5)
+                .map(cat => (
+                  <Item key={cat}>
+                    <a href={CATEGORIES_META[cat].link}>{CATEGORIES_META[cat].title}</a>
+                  </Item>
+                ))}
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton className="dropbtn">Community</DropdownButton>
+            <DropdownContent className="dropdown-content" shift={20} minWidth={95}>
+              <Item>
+                <a href="https://twitter.com/remote_seer" target="_blank" rel="noopener noreferrer">
+                  Twitter
+                </a>
+              </Item>
+              <Item>
+                <a type="application/rss+xml" href="https://remoteseer.net/remote-jobs.rss">
+                  RSS Feed
+                </a>
+              </Item>
+            </DropdownContent>
+          </Dropdown>
+        </Flex>
+      </nav>
     </Headline>
-  </HeaderWrapper>
+  </Header>
 );
 
 export default Navbar;

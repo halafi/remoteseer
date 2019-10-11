@@ -12,9 +12,12 @@ const SearchOverlay = styled(Flex)`
   bottom: 0;
   left: 0;
   z-index: 2;
+  background-color: rgba(0, 0, 0, 0.1);
 `;
 
 const Input = styled.input`
+  position: relative;
+  z-index: 3;
   margin-top: 24px;
   margin-bottom: 12px;
   font-weight: 400;
@@ -41,12 +44,12 @@ const Input = styled.input`
 `;
 
 const Container = styled.div`
-  z-index: 3;
   position: relative;
 `;
 
 const Suggestions = styled(Flex)`
   position: absolute;
+  z-index: 3;
   background-color: white;
   top: 78px;
   left: 0;
@@ -54,6 +57,7 @@ const Suggestions = styled(Flex)`
   box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 100%;
+  min-height: 211px;
   ${mq.TABLET`
     left: 247px;
     width: 297px;
@@ -74,6 +78,11 @@ const Suggestion = styled.a`
   }
 `;
 
+const Message = styled(Flex)`
+  height: 211px;
+  text-align: center;
+`;
+
 class Search extends React.PureComponent<> {
   constructor() {
     super();
@@ -87,6 +96,12 @@ class Search extends React.PureComponent<> {
   handleClickOut = () => {
     this.setState({
       focused: false,
+    });
+  };
+
+  handleClickIn = () => {
+    this.setState({
+      focused: true,
     });
   };
 
@@ -112,17 +127,28 @@ class Search extends React.PureComponent<> {
             autoComplete="off"
             type="text"
             value={value}
+            onFocus={this.handleClickIn}
             onChange={this.handleChange}
             placeholder="search jobs"
           />
           {Boolean(value.length) && focused && (
             <Suggestions flexDirection="column">
-              {suggestions.map(x => (
-                <Suggestion key={x} href={TAG_LINKS[x]}>
-                  {x}
-                </Suggestion>
-              ))}
-              {/* <Suggestion key="fulltext">Search: {value}</Suggestion> */}
+              {suggestions.length ? (
+                suggestions.map(x => (
+                  <Suggestion key={x} href={TAG_LINKS[x]}>
+                    {x}
+                  </Suggestion>
+                ))
+              ) : (
+                <Message justifyContent="center" alignItems="center">
+                  <div>
+                    No tag found{' '}
+                    <span role="img" aria-label="crying emoji">
+                      😿
+                    </span>
+                  </div>
+                </Message>
+              )}
             </Suggestions>
           )}
         </Container>
@@ -130,5 +156,4 @@ class Search extends React.PureComponent<> {
     );
   }
 }
-
 export default Search;

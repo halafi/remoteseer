@@ -63,11 +63,11 @@ function markup(url: string) {
         <ThemeProvider theme={Theme}>
           <StateProvider initialState={state}>
             <Navbar />
-            <div id="body">
+            <main id="body">
               <StaticRouter location={url} context={{}}>
                 <Routes />
               </StaticRouter>
-            </div>
+            </main>
             <Footer />
           </StateProvider>
         </ThemeProvider>

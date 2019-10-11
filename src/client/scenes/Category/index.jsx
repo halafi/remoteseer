@@ -1,4 +1,3 @@
-// @flow
 import React from 'react';
 import styled from 'styled-components';
 import { Flex } from '@rebass/grid';
@@ -15,7 +14,7 @@ import {
   ALL_META,
 } from '../../../server/consts/categories';
 
-const JobListWrapper: any = styled(Flex)`
+const JobListWrapper = styled(Flex)`
   margin: 0 auto 40px;
   width: 100%;
   ${mq.DESKTOP`
@@ -60,12 +59,14 @@ const Root = () => {
             subcategory={subcategory}
             subsubcategory={subsubcategory}
           />
-          <CatTitle>{title} Jobs</CatTitle>
+          <section>
+            <CatTitle>{title} Jobs</CatTitle>
 
-          {category === 'development' && !subcategory && (
-            <Categories categories={DEV_CATEGORIES_META} />
-          )}
-          <JobList jobs={jobs} />
+            {category === 'development' && !subcategory && (
+              <Categories categories={DEV_CATEGORIES_META} />
+            )}
+            <JobList jobs={jobs} />
+          </section>
         </JobListWrapper>
       </Flex>
     </>

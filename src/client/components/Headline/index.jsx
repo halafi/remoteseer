@@ -5,7 +5,7 @@ import { Flex, Box } from '@rebass/grid';
 import mq from '../../services/mediaQuery';
 import Search from '../Search/index';
 
-const Main: any = styled(Box)`
+const Main = styled(Box)`
   background-color: #fcfdfe;
   background-image: linear-gradient(0deg, #ededef 0%, #fff 100%);
   width: 100%;
@@ -81,23 +81,24 @@ type Props = {
 const Headline = ({ jobsCount, headlineText }: Props) => (
   <Main>
     <MainContent alignItems="center" flexDirection="column">
-      <Header>Remote {headlineText} Jobs</Header>
-      {/* <Image alt="work remotely" src="/images/digital_nomad.svg" /> */}
-      <Description>
-        <Subheader>
-          <Par mb={28}>
-            Find remote work and <strong>work from anywhere</strong>. We aggregate providers and
-            remote job boards to bring you the <strong>largest listing of remote jobs</strong>.
-          </Par>
-          <Par>
-            <strong>
-              {jobsCount} remote jobs{headlineText ? ` in ${headlineText}` : ''}
-            </strong>{' '}
-            from <strong>well trusted sites</strong>
-          </Par>
-        </Subheader>
-        <Search />
-        {/* <Providers justifyContent="center" flexWrap="wrap">
+      <section>
+        <Header>Remote Jobs</Header>
+        {/* <Image alt="work remotely" src="/images/digital_nomad.svg" /> */}
+        <Description>
+          <Subheader>
+            <Par mb={28}>
+              Find remote work and <strong>work from anywhere</strong>. We aggregate providers and
+              remote job boards to bring you the <strong>largest listing of remote jobs</strong>.
+            </Par>
+            <Par>
+              <strong>
+                {jobsCount} remote jobs{headlineText ? ` in ${headlineText}` : ''}
+              </strong>{' '}
+              from <strong>well trusted sites</strong>
+            </Par>
+          </Subheader>
+          <Search />
+          {/* <Providers justifyContent="center" flexWrap="wrap">
           <Provider src="/images/github.svg" alt="Github jobs" />
           <Provider src="/images/stackoverflow.svg" alt="StackOverflow jobs" />
           <Provider src="/images/remoteok.ico" alt="RemoteOk jobs" />
@@ -109,7 +110,8 @@ const Headline = ({ jobsCount, headlineText }: Props) => (
           <Provider src="/images/cryptocurrencyjobs.png" alt="Cryptocurrency jobs" />
           <Provider src="/images/remotive.png" alt="Remotive jobs" />
         </Providers> */}
-      </Description>
+        </Description>
+      </section>
     </MainContent>
   </Main>
 );

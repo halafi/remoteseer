@@ -22,7 +22,7 @@ const Link = styled.a`
   color: inherit;
 `;
 
-const Category = styled(Box)`
+const Category = styled.section`
   margin: 40px 0;
 `;
 
