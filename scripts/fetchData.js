@@ -11,14 +11,14 @@ import convert from 'xml-js';
 // DUPLICATE
 const WWR_CATEGORIES = [
   'remote-customer-support-jobs',
-  'product',
+  'remote-product-jobs',
   'remote-programming-jobs',
-  'sales-and-marketing',
-  'business-and-management',
+  'remote-sales-and-marketing-jobs',
+  'remote-business-and-management-jobs',
   'remote-copywriting-jobs',
   'remote-design-jobs',
   'remote-devops-sysadmin-jobs',
-  'finance-and-legal',
+  'remote-finance-and-legal-jobs',
   'remote-jobs',
 ];
 
@@ -268,6 +268,7 @@ async function downloadNodeskRss(url, file, linkFilter) {
 }
 
 async function downloadRss(url, file) {
+  console.log(url);
   const response = await fetch(url);
   const data = await response.text();
   const xml = await convert.xml2js(data);
@@ -290,57 +291,63 @@ async function downloadRss(url, file) {
 
 async function fetchData() {
   console.log('[fetchData] start');
-  await fs.ensureDir(DATA_DIR);
-  await downloadJson('https://jobs.github.com/positions.json?location=remote', 'githubJobs.json');
-  await downloadJson('https://remoteok.io/api', 'remoteOkJobs.json');
-  await downloadRss(
-    'https://stackoverflow.com/jobs/feed?l=Remote&u=Km&d=20',
-    'stackOverflowJobs.json',
-  );
-  await downloadNodeskRss('https://nodesk.co/index.xml', 'nodeskJobs.json', true);
-  await downloadNodeskRss(
-    'https://cryptocurrencyjobs.co/index.xml',
-    'cryptocurrencyJobs.json',
-    false,
-  );
-  await Promise.all(
-    WWR_CATEGORIES.map(wwrCat =>
-      downloadRss(`https://weworkremotely.com/categories/${wwrCat}.rss`, `wwr-${wwrCat}.json`),
-    ),
-  );
-  await downloadDribbble(
-    'https://dribbble.com/jobs?utf8=%E2%9C%93&category=&anywhere=true&location=Anywhere&role_type=',
-    'dribbbleJobs.html',
-  );
-  await Promise.all(
-    REMOTECO_CATEGORIES.map(remoteCoCategory =>
-      downloadRemoteCo(
-        `https://remote.co/remote-jobs/${remoteCoCategory}/`,
-        `remoteco-${remoteCoCategory}.json`,
-        remoteCoCategory,
+  try {
+    await fs.ensureDir(DATA_DIR);
+    await downloadJson('https://jobs.github.com/positions.json?location=remote', 'githubJobs.json');
+    await downloadJson('https://remoteok.io/api', 'remoteOkJobs.json');
+    await downloadRss(
+      'https://stackoverflow.com/jobs/feed?l=Remote&u=Km&d=20',
+      'stackOverflowJobs.json',
+    );
+    await downloadNodeskRss('https://nodesk.co/index.xml', 'nodeskJobs.json', true);
+    await downloadNodeskRss(
+      'https://cryptocurrencyjobs.co/index.xml',
+      'cryptocurrencyJobs.json',
+      false,
+    );
+    await Promise.all(
+      WWR_CATEGORIES.map(wwrCat =>
+        downloadRss(`https://weworkremotely.com/categories/${wwrCat}.rss`, `wwr-${wwrCat}.json`),
       ),
-    ),
-  );
-  await Promise.all(
-    JUSTREMOTE_CATEGORIES.map(justRemoteCategory =>
-      downloadJustRemote(
-        `https://justremote.co/${justRemoteCategory}`,
-        `justremote-${justRemoteCategory}.json`,
-        justRemoteCategory,
+    );
+    await downloadDribbble(
+      'https://dribbble.com/jobs?utf8=%E2%9C%93&category=&anywhere=true&location=Anywhere&role_type=',
+      'dribbbleJobs.html',
+    );
+    await Promise.all(
+      REMOTECO_CATEGORIES.map(remoteCoCategory =>
+        downloadRemoteCo(
+          `https://remote.co/remote-jobs/${remoteCoCategory}/`,
+          `remoteco-${remoteCoCategory}.json`,
+          remoteCoCategory,
+        ),
       ),
-    ),
-  );
-  await Promise.all(
-    REMOTIVE_CATEGORIES.map(remotiveCategory =>
-      downloadRemotive(
-        `https://remotive.io/remote-jobs/${remotiveCategory}`,
-        `remotive-${remotiveCategory}-jobs.json`,
-        remotiveCategory,
+    );
+    await Promise.all(
+      JUSTREMOTE_CATEGORIES.map(justRemoteCategory =>
+        downloadJustRemote(
+          `https://justremote.co/${justRemoteCategory}`,
+          `justremote-${justRemoteCategory}.json`,
+          justRemoteCategory,
+        ),
       ),
-    ),
-  );
-  await downloadRemotive('https://remotive.io/remote-jobs/software-dev', 'remotiveJobs.json');
-  console.log('[fetchData] done');
+    );
+    await Promise.all(
+      REMOTIVE_CATEGORIES.map(remotiveCategory =>
+        downloadRemotive(
+          `https://remotive.io/remote-jobs/${remotiveCategory}`,
+          `remotive-${remotiveCategory}-jobs.json`,
+          remotiveCategory,
+        ),
+      ),
+    );
+    await downloadRemotive('https://remotive.io/remote-jobs/software-dev', 'remotiveJobs.json');
+    console.log('[fetchData] done');
+  } catch (err) {
+    console.log(err);
+    console.log('[fetchData] abort');
+    process.exit(1);
+  }
 }
 
 fetchData();
