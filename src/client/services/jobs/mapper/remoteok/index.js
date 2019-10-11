@@ -43,7 +43,7 @@ export default function mapperRemoteOkJobs(input: any): Job[] {
         createdAt: new Date(x.date).getTime(),
         ageDays: differenceInDays(new Date(), new Date(x.date)),
         ageHours: differenceInHours(new Date(), new Date(x.date)),
-        tags: finalTags,
+        tags: Array.from(new Set(finalTags)),
         providerId: PROVIDERS.REMOTEOK,
       };
     });

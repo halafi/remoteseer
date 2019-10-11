@@ -125,7 +125,7 @@ class Search extends React.PureComponent<> {
   handleKeyDown = ev => {
     const { cursor, suggestions, value } = this.state;
 
-    if (ev.keyCode === 13) {
+    if (ev.keyCode === 13 && cursor !== 0) {
       // enter
       this.setState({
         value: suggestions[cursor - 1],

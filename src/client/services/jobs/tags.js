@@ -397,7 +397,7 @@ export default function getTags(title: string): string[] {
   if (lowerCaseTitle.includes('copywrit') || lowerCaseTitle.includes('writer')) {
     tags.push(ALLOWED_TAGS.COPYWRITING);
   }
-  if (lowerCaseTitle.includes('node')) {
+  if (lowerCaseTitle.includes('node') && !tags.includes(ALLOWED_TAGS.NODEJS)) {
     tags.push(ALLOWED_TAGS.NODEJS);
   }
   if (lowerCaseTitle.startsWith('r ')) {

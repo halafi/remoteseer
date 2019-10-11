@@ -3,6 +3,7 @@ import { differenceInDays, differenceInHours, subHours, subDays } from 'date-fns
 import type { Job } from '../../../../records/Job';
 import { PROVIDERS } from '../../../../records/Job';
 import getTags from '../../tags';
+import normalizeTitle from '../../normalizeTitle';
 
 export default function mapperRemotiveJobs(input: any): Job[] {
   const today = new Date();
@@ -34,7 +35,12 @@ export default function mapperRemotiveJobs(input: any): Job[] {
     // TODO: x.category tag
     return {
       id: x.id,
-      title: x.title.replace('&amp;', '&').replace('&#x2013;', '-'),
+      title: normalizeTitle(
+        x.title
+          .replace('&amp;', '&')
+          .replace('&#x2013;', '–')
+          .replace('&#x2014;', '—'),
+      ),
       location: '',
       url: x.link, // description: x.description,
       company: x.company.replace('&amp;', '&').replace('&#x26A1;&#xFE0F;', ''),
