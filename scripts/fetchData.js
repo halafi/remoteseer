@@ -35,7 +35,7 @@ const REMOTIVE_CATEGORIES = [
   'design',
   'marketing-sales',
   'product',
-  'others',
+  'all-others',
 ];
 
 const REMOTECO_CATEGORIES = [
@@ -80,7 +80,6 @@ async function downloadRemoteCo(url, file, category) {
   const $ = cheerio.load(data);
   const jobs = [];
   $('.job_listing').each((i, e) => {
-    // console.log($(e).html());
     const id = `rco-${category}-${i}`;
     const link = $(e)
       .find('a')
@@ -119,7 +118,6 @@ async function downloadJustRemote(url, file, category) {
   const $ = cheerio.load(data);
   const jobs = [];
   $('.job-item__JobItemWrapper-s2jmpga-0').each((i, e) => {
-    // console.log($(e).html());
     const id = `jr-${category}-${i}`;
     const link = `https://justremote.co/${$(e)
       .find('a')
@@ -159,7 +157,6 @@ async function downloadRemotive(url, file, category) {
   const $ = cheerio.load(data);
   const jobs = [];
   $('.job-list-item').each((i, e) => {
-    // console.log($(e).html());
     const id = `jr-${category}-${i}`;
     const link = `https://remotive.io${$(e)
       .find('.position a')
@@ -169,10 +166,8 @@ async function downloadRemotive(url, file, category) {
       .find('.position a')
       .html()
       .trim();
-    const company = $(e)
-      .find('.company span')
-      .html()
-      .trim();
+    const companyEl = $(e).find('.company span');
+    const company = companyEl && companyEl.html() ? companyEl.html().trim() : '';
     const date = $(e)
       .find('.job-date > span')
       .html()
@@ -301,34 +296,40 @@ async function fetchData() {
       'https://dribbble.com/jobs?utf8=%E2%9C%93&category=&anywhere=true&location=Anywhere&role_type=',
       'dribbbleJobs.html',
     );
-    await Promise.all(
-      REMOTECO_CATEGORIES.map(remoteCoCategory =>
-        downloadRemoteCo(
-          `https://remote.co/remote-jobs/${remoteCoCategory}/`,
-          `remoteco-${remoteCoCategory}.json`,
-          remoteCoCategory,
+    await REMOTECO_CATEGORIES.reduce(
+      (pacc, remoteCoCategory) =>
+        pacc.then(() =>
+          downloadRemoteCo(
+            `https://remote.co/remote-jobs/${remoteCoCategory}/`,
+            `remoteco-${remoteCoCategory}.json`,
+            remoteCoCategory,
+          ),
         ),
-      ),
+      Promise.resolve(),
     );
-    await Promise.all(
-      JUSTREMOTE_CATEGORIES.map(justRemoteCategory =>
-        downloadJustRemote(
-          `https://justremote.co/${justRemoteCategory}`,
-          `justremote-${justRemoteCategory}.json`,
-          justRemoteCategory,
+    await JUSTREMOTE_CATEGORIES.reduce(
+      (pacc, justRemoteCategory) =>
+        pacc.then(() =>
+          downloadJustRemote(
+            `https://justremote.co/${justRemoteCategory}`,
+            `justremote-${justRemoteCategory}.json`,
+            justRemoteCategory,
+          ),
         ),
-      ),
+      Promise.resolve(),
     );
-    await Promise.all(
-      REMOTIVE_CATEGORIES.map(remotiveCategory =>
-        downloadRemotive(
-          `https://remotive.io/remote-jobs/${remotiveCategory}`,
-          `remotive-${remotiveCategory}-jobs.json`,
-          remotiveCategory,
+    await REMOTIVE_CATEGORIES.reduce(
+      (pacc, remotiveCategory) =>
+        pacc.then(() =>
+          downloadRemotive(
+            `https://remotive.io/remote-jobs/${remotiveCategory}`,
+            `remotive-${remotiveCategory}-jobs.json`,
+            remotiveCategory,
+          ),
         ),
-      ),
+      Promise.resolve(),
     );
-    await downloadRemotive('https://remotive.io/remote-jobs/software-dev', 'remotiveJobs.json');
+    // await downloadRemotive('https://remotive.io/remote-jobs/software-dev', 'remotiveJobs.json');
     console.log('[fetchData] done');
   } catch (err) {
     console.log(err);

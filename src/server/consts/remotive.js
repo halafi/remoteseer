@@ -6,5 +6,5 @@ export const REMOTIVE_CATEGORIES = [
   'design',
   'marketing-sales',
   'product',
-  'others',
+  'all-others',
 ];
