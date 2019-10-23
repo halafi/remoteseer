@@ -156,7 +156,7 @@ const Job = ({ job, last }: Props) => (
     }}
   >
     <CompanyLogo provider={job.providerId} justifyContent="center" alignItems="center">
-      {job.company.slice(0, 1).toUpperCase()}
+      {(job.company || '?').slice(0, 1).toUpperCase()}
     </CompanyLogo>
     <JobInfo alignItems="center" justifyContent="space-between">
       <JobInfo flexDirection="column">
@@ -167,7 +167,7 @@ const Job = ({ job, last }: Props) => (
         >
           <Flex flexDirection="column" width={[1, null, null, null, 3 / 5]}>
             <Link>
-              {job.company}
+              {job.company || '¯\\_(ツ)_/¯'}
               <JobTitle location={Boolean(job.location)}>{job.title}</JobTitle>
               {job.location && <JobLocation>{job.location}</JobLocation>}
             </Link>

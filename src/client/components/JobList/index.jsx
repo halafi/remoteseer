@@ -9,18 +9,17 @@ import PERIODS from '../../consts/Periods';
 import groupJobsByPeriod from '../../services/jobs/groupJobsByPeriod';
 import Job from './Job';
 
-const TimeBlock = styled(Flex)`
-  margin: 0 0 20px;
-`;
+const presetOrder = ['today', 'yesterday', 'week', 'month', 'past'];
 
-const PeriodTitle = styled.span`
-  padding: 20px 12px;
-  font-size: 19px;
-  font-weight: 700;
-  ${mq.TABLET`
-    font-size: 22px;
-`}
-`;
+function sortSpecial(arr) {
+  const result = [];
+  let i;
+  let j;
+  for (i = 0; i < presetOrder.length; i += 1)
+    // eslint-disable-next-line
+    while (-1 != (j = arr.indexOf(presetOrder[i]))) result.push(arr.splice(j, 1)[0]);
+  return result.concat(arr);
+}
 
 type Props = {
   jobs: JobType[],
@@ -28,7 +27,7 @@ type Props = {
 };
 
 const JobList = ({ jobs, nogroup }: Props) => {
-  const groupedJobs = groupJobsByPeriod(jobs);
+  // const groupedJobs = groupJobsByPeriod(jobs);
 
   if (nogroup) {
     // isLp
@@ -41,18 +40,11 @@ const JobList = ({ jobs, nogroup }: Props) => {
     );
   }
   return (
-    <>
-      {Object.keys(groupedJobs).map(period => (
-        <Box key={period}>
-          <TimeBlock flexDirection="column">
-            <PeriodTitle>{PERIODS[period]}</PeriodTitle>
-            {groupedJobs[period].map((job, i) => (
-              <Job job={job} key={job.id} last={i === groupedJobs[period].length - 1} />
-            ))}
-          </TimeBlock>
-        </Box>
+    <Box my={20}>
+      {jobs.map((job, i) => (
+        <Job job={job} key={job.id} last={i >= jobs.length - 1} />
       ))}
-    </>
+    </Box>
   );
 };
 

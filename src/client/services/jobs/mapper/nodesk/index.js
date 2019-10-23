@@ -13,7 +13,7 @@ export default function mapperNodeskJobs(input: any): Job[] {
       id: x.guid,
       title: normalizeTitle(x.title),
       url: x.link, // description: x.description,
-      company: 'Nodesk',
+      company: '',
       createdAt: createdAt.getTime(),
       ageDays: differenceInDays(new Date(), createdAt),
       ageHours: differenceInHours(new Date(), createdAt),
