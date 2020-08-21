@@ -254,13 +254,16 @@ async function downloadRss(url, file) {
   const response = await fetch(url);
   const data = await response.text();
   const xml = await convert.xml2js(data);
-  const items = xml.elements[0].elements[0].elements;
+  const items = xml.elements && xml.elements[0] ? xml.elements[0].elements[0].elements : [];
   const jobs = items
     .map(x => x.elements)
     .reduce((acc, jobArr) => {
       acc.push(
         jobArr.reduce((subacc, prop) => {
-          return { ...subacc, [prop.name]: prop.elements && prop.elements[0].text };
+          return {
+            ...subacc,
+            [prop.name]: prop.elements && prop.elements[0] && prop.elements[0].text,
+          };
         }, {}),
       );
       return acc;
