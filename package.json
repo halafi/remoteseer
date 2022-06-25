@@ -36,7 +36,7 @@
     "date-fns": "^2.2.1",
     "fs-extra": "^8.1.0",
     "jest": "^24.9.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "ramda": "^0.26.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
